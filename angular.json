@@ -10,7 +10,8 @@
       "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
-          "styleext": "sass"
+          "styleext": "sass",
+          "path": "/src/app/components"
         }
       },
       "architect": {
