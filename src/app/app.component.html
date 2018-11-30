@@ -1,14 +1,16 @@
 <div class="app">
-  <app-header></app-header>
+  <header>
+    <app-header></app-header>
+  </header>
   <main class="page">
-    <section>Courses</section>
-    <section>
+    <section class="page-title">Courses</section>
+    <section class="page-search">
       <input type="text"/>
       <button>Search</button>
       <button>Add course</button>
     </section>
     <section>
-      <div>
+      <div class="course">
         <div>Title</div>
         <div>Duration</div>
         <div>Create date</div>
@@ -17,9 +19,11 @@
         <button>Delete</button>
       </div>
     </section>
-    <button>Load More</button>
+    <button class='load-more'>Load More</button>
   </main>
-  <app-footer></app-footer>
+  <footer>
+    <app-footer></app-footer>
+  </footer>
 </div>
 
 <router-outlet></router-outlet>
