@@ -1,0 +1,29 @@
+<div class="app">
+  <header>
+    <app-header></app-header>
+  </header>
+  <main class="page">
+    <section class="page-title">Courses</section>
+    <section class="page-search">
+      <input type="text"/>
+      <button>Search</button>
+      <button>Add course</button>
+    </section>
+    <section>
+      <div class="course">
+        <div>Title</div>
+        <div>Duration</div>
+        <div>Create date</div>
+        <div>Description</div>
+        <button>Edit</button>
+        <button>Delete</button>
+      </div>
+    </section>
+    <button class='load-more'>Load More</button>
+  </main>
+  <footer>
+    <app-footer></app-footer>
+  </footer>
+</div>
+
+<router-outlet></router-outlet>
