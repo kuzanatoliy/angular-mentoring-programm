@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-const routes: Routes = [];
+import { CoursesComponent } from './shared/courses/courses.component';
+
+const routes: Routes = [
+  { path: 'courses',        component: CoursesComponent },
+  { path: '**',   redirectTo: '/courses', pathMatch: 'full' }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
