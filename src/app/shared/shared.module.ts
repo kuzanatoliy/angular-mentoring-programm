@@ -6,6 +6,8 @@ import { LogoComponent } from './logo/logo.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { SearchComponent } from './search/search.component';
 import { NewCourseComponent } from './new-course/new-course.component';
+import { CoursesComponent } from './courses/courses.component';
+import { LoadMoreComponent } from './load-more/load-more.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { NewCourseComponent } from './new-course/new-course.component';
     LogoComponent,
     BreadcrumbsComponent,
     SearchComponent,
-    NewCourseComponent
+    NewCourseComponent,
+    CoursesComponent,
+    LoadMoreComponent
   ],
   imports: [
     CommonModule
@@ -25,7 +29,9 @@ import { NewCourseComponent } from './new-course/new-course.component';
     LogoComponent,
     BreadcrumbsComponent,
     SearchComponent,
-    NewCourseComponent
+    NewCourseComponent,
+    CoursesComponent,
+    LoadMoreComponent
   ]
 })
 export class SharedModule { }
