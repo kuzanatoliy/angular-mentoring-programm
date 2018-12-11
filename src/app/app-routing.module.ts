@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { CoursesComponent } from './shared/courses/courses.component';
+import { CoursesPageComponent } from './courses/courses-page/courses-page.component';
 
 const routes: Routes = [
-  { path: 'courses',        component: CoursesComponent },
+  { path: 'courses', component: CoursesPageComponent },
   { path: '**',   redirectTo: '/courses', pathMatch: 'full' }
 ];
 
