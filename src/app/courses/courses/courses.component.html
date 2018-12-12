@@ -1,8 +1,7 @@
 <div class="courses">
-  <div *ngFor="let course of courses; let i = index">
+  <div *ngFor="let course of courses">
     <app-course-item
       [course]="course"
-      [index]="i"
       [updateAction]="updateCourseHandler"
       [removeAction]="removeCourseHandler"
     ></app-course-item>

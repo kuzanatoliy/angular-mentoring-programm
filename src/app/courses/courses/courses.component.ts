@@ -15,26 +15,31 @@ export class CoursesComponent implements OnInit {
   ngOnInit() {
     console.log('ngOnInit');
     this.courses = [{
+      "id": 1,
       "title": "Courses 1",
       "duration": 80,
       "date": "04.12.2018",
       "description": "Description of courses 1"
     }, {
+      "id": 2,
       "title": "Courses 2",
       "duration": 80,
       "date": "04.12.2018",
       "description": "Description of courses 2"
     }, {
+      "id": 3,
       "title": "Courses 3",
       "duration": 80,
       "date": "04.12.2018",
       "description": "Description of courses 3"
     }, {
+      "id": 4,
       "title": "Courses 4",
       "duration": 80,
       "date": "04.12.2018",
       "description": "Description of courses 4"
     }, {
+      "id": 5,
       "title": "Courses 5",
       "duration": 80,
       "date": "04.12.2018",
@@ -70,11 +75,11 @@ export class CoursesComponent implements OnInit {
     console.log('ngOnDestroy');
   }
 
-  updateCourseHandler(index) {
-    console.log(`updateCourseHandler ${index}`);
+  updateCourseHandler(id) {
+    console.log(`updateCourseHandler ${id}`);
   }
 
-  removeCourseHandler(index) {
-    console.log(`removeCourseHandler ${index}`);
+  removeCourseHandler(id) {
+    console.log(`removeCourseHandler ${id}`);
   }
 }

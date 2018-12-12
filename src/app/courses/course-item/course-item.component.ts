@@ -1,13 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { ICourse } from '../../interfaces/ICourse';
+
 @Component({
   selector: 'app-course-item',
   templateUrl: './course-item.component.html',
   styleUrls: ['./course-item.component.sass']
 })
 export class CourseItemComponent implements OnInit {
-  @Input() course: Object;
-  @Input() index: Number;
+  @Input() course: ICourse;
   @Input() updateAction: Function;
   @Input() removeAction: Function;
 
@@ -20,11 +21,11 @@ export class CourseItemComponent implements OnInit {
   }
 
   updateHandler() {
-    this.updateAction && this.updateAction(this.index);
+    this.updateAction && this.updateAction(this.course.id);
   }
 
   removeHandler() {
-    this.removeAction && this.removeAction(this.index);
+    this.removeAction && this.removeAction(this.course.id);
   }
 
 }
