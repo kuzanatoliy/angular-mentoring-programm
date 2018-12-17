@@ -21,11 +21,11 @@ export class CourseItemComponent implements OnInit {
   }
 
   updateHandler() {
-    this.updateAction && this.updateAction(this.course.id);
+    return this.updateAction && this.updateAction(this.course.id);
   }
 
   removeHandler() {
-    this.removeAction && this.removeAction(this.course.id);
+    return this.removeAction && this.removeAction(this.course.id);
   }
 
 }

@@ -26,4 +26,9 @@ describe('CoursesComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('shoud have five components of app-course-item component', () => {
+    const itemsCount = fixture.nativeElement.querySelectorAll('app-course-item').length;
+    expect(itemsCount).toBe(5);
+  });
 });

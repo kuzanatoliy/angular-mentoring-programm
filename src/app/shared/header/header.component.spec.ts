@@ -26,4 +26,9 @@ describe('HeaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should find app-header component', () => {
+    const coursesComponent = fixture.nativeElement.querySelector('app-logo');
+    expect(coursesComponent).not.toBeNull();
+  });
 });
