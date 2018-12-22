@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CoursesPageComponent } from './courses-page.component';
+import { CoursesComponent } from '../courses/courses.component';
+import { CourseItemComponent } from '../course-item/course-item.component';
+import { SearchModule } from '../../search/search.module';
+import { SharedModule } from '../../shared/shared.module';
 
 describe('CoursesPageComponent', () => {
   let component: CoursesPageComponent;
@@ -8,7 +12,15 @@ describe('CoursesPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CoursesPageComponent ]
+      declarations: [
+        CoursesPageComponent,
+        CoursesComponent,
+        CourseItemComponent
+      ],
+      imports: [
+        SearchModule,
+        SharedModule
+      ]
     })
     .compileComponents();
   }));
@@ -21,5 +33,25 @@ describe('CoursesPageComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should find app-breadcrumbs component', () => {
+    const breadcrupmbsComponent = fixture.nativeElement.querySelector('app-breadcrumbs');
+    expect(breadcrupmbsComponent).not.toBeNull();
+  });
+
+  it('should find app-search component', () => {
+    const searchComponent = fixture.nativeElement.querySelector('app-search');
+    expect(searchComponent).not.toBeNull();
+  });
+
+  it('should find app-new-course component', () => {
+    const newCourseComponent = fixture.nativeElement.querySelector('app-new-course');
+    expect(newCourseComponent).not.toBeNull();
+  });
+
+  it('should find app-breadcrumbs component', () => {
+    const coursesComponent = fixture.nativeElement.querySelector('app-courses');
+    expect(coursesComponent).not.toBeNull();
   });
 });

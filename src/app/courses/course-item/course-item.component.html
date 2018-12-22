@@ -2,11 +2,11 @@
   <div class='course-content'>
     <div class="course-content-title">{{course.title}}</div>
     <div class="course-content-duration">{{course.duration}}</div>
-    <div class="course-content-date">{{course.date}}</div>
+    <div class="course-content-date">{{course.creationDate}}</div>
     <div class="course-content-description">{{course.description}}</div>
   </div>
   <div class='course-control'>
-    <button (click)="updateHandler()">Edit</button>
-    <button (click)="removeHandler()">Delete</button>
+    <button class='course-control-update' (click)="updateHandler()">Edit</button>
+    <button class='course-control-remove' (click)="removeHandler()">Delete</button>
   </div>
 </div>
