@@ -1,6 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { CourseItemComponent } from './course-item.component';
+import { FreshCourseDirective } from '../directives/fresh-course.directive';
+import {
+  CourseDurationPipe,
+  CourseCreationDatePipe
+} from '../pipes';
 import { ICourse } from '../../interfaces/ICourse';
 
 describe('CourseItemComponent', () => {
@@ -9,7 +15,8 @@ describe('CourseItemComponent', () => {
     title: "Courses 1",
     duration: 80,
     creationDate: new Date(),
-    description: "Description of courses 1"
+    description: "Description of courses 1",
+    topRated: true
   }
 
   describe('Testing as component', () => {
@@ -18,7 +25,15 @@ describe('CourseItemComponent', () => {
 
     beforeEach(async(() => {
       TestBed.configureTestingModule({
-        declarations: [ CourseItemComponent ]
+        declarations: [
+          CourseItemComponent,
+          FreshCourseDirective,
+          CourseDurationPipe,
+          CourseCreationDatePipe
+        ],
+        imports: [
+          FontAwesomeModule
+        ]
       })
       .compileComponents();
     }));
@@ -36,17 +51,18 @@ describe('CourseItemComponent', () => {
 
     it('check course content title', () => {
       const title = fixture.nativeElement.querySelector('.course-content-title');
-      expect(title.textContent).toContain(component.course.title);
+      expect(title.textContent).toContain(component.course.title.toUpperCase());
     });
 
     it('check course content duration', () => {
       const duration = fixture.nativeElement.querySelector('.course-content-duration');
-      expect(duration.textContent).toContain(component.course.duration);
+      expect(duration.textContent).toContain('1h 20min');
     });
 
     it('check course content date', () => {
+      const pipe = new CourseCreationDatePipe();
       const creationDate = fixture.nativeElement.querySelector('.course-content-date');
-      expect(creationDate.textContent).toContain(component.course.creationDate);
+      expect(creationDate.textContent).toContain(pipe.transform(new Date()));
     });
 
     it('check course content description', () => {

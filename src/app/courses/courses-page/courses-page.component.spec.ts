@@ -1,10 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { CoursesPageComponent } from './courses-page.component';
 import { CoursesComponent } from '../courses/courses.component';
 import { CourseItemComponent } from '../course-item/course-item.component';
+import { FreshCourseDirective } from '../directives/fresh-course.directive';
 import { SearchModule } from '../../search/search.module';
 import { SharedModule } from '../../shared/shared.module';
+import {
+  CourseDurationPipe,
+  CourseCreationDatePipe, 
+  OrderByCreationDatePipe,
+  SearchFilterPipe
+} from '../pipes';
 
 describe('CoursesPageComponent', () => {
   let component: CoursesPageComponent;
@@ -15,11 +23,17 @@ describe('CoursesPageComponent', () => {
       declarations: [
         CoursesPageComponent,
         CoursesComponent,
-        CourseItemComponent
+        CourseItemComponent,
+        FreshCourseDirective,
+        CourseDurationPipe,
+        CourseCreationDatePipe, 
+        OrderByCreationDatePipe,
+        SearchFilterPipe
       ],
       imports: [
+        FontAwesomeModule,
         SearchModule,
-        SharedModule
+        SharedModule,
       ]
     })
     .compileComponents();

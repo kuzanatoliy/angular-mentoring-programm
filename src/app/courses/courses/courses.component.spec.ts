@@ -1,7 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { CoursesComponent } from './courses.component';
 import { CourseItemComponent } from '../course-item/course-item.component';
+import { FreshCourseDirective } from '../directives/fresh-course.directive';
+import {
+  CourseDurationPipe,
+  CourseCreationDatePipe, 
+  OrderByCreationDatePipe
+} from '../pipes';
 
 describe('CoursesComponent', () => {
   let component: CoursesComponent;
@@ -11,7 +18,13 @@ describe('CoursesComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         CoursesComponent,
-        CourseItemComponent
+        CourseItemComponent,
+        FreshCourseDirective,
+        CourseDurationPipe,
+        CourseCreationDatePipe, 
+        OrderByCreationDatePipe
+      ], imports: [
+        FontAwesomeModule
       ]
     })
     .compileComponents();
