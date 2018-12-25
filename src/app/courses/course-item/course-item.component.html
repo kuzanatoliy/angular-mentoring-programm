@@ -1,8 +1,16 @@
-<div class="course">
+<div 
+  class="course"
+  [appFreshCourse]="course.creationDate">
   <div class='course-content'>
-    <div class="course-content-title">{{course.title}}</div>
+    <div class="course-content-title">
+      {{course.title}}
+      <fa-icon
+        [icon]="STAR_ICON"
+        [ngClass]="{'course-content-title-star': course.topRated}">
+      </fa-icon>
+    </div>
     <div class="course-content-duration">{{course.duration}}</div>
-    <div class="course-content-date">{{course.creationDate}}</div>
+    <div class="course-content-date">{{course.creationDate.toDateString()}}</div>
     <div class="course-content-description">{{course.description}}</div>
   </div>
   <div class='course-control'>

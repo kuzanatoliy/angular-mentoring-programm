@@ -1,8 +1,14 @@
 <div class="courses">
-  <app-course-item
-    *ngFor="let course of courses"
-    [course]="course"
-    [updateAction]="updateCourseHandler"
-    [removeAction]="removeCourseHandler"
-  ></app-course-item>
+  <div *ngIf="isCourses(); then coursesBlock; else messageBlock">this is ignored</div>
+  <ng-template #coursesBlock>
+    <app-course-item
+      *ngFor="let course of courses"
+      [course]="course"
+      [updateAction]="updateCourseHandler"
+      [removeAction]="removeCourseHandler"
+    ></app-course-item>
+  </ng-template>
+  <ng-template #messageBlock>
+    <div class="courses-message">No data feel free to add new course</div>
+  </ng-template>
 </div>
