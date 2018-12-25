@@ -11,12 +11,23 @@ import { CourseItemComponent } from './course-item/course-item.component';
 
 import { FreshCourseDirective } from './directives/fresh-course.directive';
 
+import {
+  CourseDurationPipe,
+  CourseCreationDatePipe, 
+  OrderByCreationDatePipe,
+  SearchFilterPipe
+} from './pipes';
+
 @NgModule({
   declarations: [
     CoursesComponent,
     CourseItemComponent,
     CoursesPageComponent,
-    FreshCourseDirective
+    FreshCourseDirective,
+    CourseDurationPipe,
+    CourseCreationDatePipe,
+    OrderByCreationDatePipe,
+    SearchFilterPipe
   ],
   imports: [
     FontAwesomeModule,

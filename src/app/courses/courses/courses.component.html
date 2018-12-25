@@ -2,7 +2,7 @@
   <div *ngIf="isCourses(); then coursesBlock; else messageBlock">this is ignored</div>
   <ng-template #coursesBlock>
     <app-course-item
-      *ngFor="let course of courses"
+      *ngFor="let course of courses | orderByCreationDate"
       [course]="course"
       [updateAction]="updateCourseHandler"
       [removeAction]="removeCourseHandler"
