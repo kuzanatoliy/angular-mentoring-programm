@@ -21,6 +21,8 @@ export class FreshCourseDirective {
     start.setDate(end.getDate() - this.TIME);
     if(start < date && end >= date) {
       this.nativeElem.classList.add('new');
+    } else if(date > end) {
+      this.nativeElem.classList.add('released');
     }
   }
 
