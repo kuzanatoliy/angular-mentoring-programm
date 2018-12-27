@@ -1,13 +1,14 @@
 <div 
   class="course"
-  [appFreshCourse]="course.creationDate">
+  [appFreshCourse]="course.creationDate"
+  [ngClass]="{'course-star': course.topRated}">
   <div class='course-content'>
     <div class="course-content-title">
       {{course.title | uppercase}}
-      <fa-icon
-        [icon]="STAR_ICON"
-        [ngClass]="{'course-content-title-star': course.topRated}">
-      </fa-icon>
+      <span *ngIf="course.topRated; then iconBlock"></span>
+      <ng-template #iconBlock>
+        <fa-icon [icon]="STAR_ICON"></fa-icon>
+      </ng-template>
     </div>
     <div class="course-content-duration">{{course.duration | courseDuration}}</div>
     <div class="course-content-date">{{course.creationDate | courseCreationDate}}</div>
