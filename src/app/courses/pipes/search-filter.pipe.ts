@@ -10,10 +10,14 @@ export class SearchFilterPipe implements PipeTransform {
   
   constructor(private searchService: SearchService) {}
 
+  private checkCourseTitle(course: ICourse, subString: string) {
+    return !(course.title.toLowerCase().indexOf(subString) < 0);
+  }
+
   transform(courses: Array<ICourse>): Array<ICourse> {
-    const searchString = this.searchService.getValue();
+    const searchString = this.searchService.getValue().toLowerCase();
     return searchString
-      ? courses.filter(item => item.title === searchString)
+      ? courses.filter(item => this.checkCourseTitle(item, searchString))
       : courses;
   }
 
