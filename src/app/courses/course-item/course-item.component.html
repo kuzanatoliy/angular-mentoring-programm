@@ -11,7 +11,7 @@
       </ng-template>
     </div>
     <div class="course-content-duration">{{course.duration | courseDuration}}</div>
-    <div class="course-content-date">{{course.creationDate | courseCreationDate}}</div>
+    <div class="course-content-date">{{course.creationDate | date: 'dd.MM.yyyy'}}</div>
     <div class="course-content-description">{{course.description}}</div>
   </div>
   <div class='course-control'>
