@@ -1,50 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 
+import { SearchFilterPipe } from '../pipes/search-filter.pipe';
+import { CoursesService } from '../services/courses.service';
+import { SearchService } from '../../search/services/search.service';
+import { ICourse } from 'src/app/interfaces/ICourse';
+
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
   styleUrls: ['./courses.component.sass']
 })
 export class CoursesComponent implements OnInit {
-  public courses;
+  private searchFilter: SearchFilterPipe;
+  
+  private COURSES: Array<ICourse>;
+  public courses: Array<ICourse>;
+  public loading: boolean = false;
 
-  constructor() {
+  constructor(
+    private searchService: SearchService,
+    private coursesService: CoursesService
+  ) {
     this.courses = [];
+    this.searchFilter = new SearchFilterPipe(searchService);
+    this.loading = true;
+    this.coursesService.getCourses()
+      .then(courses => this.COURSES = courses)
+      .then(() => this.loading = false);
   }
 
   ngOnInit() {
     console.log('ngOnInit');
-    this.courses = [{
-      id: 1,
-      title: "Courses 1",
-      duration: 80,
-      creationDate: "04.12.2018",
-      description: "Description of courses 1"
-    }, {
-      id: 2,
-      title: "Courses 2",
-      duration: 80,
-      creationDate: "04.12.2018",
-      description: "Description of courses 2"
-    }, {
-      id: 3,
-      title: "Courses 3",
-      duration: 80,
-      creationDate: "04.12.2018",
-      description: "Description of courses 3"
-    }, {
-      id: 4,
-      title: "Courses 4",
-      duration: 80,
-      creationDate: "04.12.2018",
-      description: "Description of courses 4"
-    }, {
-      id: 5,
-      title: "Courses 5",
-      duration: 80,
-      creationDate: "04.12.2018",
-      description: "Description of courses 5"
-    }];
   }
 
   ngOnChanges() {
@@ -53,6 +39,7 @@ export class CoursesComponent implements OnInit {
 
   ngDoCheck() {
     console.log('ngDoCheck');
+    this.courses = this.searchFilter.transform(this.COURSES);
   }
 
   ngAfterContentInit() {

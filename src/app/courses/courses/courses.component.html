@@ -1,8 +1,20 @@
 <div class="courses">
-  <app-course-item
-    *ngFor="let course of courses"
-    [course]="course"
-    [updateAction]="updateCourseHandler"
-    [removeAction]="removeCourseHandler"
-  ></app-course-item>
+  <div *ngIf="courses.loading; then loadingBlock; else contentBlock"></div>
+  <ng-template #loadingBlock>
+    <div>Loading...</div>
+  </ng-template>
+  <ng-template #contentBlock>
+    <div *ngIf="courses.length; then coursesBlock; else messageBlock"></div>
+    <ng-template #coursesBlock>
+      <app-course-item
+        *ngFor="let course of courses | orderByCreationDate"
+        [course]="course"
+        [updateAction]="updateCourseHandler"
+        [removeAction]="removeCourseHandler"
+      ></app-course-item>
+    </ng-template>
+    <ng-template #messageBlock>
+      <div class="courses-message">No data feel free to add new course</div>
+    </ng-template>
+  </ng-template>
 </div>

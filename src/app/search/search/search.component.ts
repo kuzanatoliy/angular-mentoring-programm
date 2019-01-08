@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { SearchService } from '../services/search.service';
+
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -8,8 +10,8 @@ import { Component, OnInit } from '@angular/core';
 export class SearchComponent implements OnInit {
   public searchValue;
 
-  constructor() {
-    this.searchValue = '';
+  constructor(private searchService: SearchService ) {
+    this.searchValue = searchService.getValue();
   }
 
   setNewValue(value) {
@@ -17,7 +19,7 @@ export class SearchComponent implements OnInit {
   }
 
   searchHandler() {
-    console.log(this.searchValue);
+    this.searchService.setValue(this.searchValue);
   }
 
   ngOnInit() {

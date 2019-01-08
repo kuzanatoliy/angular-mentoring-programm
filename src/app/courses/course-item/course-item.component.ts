@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 import { ICourse } from '../../interfaces/ICourse';
 
@@ -12,8 +13,7 @@ export class CourseItemComponent implements OnInit {
   @Input() updateAction: Function;
   @Input() removeAction: Function;
 
-  UPDATE_BUTTON_NAME = 'Edit'
-  REMOVE_BUTTON_NAME = 'Delete'
+  public STAR_ICON: Object = faStar;
 
   constructor() {}
 
