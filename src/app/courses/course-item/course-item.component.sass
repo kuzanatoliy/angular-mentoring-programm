@@ -1,16 +1,19 @@
+@import '../../style/constants'
+@import '../../style/button'
+  
 .course
+  color: $primaryTextColor
   display: flex
-  border: solid 2px #0f4fa8
-  margin: 10px 0
+  border: solid 0.1em $lightPrimaryColor
+  margin: 0.5em 0
+  padding: 0.5em
   &.new
-    border-color: green
-    border-width: 3px
+    border-color: $secondaryColor
   &.released
-    border-color: blue
-    border-width: 3px
+    border-color: $primaryColor
 
 .course-star
-  background-color: yellow
+  background-color: $accentColor
 
 .course-content
   flex-grow: 1
@@ -21,7 +24,7 @@
   flex-grow: 1
 
 .course-content-duration
-  margin: 0 0.5rem
+  margin: 0 0.5em
 
 .course-content-description
   width: 100%
@@ -33,8 +36,5 @@
   align-items: stretch
 
 button
-  background-color: #0f4fa8
-  border-bottom-color: #ffffff
-  color: #ffffff
-  border-radius: 0.5em 0.5em
-  padding: 0.5em 2em
+  @extend %button-style
+  margin: 0.5em

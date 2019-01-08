@@ -1,25 +1,26 @@
+@import './style/constants'
+  
 .app
   display: flex
   flex-direction: column
   min-height: 100vh
-  color: #3E0470
 
-.page
+.app-pages
   flex-grow: 1
+  padding-bottom: 1em
 
 header, footer, main
-  max-width: 1366px
-  margin: 0 calc((100% - 1366px) / 2)
-  padding: 0 1rem
+  padding: 0 calc((100% - #{$desctopWidth}) / 2)
 
 header, footer
-  flex-basis: 3rem
-  background-color: #4380d4
-  color: #ffffff
+  background-color: $primaryColor
+  color: $textColor
 
-button
-  background-color: #0f4fa8
-  border-bottom-color: #ffffff
-  color: #ffffff
-  border-radius: 0.5em 0.5em
-  padding: 0.5em 2em
+header
+  flex-basis: $headerHeight
+  height: $headerHeight
+
+footer
+  $height: $headerHeight / 2
+  flex-basis: $height
+  height: $height
