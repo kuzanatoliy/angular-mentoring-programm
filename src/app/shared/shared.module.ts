@@ -28,7 +28,8 @@ import { ModalWindowComponent } from './modal-window/modal-window.component';
     LogoComponent,
     BreadcrumbsComponent,
     NewCourseComponent,
-    LoadMoreComponent
+    LoadMoreComponent,
+    ModalWindowComponent
   ]
 })
 export class SharedModule { }

@@ -1,8 +1,12 @@
 <div class="window">
-  <div class="window-title"></div>
-  <div class="window-content"></div>
+  <div class="window-title">
+    <h3>{{ title || 'Modal window' }}</h3>
+  </div>
+  <div class="window-content">
+    <ng-content></ng-content>
+  </div>
   <div class="window-control">
-    <button class="window-control-ok"></button>
-    <button class="window-control-cancel">
+    <button class="window-control-ok">{{ okButtonName || 'Ok' }}</button>
+    <button class="window-control-cancel">{{ cancelButtonName || 'Cancel' }}</button>
   </div>
 </div>
