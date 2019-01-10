@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { ICourse } from 'src/app/interfaces/ICourse';
-import { promise } from 'protractor';
+import { ICourse } from '../../interfaces/ICourse';
+import { Course } from '../../models/Course';
+import { isNgTemplate } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoursesService {
-  private COURSES: Array<ICourse> = [{
+  private COURSES: Array<ICourse> = Course.createCourseList([{
     id: 1,
     title: "Courses 1",
     duration: 80,
@@ -41,11 +42,45 @@ export class CoursesService {
     creationDate: new Date("04.12.2018"),
     description: "Description of courses 5",
     topRated: false
-  }];
+  }]);
 
-  constructor() { }
+  private nextId = 6;
 
-  getCourses() {
+  constructor() {}
+
+  getCourseList() {
     return Promise.resolve(this.COURSES);
+  }
+
+  createCourse(data: ICourse) {
+    data.id = this.nextId;
+    this.nextId++;
+    const course = Course.createCourse(data);
+    this.COURSES.push(course);
+    
+    return Promise.resolve(course);
+  }
+
+  getCourse(id: number) {
+    return Promise.resolve(this.COURSES.find(item => item.id === id));
+  }
+
+  updateCourse(id: number, data: ICourse) {
+    const course = this.COURSES.find(item => item.id === id);
+    course.title = data.title;
+    course.description = data.description;
+    course.duration = data.duration;
+    course.topRated = data.topRated;
+
+    return Promise.resolve(course);
+  }
+
+  removeCourse(id: number) {
+    const course = this.COURSES.find(item => item.id === id);
+    if(course) {
+      this.COURSES = this.COURSES.filter(item => item.id === course.id);
+      return Promise.resolve(id);
+    }
+    return Promise.resolve(null);
   }
 }

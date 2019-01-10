@@ -24,7 +24,7 @@ export class CoursesComponent implements OnInit {
     this.courses = [];
     this.searchFilter = new SearchFilterPipe(searchService);
     this.loading = true;
-    this.coursesService.getCourses()
+    this.coursesService.getCourseList()
       .then(courses => this.COURSES = courses)
       .then(() => this.loading = false);
   }

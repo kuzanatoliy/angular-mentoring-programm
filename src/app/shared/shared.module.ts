@@ -7,6 +7,7 @@ import { LogoComponent } from './logo/logo.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { NewCourseComponent } from './new-course/new-course.component';
 import { LoadMoreComponent } from './load-more/load-more.component';
+import { ModalWindowComponent } from './modal-window/modal-window.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { LoadMoreComponent } from './load-more/load-more.component';
     LogoComponent,
     BreadcrumbsComponent,
     NewCourseComponent,
-    LoadMoreComponent
+    LoadMoreComponent,
+    ModalWindowComponent
   ],
   imports: [
     CommonModule
