@@ -15,17 +15,28 @@ export class CourseItemComponent implements OnInit {
 
   public STAR_ICON: Object = faStar;
 
+  public isActiveRemoveWindow: boolean = false;
+
   constructor() {}
 
   ngOnInit() {
   }
 
-  updateHandler() {
-    return this.updateAction && this.updateAction(this.course.id);
+  public cancelRemoveHandler: Function = () => {
+    this.isActiveRemoveWindow = false;
+  };
+
+  public removeHandler: Function = () => {
+    this.removeAction && this.removeAction(this.course.id);
+    this.cancelRemoveHandler();
   }
 
-  removeHandler() {
-    return this.removeAction && this.removeAction(this.course.id);
+  showRemoveWindow() {
+    this.isActiveRemoveWindow = true;
+  }
+
+  updateHandler() {
+    return this.updateAction && this.updateAction(this.course.id);
   }
 
 }

@@ -29,6 +29,14 @@ export class CoursesComponent implements OnInit {
       .then(() => this.loading = false);
   }
 
+  public removeCourseHandler: Function = id => {
+    this.coursesService.removeCourse(id)
+      .then(() => this.loading = true)
+      .then(() => this.coursesService.getCourseList())
+      .then(courses => this.COURSES = courses)
+      .then(() => this.loading = false);
+  }
+
   ngOnInit() {
     console.log('ngOnInit');
   }
@@ -66,7 +74,4 @@ export class CoursesComponent implements OnInit {
     console.log(`updateCourseHandler ${id}`);
   }
 
-  removeCourseHandler(id) {
-    console.log(`removeCourseHandler ${id}`);
-  }
 }

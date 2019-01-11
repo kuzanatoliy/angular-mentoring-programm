@@ -78,7 +78,7 @@ export class CoursesService {
   removeCourse(id: number) {
     const course = this.COURSES.find(item => item.id === id);
     if(course) {
-      this.COURSES = this.COURSES.filter(item => item.id === course.id);
+      this.COURSES = this.COURSES.filter(item => item.id !== course.id);
       return Promise.resolve(id);
     }
     return Promise.resolve(null);
