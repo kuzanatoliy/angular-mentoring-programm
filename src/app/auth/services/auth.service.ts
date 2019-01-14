@@ -8,27 +8,36 @@ export class AuthService {
   private PASSWORD = 'user_password'
   private authorized = false;
 
-  constructor() { }
+  public userName?: string = null;
 
-  isAuthorized() {
-    return Promise.resolve({
-      authorized: this.authorized,
-      userName: this.USER_NAME
-    });
-  }
-
-  authorize(userName, password) {
-    if(userName === this.USER_NAME && password === this.PASSWORD) {
+  login(userName, password) {
+    if(this.USER_NAME === userName && this.PASSWORD === password) {
       this.authorized = true;
-
-      return Promise.resolve({
-        authorized: this.authorized  
-      })
     }
 
-    return Promise.resolve({
-      authorized: this.authorized,
-      userName: this.USER_NAME
-    });
+    if(this.authorized) {
+      this.userName = this.USER_NAME;
+      return Promise.resolve({
+        userName: this.USER_NAME
+      });
+    }
+
+    return Promise.resolve({});
   }
+
+  logout() {
+    this.authorized = false;
+
+    return Promise.resolve({});
+  }
+
+  isAuthorized() {
+    return Promise.resolve(this.authorized);
+  }
+
+  getUserInfo() {
+    return this.userName;
+  }
+
+  constructor() { }
 }
