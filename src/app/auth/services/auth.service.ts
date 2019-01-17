@@ -27,6 +27,7 @@ export class AuthService {
 
   logout() {
     this.authorized = false;
+    this.userName = null;
 
     return Promise.resolve({});
   }

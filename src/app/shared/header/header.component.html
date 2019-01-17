@@ -9,7 +9,7 @@
   <ng-template #logout>
     <div class="header-auth-user">
       <p class="header-auth-user">User: {{ userName }}</p>
-      <button>Logout</button>
+      <button (click)="logoutHandler()">Logout</button>
     </div>
   </ng-template>
 </div>

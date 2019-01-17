@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { IUser } from '../../interfaces/IUser';
 
 import { AuthService } from '../../auth/services/auth.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -12,7 +14,8 @@ export class HeaderComponent implements OnInit {
   public userName?: string = null;
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -21,6 +24,13 @@ export class HeaderComponent implements OnInit {
 
   ngDoCheck() {
     this.userName = this.authService.getUserInfo();
+  }
+
+  logoutHandler() {
+    this.authService.logout().then(() => {
+      this.userName = null;
+      this.router.navigate(['login']);
+    });
   }
 
 }
