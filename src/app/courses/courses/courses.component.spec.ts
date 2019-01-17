@@ -3,12 +3,16 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { CoursesComponent } from './courses.component';
 import { CourseItemComponent } from '../course-item/course-item.component';
+import { CoursesPageComponent } from '../courses-page/courses-page.component';
 import { FreshCourseDirective } from '../directives/fresh-course.directive';
 import {
   CourseDurationPipe,
   CourseCreationDatePipe, 
   OrderByCreationDatePipe
 } from '../pipes';
+import { SearchModule } from '../../search/search.module';
+import { SharedModule } from '../../shared/shared.module';
+import { AuthModule } from '../../auth/auth.module';
 
 describe('CoursesComponent', () => {
   let component: CoursesComponent;
@@ -19,12 +23,16 @@ describe('CoursesComponent', () => {
       declarations: [
         CoursesComponent,
         CourseItemComponent,
+        CoursesPageComponent,
         FreshCourseDirective,
         CourseDurationPipe,
         CourseCreationDatePipe, 
         OrderByCreationDatePipe
       ], imports: [
-        FontAwesomeModule
+        FontAwesomeModule,
+        SharedModule,
+        SearchModule,
+        AuthModule
       ]
     })
     .compileComponents();

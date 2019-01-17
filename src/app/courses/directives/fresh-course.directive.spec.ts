@@ -2,12 +2,19 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { CourseItemComponent } from '../course-item/course-item.component';
 import { FreshCourseDirective } from './fresh-course.directive';
+import { CoursesPageComponent } from '../courses-page/courses-page.component';
+import { CoursesComponent } from '../courses/courses.component';
+import { CourseItemComponent } from '../course-item/course-item.component';
 import {
   CourseDurationPipe,
-  CourseCreationDatePipe
+  CourseCreationDatePipe,
+  OrderByCreationDatePipe,
+  SearchFilterPipe
 } from '../pipes';
+import { SearchModule } from '../../search/search.module';
+import { AuthModule } from '../../auth/auth.module';
+import { SharedModule } from '../../shared/shared.module';
 import { ICourse } from '../../interfaces/ICourse';
 
 describe('FreshCourseDirective', () => {
@@ -24,12 +31,19 @@ describe('FreshCourseDirective', () => {
     TestBed.configureTestingModule({
       declarations: [
         CourseItemComponent,
+        CoursesPageComponent,
+        CoursesComponent,
         FreshCourseDirective,
         CourseDurationPipe,
-        CourseCreationDatePipe
+        CourseCreationDatePipe,
+        OrderByCreationDatePipe,
+        SearchFilterPipe
       ],
       imports: [
-        FontAwesomeModule
+        FontAwesomeModule,
+        SharedModule,
+        AuthModule,
+        SearchModule
       ]
     })
     .compileComponents();
