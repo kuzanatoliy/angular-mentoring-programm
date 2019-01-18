@@ -8,7 +8,7 @@ export class AuthService {
   private PASSWORD = 'user_password'
   private authorized = false;
 
-  public userName?: string = null;
+  private userName?: string = null;
 
   login(userName, password) {
     if(this.USER_NAME === userName && this.PASSWORD === password) {
