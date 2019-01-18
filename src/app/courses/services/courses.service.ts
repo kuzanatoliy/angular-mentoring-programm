@@ -55,7 +55,7 @@ export class CoursesService {
   createCourse(data: ICourse) {
     data.id = this.nextId;
     this.nextId++;
-    const course = Course.createCourse(data);
+    const course = data;
     this.COURSES.push(course);
     
     return Promise.resolve(course);
