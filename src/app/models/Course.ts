@@ -2,7 +2,7 @@ import { ICourse } from '../interfaces/ICourse';
 
 export class Course implements ICourse {
   constructor(
-    public id: number,
+    public id: string,
     public title: string,
     public creationDate: Date,
     public duration: number,

@@ -8,6 +8,7 @@ import { SearchModule } from '../search/search.module';
 import { CoursesComponent } from './courses/courses.component';
 import { CoursesPageComponent } from './courses-page/courses-page.component';
 import { CourseItemComponent } from './course-item/course-item.component';
+import { CourseItemPageComponent } from './course-item-page/course-item-page.component';
 
 import { FreshCourseDirective } from './directives/fresh-course.directive';
 
@@ -27,7 +28,8 @@ import {
     CourseDurationPipe,
     CourseCreationDatePipe,
     OrderByCreationDatePipe,
-    SearchFilterPipe
+    SearchFilterPipe,
+    CourseItemPageComponent
   ],
   imports: [
     FontAwesomeModule,
@@ -38,7 +40,8 @@ import {
   exports: [
     CoursesComponent,
     CourseItemComponent,
-    CoursesPageComponent
+    CoursesPageComponent,
+    CourseItemPageComponent
   ]
 })
 export class CoursesModule { }

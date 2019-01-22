@@ -7,39 +7,39 @@ import { Course } from '../../models/Course';
 })
 export class CoursesService {
   private COURSES: Array<ICourse> = Course.createCourseList([{
-    id: 1,
-    title: "Courses 1",
+    id: '1',
+    title: 'Courses 1',
     duration: 80,
-    creationDate: new Date("12.24.2018"),
-    description: "Description of courses 1",
+    creationDate: new Date('12.24.2018'),
+    description: 'Description of courses 1',
     topRated: true
   }, {
-    id: 2,
-    title: "Courses 2",
+    id: '2',
+    title: 'Courses 2',
     duration: 80,
-    creationDate: new Date("04.25.2018"),
-    description: "Description of courses 2",
+    creationDate: new Date('04.25.2018'),
+    description: 'Description of courses 2',
     topRated: true
   }, {
-    id: 3,
-    title: "Courses 3",
+    id: '3',
+    title: 'Courses 3',
     duration: 80,
-    creationDate: new Date("04.25.2018"),
-    description: "Description of courses 3",
+    creationDate: new Date('04.25.2018'),
+    description: 'Description of courses 3',
     topRated: false
   }, {
-    id: 4,
-    title: "Courses 4",
+    id: '4',
+    title: 'Courses 4',
     duration: 80,
-    creationDate: new Date("04.12.2018"),
-    description: "Description of courses 4",
+    creationDate: new Date('04.12.2018'),
+    description: 'Description of courses 4',
     topRated: false
   }, {
-    id: 5,
-    title: "Courses 5",
+    id: '5',
+    title: 'Courses 5',
     duration: 80,
-    creationDate: new Date("04.12.2018"),
-    description: "Description of courses 5",
+    creationDate: new Date('04.12.2018'),
+    description: 'Description of courses 5',
     topRated: false
   }]);
 
@@ -52,7 +52,7 @@ export class CoursesService {
   }
 
   createCourse(data: ICourse) {
-    data.id = this.nextId;
+    data.id = '' + this.nextId;
     this.nextId++;
     const course = data;
     this.COURSES.push(course);
@@ -60,11 +60,11 @@ export class CoursesService {
     return Promise.resolve(course);
   }
 
-  getCourse(id: number) {
+  getCourse(id: string) {
     return Promise.resolve(this.COURSES.find(item => item.id === id));
   }
 
-  updateCourse(id: number, data: ICourse) {
+  updateCourse(id: string, data: ICourse) {
     const courses: Array<ICourse> = []
     this.COURSES.forEach(item => {
       if(item.id === id) {
@@ -76,7 +76,7 @@ export class CoursesService {
     return Promise.resolve(courses);
   }
 
-  removeCourse(id: number) {
+  removeCourse(id: string) {
     const course = this.COURSES.find(item => item.id === id);
     if(course) {
       this.COURSES = this.COURSES.filter(item => item.id !== course.id);
