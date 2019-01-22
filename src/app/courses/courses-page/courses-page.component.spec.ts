@@ -7,6 +7,7 @@ import { CourseItemComponent } from '../course-item/course-item.component';
 import { FreshCourseDirective } from '../directives/fresh-course.directive';
 import { SearchModule } from '../../search/search.module';
 import { SharedModule } from '../../shared/shared.module';
+import { AuthModule } from '../../auth/auth.module';
 import {
   CourseDurationPipe,
   CourseCreationDatePipe, 
@@ -34,6 +35,7 @@ describe('CoursesPageComponent', () => {
         FontAwesomeModule,
         SearchModule,
         SharedModule,
+        AuthModule
       ]
     })
     .compileComponents();

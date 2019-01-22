@@ -1,5 +1,5 @@
 <div class="courses">
-  <div *ngIf="courses.loading; then loadingBlock; else contentBlock"></div>
+  <div *ngIf="loading; then loadingBlock; else contentBlock"></div>
   <ng-template #loadingBlock>
     <div>Loading...</div>
   </ng-template>

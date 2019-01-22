@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { CoursesModule } from './courses/courses.module';
 import { SharedModule } from './shared/shared.module';
 import { SearchModule } from './search/search.module';
+import { AuthModule } from './auth/auth.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -13,7 +14,8 @@ describe('AppComponent', () => {
         RouterTestingModule,
         CoursesModule,
         SharedModule,
-        SearchModule
+        SearchModule,
+        AuthModule
       ],
       declarations: [
         AppComponent

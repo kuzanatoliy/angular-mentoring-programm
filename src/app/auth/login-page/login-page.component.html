@@ -1,0 +1,17 @@
+<div class="login">
+  <div class="login-form">
+    <label class="login-form-user-name">
+      User name: <input type="text" [(ngModel)]="userName"/>
+    </label>
+    <label class="login-form-password">
+      Password: <input type="password" [(ngModel)]="password"/>
+    </label>
+    <div *ngIf="loading; then loadBlock" class="login-form-loading"></div>
+    <ng-template #loadBlock>Loading...</ng-template>
+    <div *ngIf="error; then errorBlock" class="login-form-error"></div>
+    <ng-template #errorBlock>User not found!</ng-template>
+    <div class="login-form-control">
+      <button (click)="loginHandler()">Login</button>
+    </div>
+  </div>
+</div>

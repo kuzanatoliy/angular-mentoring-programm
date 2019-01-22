@@ -1,0 +1,20 @@
+<div class="window" [ngClass]="{'show': show}">
+  <div class="window-title">
+    <h3>{{ title || 'Modal window' }}</h3>
+  </div>
+  <div class="window-content">
+    <ng-content></ng-content>
+  </div>
+  <div class="window-control">
+    <button
+      class="window-control-ok"
+      (click)="okHandler()">
+      {{ okButtonName || 'Ok' }}
+    </button>
+    <button
+      class="window-control-cancel"
+      (click)="cancelHandler()">
+      {{ cancelButtonName || 'Cancel' }}
+    </button>
+  </div>
+</div>

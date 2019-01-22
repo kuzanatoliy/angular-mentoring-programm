@@ -5,8 +5,15 @@ import { CourseItemComponent } from './course-item.component';
 import { FreshCourseDirective } from '../directives/fresh-course.directive';
 import {
   CourseDurationPipe,
-  CourseCreationDatePipe
+  CourseCreationDatePipe,
+  OrderByCreationDatePipe,
+  SearchFilterPipe
 } from '../pipes';
+import { CoursesPageComponent } from '../courses-page/courses-page.component';
+import { CoursesComponent } from '../courses/courses.component';
+import { AuthModule } from '../../auth/auth.module';
+import { SearchModule } from '../../search/search.module';
+import { SharedModule } from '../../shared/shared.module'
 import { ICourse } from '../../interfaces/ICourse';
 
 describe('CourseItemComponent', () => {
@@ -27,12 +34,22 @@ describe('CourseItemComponent', () => {
       TestBed.configureTestingModule({
         declarations: [
           CourseItemComponent,
+          CoursesPageComponent,
+          CoursesComponent,
+          CourseItemComponent,
           FreshCourseDirective,
           CourseDurationPipe,
-          CourseCreationDatePipe
+          CourseCreationDatePipe, 
+          CourseDurationPipe,
+          CourseCreationDatePipe,
+          OrderByCreationDatePipe,
+          SearchFilterPipe
         ],
         imports: [
-          FontAwesomeModule
+          FontAwesomeModule,
+          SharedModule,
+          AuthModule,
+          SearchModule
         ]
       })
       .compileComponents();
@@ -93,12 +110,6 @@ describe('CourseItemComponent', () => {
     it('removeHandler should return undefined', () => {
       expect(courseItem.removeAction).toBeUndefined();
       expect(courseItem.removeHandler()).toBeUndefined();
-    });
-
-    it('removeHandler should return some value', () => {
-      const value = 'removeHandler';
-      courseItem.removeAction = () => value;
-      expect(courseItem.removeHandler()).toBe(value);
     });
   });
 });

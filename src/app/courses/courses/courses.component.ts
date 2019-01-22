@@ -14,59 +14,37 @@ export class CoursesComponent implements OnInit {
   private searchFilter: SearchFilterPipe;
   
   private COURSES: Array<ICourse>;
-  public courses: Array<ICourse>;
+  public courses: Array<ICourse> = [];
   public loading: boolean = false;
 
   constructor(
     private searchService: SearchService,
     private coursesService: CoursesService
   ) {
-    this.courses = [];
     this.searchFilter = new SearchFilterPipe(searchService);
+  }
+
+  public removeCourseHandler: Function = id => {
+    this.coursesService.removeCourse(id)
+      .then(() => this.loading = true)
+      .then(() => this.coursesService.getCourseList())
+      .then(courses => this.COURSES = courses)
+      .then(() => this.loading = false);
+  };
+
+  ngOnInit() {
     this.loading = true;
-    this.coursesService.getCourses()
+    this.coursesService.getCourseList()
       .then(courses => this.COURSES = courses)
       .then(() => this.loading = false);
   }
 
-  ngOnInit() {
-    console.log('ngOnInit');
-  }
-
-  ngOnChanges() {
-    console.log('ngOnChanges');
-  }
-
   ngDoCheck() {
-    console.log('ngDoCheck');
     this.courses = this.searchFilter.transform(this.COURSES);
-  }
-
-  ngAfterContentInit() {
-    console.log('ngAfterContentInit');
-  }
-
-  ngAfterContentChecked() {
-    console.log('ngAfterContentChecked');
-  }
-
-  ngAfterViewInit() {
-    console.log('ngAfterViewInit');
-  }
-
-  ngAfterViewChecked() {
-    console.log('ngAfterViewChecked');
-  }
-
-  ngOnDestroy() {
-    console.log('ngOnDestroy');
   }
 
   updateCourseHandler(id) {
     console.log(`updateCourseHandler ${id}`);
   }
 
-  removeCourseHandler(id) {
-    console.log(`removeCourseHandler ${id}`);
-  }
 }

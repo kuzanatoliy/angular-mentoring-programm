@@ -10,12 +10,21 @@
         <fa-icon [icon]="STAR_ICON"></fa-icon>
       </ng-template>
     </div>
-    <div class="course-content-duration">{{course.duration | courseDuration}}</div>
-    <div class="course-content-date">{{course.creationDate | date: 'dd.MM.yyyy'}}</div>
-    <div class="course-content-description">{{course.description}}</div>
+    <div class="course-content-duration">{{ course.duration | courseDuration }}</div>
+    <div class="course-content-date">{{ course.creationDate | date: 'dd.MM.yyyy' }}</div>
+    <div class="course-content-description">{{ course.description }}</div>
   </div>
   <div class='course-control'>
     <button class='course-control-update' (click)="updateHandler()">Edit</button>
-    <button class='course-control-remove' (click)="removeHandler()">Delete</button>
+    <button class='course-control-remove' (click)="showRemoveWindow()">Delete</button>
   </div>
+  <app-modal-window
+    title="Verification"
+    okButtonName="Yes"
+    cancelButtonName="No"
+    [okAction]="removeHandler"
+    [cancelAction]="cancelRemoveHandler"
+    [show]="isActiveRemoveWindow">
+    <p>Are you shure that you want remove this course?</p>
+  </app-modal-window>
 </div>
