@@ -29,7 +29,7 @@ export class CourseItemComponent implements OnInit {
   public removeHandler: Function = () => {
     this.removeAction && this.removeAction(this.course.id);
     this.cancelRemoveHandler();
-  }
+  };
 
   showRemoveWindow() {
     this.isActiveRemoveWindow = true;

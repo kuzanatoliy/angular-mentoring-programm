@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ICourse } from '../../interfaces/ICourse';
 import { Course } from '../../models/Course';
-import { isNgTemplate } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -66,13 +65,15 @@ export class CoursesService {
   }
 
   updateCourse(id: number, data: ICourse) {
-    const course = this.COURSES.find(item => item.id === id);
-    course.title = data.title;
-    course.description = data.description;
-    course.duration = data.duration;
-    course.topRated = data.topRated;
+    const courses: Array<ICourse> = []
+    this.COURSES.forEach(item => {
+      if(item.id === id) {
+        item = { ...item, ...data };
+        courses.push(item);
+      }
+    });
 
-    return Promise.resolve(course);
+    return Promise.resolve(courses);
   }
 
   removeCourse(id: number) {

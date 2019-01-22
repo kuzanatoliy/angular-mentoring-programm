@@ -4,7 +4,7 @@
       User name: <input type="text" [(ngModel)]="userName"/>
     </label>
     <label class="login-form-password">
-      Password: <input type="text" [(ngModel)]="password"/>
+      Password: <input type="password" [(ngModel)]="password"/>
     </label>
     <div *ngIf="loading; then loadBlock" class="login-form-loading"></div>
     <ng-template #loadBlock>Loading...</ng-template>

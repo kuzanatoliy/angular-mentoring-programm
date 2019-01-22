@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
   private USER_NAME = 'user';
-  private PASSWORD = 'user_password'
+  private PASSWORD = 'user_password';
   private authorized = false;
 
   private userName?: string = null;
