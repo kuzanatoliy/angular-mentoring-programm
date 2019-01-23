@@ -14,9 +14,9 @@
     <div class="course-content-date">{{ course.creationDate | date: 'dd.MM.yyyy' }}</div>
     <div class="course-content-description">{{ course.description }}</div>
   </div>
-  <div class='course-control'>
-    <button class='course-control-update' (click)="updateHandler()">Edit</button>
-    <button class='course-control-remove' (click)="showRemoveWindow()">Delete</button>
+  <div class="course-control">
+    <button class="course-control-update" (click)="updateHandler()">Edit</button>
+    <button class="course-control-remove" (click)="showRemoveWindow()">Delete</button>
   </div>
   <app-modal-window
     title="Verification"
