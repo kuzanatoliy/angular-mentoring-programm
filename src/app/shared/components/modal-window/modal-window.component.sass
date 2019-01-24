@@ -1,0 +1,33 @@
+@import '../../../style/constants'
+@import '../../../style/button'
+  
+.window
+  display: none
+  position: fixed
+  width: 100vw
+  height: 100vh
+  top: 0
+  left: 0
+  justify-content: center
+  align-items: center
+  flex-direction: column
+  background-color: rgba(0,0,0,0.7)
+  &.show
+    display: flex
+  &-title
+    background-color: $primaryColor
+    padding: 0 1em
+    color: $textColor
+  &-content
+    padding: 1em 1em
+    background-color: $textColor
+  &-control
+    background-color: $primaryColor
+    padding: 0.5em 1em
+    display: flex
+    justify-content: flex-end
+    button
+      @extend %button-style
+      margin: 0 0.5em
+  &-title, &-content, &-control
+    width: 50%

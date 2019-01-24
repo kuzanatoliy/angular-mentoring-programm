@@ -4,10 +4,11 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
-  private USER_NAME = 'user';
-  private PASSWORD = 'user_password';
-  private authorized = true;
-
+  private USER_NAME: string = 'user';
+  private PASSWORD: string = 'user_password';
+  // TODO Change after fixed course-item-page component
+  private authorized: boolean = true;
+  // TODO Change after fixed course-item-page component
   private userName?: string = 'user';
 
   login(userName, password) {

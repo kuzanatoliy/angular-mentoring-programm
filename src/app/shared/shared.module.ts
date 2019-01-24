@@ -1,38 +1,54 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from '../app-routing.module';
 
-import { FooterComponent } from './footer/footer.component';
-import { HeaderComponent } from './header/header.component';
-import { LogoComponent } from './logo/logo.component';
-import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
-import { NewCourseComponent } from './new-course/new-course.component';
-import { LoadMoreComponent } from './load-more/load-more.component';
-import { ModalWindowComponent } from './modal-window/modal-window.component';
+import {
+  AuthorListControlComponent,
+  BreadcrumbsComponent,
+  DateInputComponent,
+  DurationInputComponent,
+  FooterComponent,
+  HeaderComponent,
+  LoadMoreComponent,
+  LogoComponent,
+  ModalWindowComponent,
+  NewCourseComponent,
+  UserControlComponent
+} from './components';
 
 @NgModule({
   declarations: [
+    AuthorListControlComponent,
+    BreadcrumbsComponent,
+    DateInputComponent,
+    DurationInputComponent,
     FooterComponent,
     HeaderComponent,
-    LogoComponent,
-    BreadcrumbsComponent,
-    NewCourseComponent,
     LoadMoreComponent,
-    ModalWindowComponent
+    LogoComponent,
+    ModalWindowComponent,
+    NewCourseComponent,
+    UserControlComponent
   ],
   imports: [
+    AppRoutingModule,
     CommonModule,
-    AppRoutingModule
+    FormsModule
   ],
   exports: [
+    AuthorListControlComponent,
+    BreadcrumbsComponent,
+    DateInputComponent,
+    DurationInputComponent,
     FooterComponent,
     HeaderComponent,
-    LogoComponent,
-    BreadcrumbsComponent,
-    NewCourseComponent,
     LoadMoreComponent,
-    ModalWindowComponent
+    LogoComponent,
+    ModalWindowComponent,
+    NewCourseComponent,
+    UserControlComponent
   ]
 })
 export class SharedModule { }
