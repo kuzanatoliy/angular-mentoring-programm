@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 
 import { DurationInputComponent } from './duration-input.component';
+
+import { DurationPipe } from '../../pipes';
 
 describe('DurationInputComponent', () => {
   let component: DurationInputComponent;
@@ -8,7 +11,11 @@ describe('DurationInputComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DurationInputComponent ]
+      declarations: [
+        DurationInputComponent,
+        DurationPipe
+      ],
+      imports: [ FormsModule ]
     })
     .compileComponents();
   }));

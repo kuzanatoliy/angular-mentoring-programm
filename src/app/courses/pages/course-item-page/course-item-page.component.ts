@@ -13,6 +13,14 @@ import { ICourse } from '../../../interfaces/ICourse';
 export class CourseItemPageComponent implements OnInit {
   public course: ICourse;
 
+  public durationChangeHandler: Function = (value: number) => {
+    this.course.duration = value;
+  }
+
+  public dateChangeHandler: Function = (value: Date) => {
+    this.course.creationDate = value;
+  }
+
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -35,4 +43,12 @@ export class CourseItemPageComponent implements OnInit {
       });
   }
 
+  saveHandler() {
+    this.coursesService.updateCourse(this.course.id, this.course)
+      .then(() => this.router.navigate(['courses']));
+  }
+
+  cancelHandler() {
+    this.router.navigate(['courses']);
+  }
 }

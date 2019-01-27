@@ -20,8 +20,6 @@ import {
 } from '../components';
 
 import {
-  CourseDurationPipe,
-  CourseCreationDatePipe,
   OrderByCreationDatePipe,
   SearchFilterPipe
 } from '../pipes';
@@ -46,8 +44,6 @@ describe('FreshCourseDirective', () => {
         CoursesPageComponent,
         CoursesComponent,
         FreshCourseDirective,
-        CourseDurationPipe,
-        CourseCreationDatePipe,
         OrderByCreationDatePipe,
         SearchFilterPipe
       ],

@@ -18,6 +18,11 @@ import {
   UserControlComponent
 } from './components';
 
+import {
+  DatePipe,
+  DurationPipe
+} from './pipes';
+
 @NgModule({
   declarations: [
     AuthorListControlComponent,
@@ -30,7 +35,9 @@ import {
     LogoComponent,
     ModalWindowComponent,
     NewCourseComponent,
-    UserControlComponent
+    UserControlComponent,
+    DatePipe,
+    DurationPipe
   ],
   imports: [
     AppRoutingModule,
@@ -48,7 +55,9 @@ import {
     LogoComponent,
     ModalWindowComponent,
     NewCourseComponent,
-    UserControlComponent
+    UserControlComponent,
+    DatePipe,
+    DurationPipe
   ]
 })
 export class SharedModule { }

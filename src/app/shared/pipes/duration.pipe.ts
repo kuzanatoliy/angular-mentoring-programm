@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'courseDuration'
+  name: 'duration'
 })
-export class CourseDurationPipe implements PipeTransform {
+export class DurationPipe implements PipeTransform {
   MINUTES_TO_HOUR: number = 60; 
 
   transform(value: number): string {

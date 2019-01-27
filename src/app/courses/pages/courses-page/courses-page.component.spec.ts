@@ -17,8 +17,6 @@ import {
 import { FreshCourseDirective } from '../../directives/fresh-course.directive';
 
 import {
-  CourseDurationPipe,
-  CourseCreationDatePipe, 
   OrderByCreationDatePipe,
   SearchFilterPipe
 } from '../../pipes';
@@ -35,8 +33,6 @@ describe('CoursesPageComponent', () => {
         CoursesComponent,
         CourseItemComponent,
         FreshCourseDirective,
-        CourseDurationPipe,
-        CourseCreationDatePipe, 
         OrderByCreationDatePipe,
         SearchFilterPipe
       ],

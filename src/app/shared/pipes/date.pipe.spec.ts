@@ -1,10 +1,10 @@
-import { CourseCreationDatePipe } from './course-creation-date.pipe';
+import { DatePipe } from './date.pipe';
 
-describe('CourseCreationDatePipe', () => {
-  let pipe: CourseCreationDatePipe;
+describe('DatePipe', () => {
+  let pipe: DatePipe;
 
   beforeEach(() => {
-    pipe = new CourseCreationDatePipe();
+    pipe = new DatePipe();
   });
   
   it('create an instance', () => {

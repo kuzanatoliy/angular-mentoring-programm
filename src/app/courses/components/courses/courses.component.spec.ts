@@ -16,11 +16,7 @@ import { CourseItemComponent } from '../course-item/course-item.component';
 
 import { FreshCourseDirective } from '../../directives/fresh-course.directive';
 
-import {
-  CourseDurationPipe,
-  CourseCreationDatePipe, 
-  OrderByCreationDatePipe
-} from '../../pipes';
+import { OrderByCreationDatePipe } from '../../pipes';
 
 import { ICourse } from 'src/app/interfaces/ICourse';
 
@@ -73,8 +69,6 @@ describe('CoursesComponent', () => {
         CoursesPageComponent,
         CourseItemComponent,
         FreshCourseDirective,
-        CourseDurationPipe,
-        CourseCreationDatePipe, 
         OrderByCreationDatePipe
       ], imports: [
         AuthModule,

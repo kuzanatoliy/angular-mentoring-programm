@@ -1,15 +1,15 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'courseCreationDate'
+  name: 'date'
 })
-export class CourseCreationDatePipe implements PipeTransform {
+export class DatePipe implements PipeTransform {
 
   transform(value: Date): string {
     const month = (value.getMonth() + 1).toString().padStart(2, '0');
     const date = value.getDate().toString().padStart(2, '0');
     const year = value.getFullYear();
-    return `${date}.${month}.${year}`;
+    return `${month}.${date}.${year}`;
   }
 
 }

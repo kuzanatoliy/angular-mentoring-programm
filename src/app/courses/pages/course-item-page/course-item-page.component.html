@@ -12,11 +12,18 @@
       </label>
       <label class="course-page-form-title-date">
         <div>Date</div>
+        <app-date-input
+          [date]="course.creationDate"
+          [dateChangeHandler]="dateChangeHandler">
+        </app-date-input>
         <input type="text" name="date" [(ngModel)]="course.creationDate"/>
       </label>
       <label class="course-page-form-duration">
         <div>Duration</div>
-        <input type="number" name="duration" [(ngModel)]='course.duration'/>
+        <app-duration-input
+          [duration]="course.duration"
+          [durationChangeHandler]="durationChangeHandler">
+        </app-duration-input>
       </label>
       <label class="course-page-form-authors">
         <div>Authors</div>

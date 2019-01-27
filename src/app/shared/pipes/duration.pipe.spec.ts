@@ -1,10 +1,10 @@
-import { CourseDurationPipe } from './course-duration.pipe';
+import { DurationPipe } from './duration.pipe';
 
-describe('CourseDurationPipe', () => {
-  let pipe: CourseDurationPipe;
+describe('DurationPipe', () => {
+  let pipe: DurationPipe;
 
   beforeEach(() => {
-    pipe = new CourseDurationPipe();
+    pipe = new DurationPipe();
   });
 
   it('create an instance', () => {

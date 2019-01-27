@@ -18,11 +18,11 @@ import { CoursesComponent } from '../courses/courses.component';
 import { FreshCourseDirective } from '../../directives/fresh-course.directive';
 
 import {
-  CourseDurationPipe,
-  CourseCreationDatePipe,
   OrderByCreationDatePipe,
   SearchFilterPipe
 } from '../../pipes';
+
+import { DatePipe } from '../../../shared/pipes';
 
 import { ICourse } from '../../../interfaces/ICourse';
 
@@ -49,10 +49,6 @@ describe('CourseItemComponent', () => {
           CourseItemComponent,
           CoursesComponent,
           FreshCourseDirective,
-          CourseDurationPipe,
-          CourseCreationDatePipe, 
-          CourseDurationPipe,
-          CourseCreationDatePipe,
           OrderByCreationDatePipe,
           SearchFilterPipe
         ],
@@ -89,7 +85,7 @@ describe('CourseItemComponent', () => {
     });
 
     it('check course content date', () => {
-      const pipe = new CourseCreationDatePipe();
+      const pipe = new DatePipe();
       const creationDate = fixture.nativeElement.querySelector('.course-content-date');
       expect(creationDate.textContent).toContain(pipe.transform(new Date()));
     });
