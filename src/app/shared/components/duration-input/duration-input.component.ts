@@ -1,21 +1,20 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-duration-input',
+  styleUrls: [ './duration-input.component.sass' ],
   templateUrl: './duration-input.component.html',
-  styleUrls: ['./duration-input.component.sass']
 })
 export class DurationInputComponent implements OnInit {
   @Input() public duration: number = 0;
-  @Input() public durationChangeHandler?: Function;
-
-  changeHandler () {
-    this.durationChangeHandler && this.durationChangeHandler(this.duration);
-  }
+  @Input() public durationChangeHandler?: (duration: number) => void;
 
   constructor() { }
 
-  ngOnInit() {
+  public changeHandler(): void {
+    this.durationChangeHandler && this.durationChangeHandler(this.duration);
   }
+
+  public ngOnInit(): void { }
 
 }

@@ -2,18 +2,17 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-new-course',
+  styleUrls: [ './new-course.component.sass' ],
   templateUrl: './new-course.component.html',
-  styleUrls: ['./new-course.component.sass']
 })
 export class NewCourseComponent implements OnInit {
 
   constructor() { }
 
-  addCourse() {
+  public addCourse(): void {
     console.log('Click add course');
   }
 
-  ngOnInit() {
-  }
+  public ngOnInit(): void { }
 
 }

@@ -1,49 +1,51 @@
 import { Component, OnInit } from '@angular/core';
 
 import { SearchFilterPipe } from '../../pipes/search-filter.pipe';
-import { CoursesService } from '../../services/courses.service';
+
 import { SearchService } from '../../../search/services/search.service';
-import { ICourse } from 'src/app/interfaces/ICourse';
+import { CoursesService } from '../../services/courses.service';
+
+import { ICourse } from '../../../interfaces/ICourse';
 
 @Component({
   selector: 'app-courses',
+  styleUrls: [ './courses.component.sass' ],
   templateUrl: './courses.component.html',
-  styleUrls: ['./courses.component.sass']
 })
 export class CoursesComponent implements OnInit {
-  private searchFilter: SearchFilterPipe;
-  
-  private COURSES: Array<ICourse>;
   public courses: Array<ICourse> = [];
   public loading: boolean = false;
+  private COURSES: Array<ICourse>;
+
+  private searchFilter: SearchFilterPipe;
 
   constructor(
     private searchService: SearchService,
-    private coursesService: CoursesService
+    private coursesService: CoursesService,
   ) {
     this.searchFilter = new SearchFilterPipe(searchService);
   }
 
-  public removeCourseHandler: Function = id => {
+  public removeCourseHandler: (id: string) => void = (id: string): void => {
     this.coursesService.removeCourse(id)
-      .then(() => this.loading = true)
-      .then(() => this.coursesService.getCourseList())
-      .then(courses => this.COURSES = courses)
-      .then(() => this.loading = false);
-  };
-
-  ngOnInit() {
-    this.loading = true;
-    this.coursesService.getCourseList()
-      .then(courses => this.COURSES = courses)
-      .then(() => this.loading = false);
+      .then((): boolean => this.loading = true)
+      .then((): Promise<Array<ICourse>> => this.coursesService.getCourseList())
+      .then((courses: Array<ICourse>): Array<ICourse> => this.COURSES = courses)
+      .then((): boolean => this.loading = false);
   }
 
-  ngDoCheck() {
+  public ngOnInit() {
+    this.loading = true;
+    this.coursesService.getCourseList()
+      .then((courses: Array<ICourse>): Array<ICourse> => this.COURSES = courses)
+      .then((): boolean => this.loading = false);
+  }
+
+  public ngDoCheck() {
     this.courses = this.searchFilter.transform(this.COURSES);
   }
 
-  updateCourseHandler(id) {
+  public updateCourseHandler(id: number) {
     console.log(`updateCourseHandler ${id}`);
   }
 

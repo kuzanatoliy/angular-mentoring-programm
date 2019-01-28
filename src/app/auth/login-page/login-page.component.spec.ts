@@ -1,9 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { RouterTestingModule } from "@angular/router/testing";
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { LoginPageComponent } from './login-page.component';
-import { CoursesModule } from '../../courses/courses.module'
+
+import { CoursesModule } from '../../courses/courses.module';
+
 import { routes } from '../../app-routing.module';
 
 describe('LoginPageComponent', () => {
@@ -16,8 +18,8 @@ describe('LoginPageComponent', () => {
       imports: [
         RouterTestingModule.withRoutes(routes),
         FormsModule,
-        CoursesModule
-      ]
+        CoursesModule,
+      ],
     })
     .compileComponents();
   }));

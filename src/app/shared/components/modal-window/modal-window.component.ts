@@ -1,28 +1,28 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-modal-window',
+  styleUrls: [ './modal-window.component.sass' ],
   templateUrl: './modal-window.component.html',
-  styleUrls: ['./modal-window.component.sass']
 })
 export class ModalWindowComponent implements OnInit {
-  @Input() title;
-  @Input() okButtonName: string;
-  @Input() cancelButtonName: string;
-  @Input() okAction: Function;
-  @Input() cancelAction: Function;
-  @Input() show: boolean; 
+  @Input() public title;
+  @Input() public okButtonName: string;
+  @Input() public cancelButtonName: string;
+  @Input() public okAction: () => void;
+  @Input() public cancelAction: () => void;
+  @Input() public show: boolean;
 
   constructor() { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
   }
 
-  okHandler() {
-    this.okAction()
+  public okHandler(): void {
+    this.okAction();
   }
 
-  cancelHandler() {
+  public cancelHandler(): void {
     this.cancelAction();
   }
 

@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderComponent } from './header.component';
+
 import { LogoComponent } from '../logo/logo.component';
 
 describe('HeaderComponent', () => {
@@ -11,8 +12,8 @@ describe('HeaderComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         HeaderComponent,
-        LogoComponent
-      ]
+        LogoComponent,
+      ],
     })
     .compileComponents();
   }));

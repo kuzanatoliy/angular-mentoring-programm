@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AuthModule } from '../../../auth/auth.module';
 import { SearchModule } from '../../../search/search.module';
@@ -9,17 +8,17 @@ import { SharedModule } from '../../../shared/shared.module';
 
 import {
   CourseItemPageComponent,
-  CoursesPageComponent
+  CoursesPageComponent,
 } from '../../pages';
 
-import { CourseItemComponent } from './course-item.component';
 import { CoursesComponent } from '../courses/courses.component';
+import { CourseItemComponent } from './course-item.component';
 
 import { FreshCourseDirective } from '../../directives/fresh-course.directive';
 
 import {
   OrderByCreationDatePipe,
-  SearchFilterPipe
+  SearchFilterPipe,
 } from '../../pipes';
 
 import { DatePipe } from '../../../shared/pipes';
@@ -28,13 +27,13 @@ import { ICourse } from '../../../interfaces/ICourse';
 
 describe('CourseItemComponent', () => {
   const COURSE_MOCK: ICourse = {
-    id: '1',
-    title: 'Courses 1',
-    duration: 80,
     creationDate: new Date(),
     description: 'Description of courses 1',
-    topRated: true
-  }
+    duration: 80,
+    id: '1',
+    title: 'Courses 1',
+    topRated: true,
+  };
 
   describe('Testing as component', () => {
     let component: CourseItemComponent;
@@ -50,15 +49,15 @@ describe('CourseItemComponent', () => {
           CoursesComponent,
           FreshCourseDirective,
           OrderByCreationDatePipe,
-          SearchFilterPipe
+          SearchFilterPipe,
         ],
         imports: [
           AuthModule,
           SearchModule,
           SharedModule,
           FontAwesomeModule,
-          FormsModule
-        ]
+          FormsModule,
+        ],
       })
       .compileComponents();
     }));

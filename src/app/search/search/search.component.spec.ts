@@ -10,7 +10,7 @@ describe('SearchComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ SearchComponent ],
-      imports: [ FormsModule ]
+      imports: [ FormsModule ],
     })
     .compileComponents();
   }));
@@ -24,7 +24,7 @@ describe('SearchComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  
+
   it('should check input working', () => {
     const value = 'Some value';
     const inputComponent = fixture.nativeElement.querySelector('input');

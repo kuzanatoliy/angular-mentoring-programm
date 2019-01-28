@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
 import { AuthService } from '../../../auth/services/auth.service';
-import { Router } from '@angular/router';
+// TODO Change after course item page component fixing
+// import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
+  styleUrls: [ './header.component.sass' ],
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.sass']
 })
 export class HeaderComponent implements OnInit {
   public userName?: string = null;
@@ -17,15 +18,15 @@ export class HeaderComponent implements OnInit {
     // private router: Router
   ) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.userName = this.authService.getUserInfo();
   }
 
-  ngDoCheck() {
+  public ngDoCheck(): void {
     this.userName = this.authService.getUserInfo();
   }
 
-  logoutHandler() {
+  public logoutHandler(): void {
     this.authService.logout().then(() => {
       this.userName = null;
       // TODO Chnage after course item page component fixing

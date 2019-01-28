@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from '../app-routing.module';
@@ -15,12 +15,12 @@ import {
   LogoComponent,
   ModalWindowComponent,
   NewCourseComponent,
-  UserControlComponent
+  UserControlComponent,
 } from './components';
 
 import {
   DatePipe,
-  DurationPipe
+  DurationPipe,
 } from './pipes';
 
 @NgModule({
@@ -37,12 +37,7 @@ import {
     NewCourseComponent,
     UserControlComponent,
     DatePipe,
-    DurationPipe
-  ],
-  imports: [
-    AppRoutingModule,
-    CommonModule,
-    FormsModule
+    DurationPipe,
   ],
   exports: [
     AuthorListControlComponent,
@@ -57,7 +52,12 @@ import {
     NewCourseComponent,
     UserControlComponent,
     DatePipe,
-    DurationPipe
-  ]
+    DurationPipe,
+  ],
+  imports: [
+    AppRoutingModule,
+    CommonModule,
+    FormsModule,
+  ],
 })
 export class SharedModule { }

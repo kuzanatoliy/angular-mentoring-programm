@@ -4,20 +4,20 @@ import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-courses-page',
+  styleUrls: [ './courses-page.component.sass' ],
   templateUrl: './courses-page.component.html',
-  styleUrls: ['./courses-page.component.sass']
 })
 export class CoursesPageComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
   ) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.authService.isAuthorized()
-      .then((isAuth: boolean) => {
-        if(!isAuth) {
+      .then((isAuth: boolean): void => {
+        if (!isAuth) {
           this.router.navigate(['login']);
         }
       });

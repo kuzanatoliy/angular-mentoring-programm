@@ -1,26 +1,26 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { SearchModule } from '../search/search.module';
 import { SharedModule } from '../shared/shared.module';
 
 import {
   CourseItemPageComponent,
-  CoursesPageComponent
+  CoursesPageComponent,
 } from './pages';
 
 import {
   CourseItemComponent,
-  CoursesComponent
+  CoursesComponent,
 } from './components';
 
 import { FreshCourseDirective } from './directives/fresh-course.directive';
 
 import {
   OrderByCreationDatePipe,
-  SearchFilterPipe
+  SearchFilterPipe,
 } from './pipes';
 
 @NgModule({
@@ -31,20 +31,20 @@ import {
     CoursesComponent,
     FreshCourseDirective,
     OrderByCreationDatePipe,
-    SearchFilterPipe
+    SearchFilterPipe,
+  ],
+  exports: [
+    CourseItemPageComponent,
+    CoursesPageComponent,
+    CourseItemComponent,
+    CoursesComponent,
   ],
   imports: [
     FontAwesomeModule,
     CommonModule,
     SharedModule,
     SearchModule,
-    FormsModule
+    FormsModule,
   ],
-  exports: [
-    CourseItemPageComponent,
-    CoursesPageComponent,
-    CourseItemComponent,
-    CoursesComponent
-  ]
 })
 export class CoursesModule { }

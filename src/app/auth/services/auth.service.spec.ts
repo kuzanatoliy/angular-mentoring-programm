@@ -28,7 +28,7 @@ describe('AuthService', () => {
       const result = service.getUserInfo();
       expect(result).toBeNull();
     });
-    
+
     it('isAuthorize should return false', () => {
       service.isAuthorized().then(isAuth => expect(isAuth).toBeFalsy());
     });
@@ -47,7 +47,7 @@ describe('AuthService', () => {
       const result = service.getUserInfo();
       expect(result).toBe('user');
     });
-    
+
     it('isAuthorize should return false', () => {
       service.isAuthorized().then(isAuth => expect(isAuth).toBeTruthy());
     });

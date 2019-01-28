@@ -1,24 +1,24 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AuthModule } from '../../../auth/auth.module';
 import { SearchModule } from '../../../search/search.module';
 import { SharedModule } from '../../../shared/shared.module';
 
-import { CoursesPageComponent } from './courses-page.component';
 import { CourseItemPageComponent } from '../course-item-page/course-item-page.component';
+import { CoursesPageComponent } from './courses-page.component';
 
 import {
   CourseItemComponent,
-  CoursesComponent
+  CoursesComponent,
 } from '../../components';
 
 import { FreshCourseDirective } from '../../directives/fresh-course.directive';
 
 import {
   OrderByCreationDatePipe,
-  SearchFilterPipe
+  SearchFilterPipe,
 } from '../../pipes';
 
 describe('CoursesPageComponent', () => {
@@ -34,15 +34,15 @@ describe('CoursesPageComponent', () => {
         CourseItemComponent,
         FreshCourseDirective,
         OrderByCreationDatePipe,
-        SearchFilterPipe
+        SearchFilterPipe,
       ],
       imports: [
         AuthModule,
         SearchModule,
         SharedModule,
         FontAwesomeModule,
-        FormsModule
-      ]
+        FormsModule,
+      ],
     })
     .compileComponents();
   }));

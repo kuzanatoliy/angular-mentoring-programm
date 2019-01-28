@@ -1,27 +1,29 @@
 import { Directive, ElementRef, Input } from '@angular/core';
 
 @Directive({
-  selector: '[appFreshCourse]'
+  selector: '[appFreshCourse]',
 })
 export class FreshCourseDirective {
+  @Input() public appFreshCourse: Date;
+
   private TIME: number = 14;
-  
+
   private nativeElem;
 
-  @Input() appFreshCourse: Date;
-
-  constructor(private elem: ElementRef) {
+  constructor(
+    private elem: ElementRef,
+  ) {
     this.nativeElem = elem.nativeElement;
   }
 
-  ngOnInit() {
-    const date = this.appFreshCourse;
-    const end = new Date();
-    const start = new Date();
+  public ngOnInit() {
+    const date: Date = this.appFreshCourse;
+    const end: Date = new Date();
+    const start: Date = new Date();
     start.setDate(end.getDate() - this.TIME);
-    if(start < date && end >= date) {
+    if (start < date && end >= date) {
       this.nativeElem.classList.add('new');
-    } else if(date > end) {
+    } else if (date > end) {
       this.nativeElem.classList.add('released');
     }
   }

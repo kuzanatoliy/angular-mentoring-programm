@@ -8,7 +8,7 @@ describe('AuthorListControlComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AuthorListControlComponent ]
+      declarations: [ AuthorListControlComponent ],
     })
     .compileComponents();
   }));

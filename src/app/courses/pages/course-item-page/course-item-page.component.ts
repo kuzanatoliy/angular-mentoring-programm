@@ -1,54 +1,57 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import { CoursesService } from '../../services/courses.service';
 import { AuthService } from '../../../auth/services/auth.service';
+import { CoursesService } from '../../services/courses.service';
+
 import { ICourse } from '../../../interfaces/ICourse';
 
 @Component({
   selector: 'app-course-item-page',
+  styleUrls: [ './course-item-page.component.sass' ],
   templateUrl: './course-item-page.component.html',
-  styleUrls: ['./course-item-page.component.sass']
 })
 export class CourseItemPageComponent implements OnInit {
   public course: ICourse;
-
-  public durationChangeHandler: Function = (value: number) => {
-    this.course.duration = value;
-  }
-
-  public dateChangeHandler: Function = (value: Date) => {
-    this.course.creationDate = value;
-  }
 
   constructor(
     private router: Router,
     private authService: AuthService,
     private coursesService: CoursesService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
   ) { }
 
-  ngOnInit() {
+  public durationChangeHandler: (value: number) => void = (value: number) => {
+    this.course.duration = value;
+  }
+
+  public dateChangeHandler: (value: Date) => void = (value: Date) => {
+    this.course.creationDate = value;
+  }
+
+  public ngOnInit(): void {
     this.authService.isAuthorized()
-      .then((isAuth: boolean) => {
-        if(!isAuth) {
+      .then((isAuth: boolean): Promise<ICourse> => {
+        if (!isAuth) {
           this.router.navigate(['login']);
         } else {
           const id = this.activatedRoute.snapshot.paramMap.get('id');
 
           return this.coursesService.getCourse(id);
         }
-      }).then((course: ICourse) => {
+      }).then((course: ICourse): void => {
         this.course = course;
       });
   }
 
-  saveHandler() {
+  public saveHandler(): void {
     this.coursesService.updateCourse(this.course.id, this.course)
-      .then(() => this.router.navigate(['courses']));
+      .then((): void => {
+        this.router.navigate(['courses']);
+      });
   }
 
-  cancelHandler() {
+  public cancelHandler(): void {
     this.router.navigate(['courses']);
   }
 }

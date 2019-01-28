@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
@@ -6,39 +6,38 @@ import { ICourse } from '../../../interfaces/ICourse';
 
 @Component({
   selector: 'app-course-item',
+  styleUrls: [ './course-item.component.sass' ],
   templateUrl: './course-item.component.html',
-  styleUrls: ['./course-item.component.sass']
 })
 export class CourseItemComponent implements OnInit {
-  @Input() course: ICourse;
-  @Input() updateAction: Function;
-  @Input() removeAction: Function;
+  @Input() public course: ICourse;
+  @Input() public updateAction: (id: string) => void;
+  @Input() public removeAction: (id: string) => void;
 
-  public STAR_ICON: Object = faStar;
+  public STAR_ICON: object = faStar;
 
   public isActiveRemoveWindow: boolean = false;
 
   constructor(
-    private router: Router
+    private router: Router,
   ) {}
 
-  ngOnInit() {
+  public ngOnInit() { }
+
+  public cancelRemoveHandler: () => void = () => {
+    this.isActiveRemoveWindow = false;
   }
 
-  public cancelRemoveHandler: Function = () => {
-    this.isActiveRemoveWindow = false;
-  };
-
-  public removeHandler: Function = () => {
+  public removeHandler: () => void = () => {
     this.removeAction && this.removeAction(this.course.id);
     this.cancelRemoveHandler();
-  };
+  }
 
-  showRemoveWindow() {
+  public showRemoveWindow(): void {
     this.isActiveRemoveWindow = true;
   }
 
-  updateHandler() {
+  public updateHandler(): void {
     this.router.navigate([`courses/${ this.course.id }`]);
     return this.updateAction && this.updateAction(this.course.id);
   }

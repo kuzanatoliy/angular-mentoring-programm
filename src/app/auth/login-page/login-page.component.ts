@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../services/auth.service';
+
 import { IUser } from '../../interfaces/IUser';
 
 @Component({
   selector: 'app-login-page',
+  styleUrls: [ './login-page.component.sass' ],
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.sass']
 })
 export class LoginPageComponent implements OnInit {
   public loading: boolean = false;
@@ -17,15 +18,15 @@ export class LoginPageComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
   ) { }
 
-  loginHandler() {
+  public loginHandler() {
     this.loading = true;
     this.error = false;
     this.authService.login(this.userName, this.password)
-      .then(({ userName }: IUser) => {
-        if(userName) {
+      .then(({ userName }: IUser): void => {
+        if (userName) {
           this.router.navigate(['courses']);
         } else {
           this.error = true;
@@ -34,10 +35,10 @@ export class LoginPageComponent implements OnInit {
       });
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.authService.isAuthorized()
-      .then((isAuth: boolean) => {
-        if(isAuth) {
+      .then((isAuth: boolean): void => {
+        if (isAuth) {
           this.router.navigate(['courses']);
         }
       });
