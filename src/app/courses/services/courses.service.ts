@@ -6,7 +6,7 @@ import { Course } from '../../models/Course';
   providedIn: 'root',
 })
 export class CoursesService {
-  private COURSES: Array<ICourse> = Course.createCourseList([{
+  private COURSES: Array<ICourse> = [{
     authors: [{
       firstName: 'Igar',
       id: '1',
@@ -66,14 +66,14 @@ export class CoursesService {
     id: '5',
     title: 'Courses 5',
     topRated: false,
-  }]);
+  }];
 
   private nextId = 6;
 
   constructor() {}
 
   public getCourseList(): Promise<Array<ICourse>> {
-    return Promise.resolve(this.COURSES);
+    return Promise.resolve(Course.createCourseList(this.COURSES));
   }
 
   public createCourse(data: ICourse): Promise<ICourse> {
@@ -86,14 +86,16 @@ export class CoursesService {
   }
 
   public getCourse(id: string): Promise<ICourse> {
-    return Promise.resolve(this.COURSES.find((item: ICourse): boolean => item.id === id));
+    const course = this.COURSES.find((item: ICourse): boolean => item.id === id);
+    return Promise.resolve(Course.createCourse(course));
   }
 
   public updateCourse(id: string, data: ICourse): Promise<Array<ICourse>> {
     const courses: Array<ICourse> = [];
-    this.COURSES.forEach((item: ICourse): void => {
+    this.COURSES.forEach((item: ICourse, index: number, arr: Array<ICourse>): void => {
       if (item.id === id) {
         item = { ...item, ...data };
+        arr[index] = item;
         courses.push(item);
       }
     });

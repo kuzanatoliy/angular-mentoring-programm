@@ -45,6 +45,7 @@ export class CourseItemPageComponent implements OnInit {
   }
 
   public saveHandler(): void {
+    console.log('save');
     this.coursesService.updateCourse(this.course.id, this.course)
       .then((): void => {
         this.router.navigate(['courses']);
@@ -52,6 +53,7 @@ export class CourseItemPageComponent implements OnInit {
   }
 
   public cancelHandler(): void {
+    console.log('cancel');
     this.router.navigate(['courses']);
   }
 }
