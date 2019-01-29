@@ -29,8 +29,12 @@
         <app-author-list-control [authors]="course.authors"></app-author-list-control>
       </label>
       <div class="course-page-form-control">
-        <button class="course-page-form-control-cancel">Cancel</button>
-        <button class="course-page-from-control-save">Save</button>
+        <button
+          class="course-page-form-control-cancel"
+          (click)="cancelHandler()">Cancel</button>
+        <button
+          class="course-page-from-control-save"
+          (click)="saveHandler()">Save</button>
       </div>
     </form>
   </ng-template>
