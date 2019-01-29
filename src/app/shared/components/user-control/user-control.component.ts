@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { IUser } from 'src/app/interfaces/IUser';
 
 @Component({
   selector: 'app-user-control',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './user-control.component.html',
 })
 export class UserControlComponent implements OnInit {
+  @Input() public user?: IUser;
 
   constructor() { }
 

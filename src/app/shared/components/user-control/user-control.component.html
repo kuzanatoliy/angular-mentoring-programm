@@ -1,3 +1,7 @@
-<p>
-  user-control works!
-</p>
+<div class="user-control">
+  <div *ngIf="user; then viewBlock"></div>
+  <ng-template #viewBlock>
+    <span class="user-control-first-name">{{ user.firstName }}</span>
+    <span class="user-control-last-name">{{ user.lastName }}</span>
+  </ng-template>
+</div>

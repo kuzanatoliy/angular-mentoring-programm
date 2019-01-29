@@ -27,6 +27,11 @@ import { ICourse } from '../../../interfaces/ICourse';
 
 describe('CourseItemComponent', () => {
   const COURSE_MOCK: ICourse = {
+    authors: [{
+      firstName: 'Igar',
+      id: '1',
+      lastName: 'Pupkin',
+    }],
     creationDate: new Date(),
     description: 'Description of courses 1',
     duration: 80,

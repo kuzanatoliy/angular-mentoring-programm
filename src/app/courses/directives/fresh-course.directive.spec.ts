@@ -28,6 +28,11 @@ import { ICourse } from '../../interfaces/ICourse';
 
 describe('FreshCourseDirective', () => {
   const COURSE_MOCK: ICourse = {
+    authors: [{
+      firstName: 'Igar',
+      id: '1',
+      lastName: 'Pupkin',
+    }],
     creationDate: new Date('04.04.2015'),
     description: 'Description of courses 1',
     duration: 80,

@@ -7,6 +7,11 @@ import { Course } from '../../models/Course';
 })
 export class CoursesService {
   private COURSES: Array<ICourse> = Course.createCourseList([{
+    authors: [{
+      firstName: 'Igar',
+      id: '1',
+      lastName: 'Pupkin',
+    }],
     creationDate: new Date('12.24.2018'),
     description: 'Description of courses 1',
     duration: 80,
@@ -14,6 +19,11 @@ export class CoursesService {
     title: 'Courses 1',
     topRated: true,
   }, {
+    authors: [{
+      firstName: 'Igar',
+      id: '1',
+      lastName: 'Pupkin',
+    }],
     creationDate: new Date('04.25.2018'),
     description: 'Description of courses 2',
     duration: 80,
@@ -21,6 +31,11 @@ export class CoursesService {
     title: 'Courses 2',
     topRated: true,
   }, {
+    authors: [{
+      firstName: 'Igar',
+      id: '1',
+      lastName: 'Pupkin',
+    }],
     creationDate: new Date('04.25.2018'),
     description: 'Description of courses 3',
     duration: 80,
@@ -28,6 +43,11 @@ export class CoursesService {
     title: 'Courses 3',
     topRated: false,
   }, {
+    authors: [{
+      firstName: 'Igar',
+      id: '1',
+      lastName: 'Pupkin',
+    }],
     creationDate: new Date('04.12.2018'),
     description: 'Description of courses 4',
     duration: 80,
@@ -35,6 +55,11 @@ export class CoursesService {
     title: 'Courses 4',
     topRated: false,
   }, {
+    authors: [{
+      firstName: 'Igar',
+      id: '1',
+      lastName: 'Pupkin',
+    }],
     creationDate: new Date('04.12.2018'),
     description: 'Description of courses 5',
     duration: 80,

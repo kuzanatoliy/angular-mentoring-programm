@@ -1,4 +1,5 @@
 import { ICourse } from '../interfaces/ICourse';
+import { IUser } from '../interfaces/IUser';
 
 export class Course implements ICourse {
 
@@ -6,13 +7,14 @@ export class Course implements ICourse {
     const {
       id,
       title,
+      authors,
       creationDate,
       duration,
       description,
       topRated = false,
     } = data;
 
-    return new Course(id, title, creationDate, duration, description, topRated);
+    return new Course(id, title, authors, creationDate, duration, description, topRated);
   }
 
   public static createCourseList(courseList: Array<ICourse> = []) {
@@ -22,6 +24,7 @@ export class Course implements ICourse {
   constructor(
     public id: string,
     public title: string,
+    public authors: Array<IUser> = [],
     public creationDate: Date,
     public duration: number,
     public description: string,

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
+import { IUser } from '../../../interfaces/IUser';
 
 @Component({
   selector: 'app-author-list-control',
@@ -6,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './author-list-control.component.html',
 })
 export class AuthorListControlComponent implements OnInit {
+  @Input() public authors: Array<IUser> = [];
 
   constructor() { }
 

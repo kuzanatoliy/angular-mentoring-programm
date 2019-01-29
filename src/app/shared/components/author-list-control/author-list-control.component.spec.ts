@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { UserControlComponent } from '../user-control/user-control.component';
 import { AuthorListControlComponent } from './author-list-control.component';
 
 describe('AuthorListControlComponent', () => {
@@ -8,7 +9,10 @@ describe('AuthorListControlComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AuthorListControlComponent ],
+      declarations: [
+        AuthorListControlComponent,
+        UserControlComponent,
+      ],
     })
     .compileComponents();
   }));
