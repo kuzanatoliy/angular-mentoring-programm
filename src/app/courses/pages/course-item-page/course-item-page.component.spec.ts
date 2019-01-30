@@ -8,10 +8,12 @@ import { AuthModule } from '../../../auth/auth.module';
 import { SearchModule } from '../../../search/search.module';
 import { SharedModule } from '../../../shared/shared.module';
 
+import { CourseCreatePageComponent } from '../course-create-page/course-create-page.component';
 import { CoursesPageComponent } from '../courses-page/courses-page.component';
 import { CourseItemPageComponent } from './course-item-page.component';
 
 import {
+  CourseFormComponent,
   CourseItemComponent,
   CoursesComponent,
 } from '../../components';
@@ -33,7 +35,9 @@ describe('CourseItemPageComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         CourseItemPageComponent,
+        CourseCreatePageComponent,
         CoursesPageComponent,
+        CourseFormComponent,
         CourseItemComponent,
         CoursesComponent,
         FreshCourseDirective,

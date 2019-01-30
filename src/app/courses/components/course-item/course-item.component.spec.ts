@@ -7,10 +7,12 @@ import { SearchModule } from '../../../search/search.module';
 import { SharedModule } from '../../../shared/shared.module';
 
 import {
+  CourseCreatePageComponent,
   CourseItemPageComponent,
   CoursesPageComponent,
 } from '../../pages';
 
+import { CourseFormComponent } from '../course-form/course-form.component';
 import { CoursesComponent } from '../courses/courses.component';
 import { CourseItemComponent } from './course-item.component';
 
@@ -48,8 +50,10 @@ describe('CourseItemComponent', () => {
       TestBed.configureTestingModule({
         declarations: [
           CourseItemComponent,
+          CourseCreatePageComponent,
           CourseItemPageComponent,
           CoursesPageComponent,
+          CourseFormComponent,
           CourseItemComponent,
           CoursesComponent,
           FreshCourseDirective,

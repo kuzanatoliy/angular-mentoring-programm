@@ -10,11 +10,13 @@ import { SharedModule } from '../../shared/shared.module';
 import { FreshCourseDirective } from './fresh-course.directive';
 
 import {
+  CourseCreatePageComponent,
   CourseItemPageComponent,
   CoursesPageComponent,
 } from '../pages';
 
 import {
+  CourseFormComponent,
   CourseItemComponent,
   CoursesComponent,
 } from '../components';
@@ -44,9 +46,11 @@ describe('FreshCourseDirective', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
+        CourseCreatePageComponent,
         CourseItemPageComponent,
-        CourseItemComponent,
         CoursesPageComponent,
+        CourseFormComponent,
+        CourseItemComponent,
         CoursesComponent,
         FreshCourseDirective,
         OrderByCreationDatePipe,

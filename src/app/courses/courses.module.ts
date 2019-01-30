@@ -7,11 +7,13 @@ import { SearchModule } from '../search/search.module';
 import { SharedModule } from '../shared/shared.module';
 
 import {
+  CourseCreatePageComponent,
   CourseItemPageComponent,
   CoursesPageComponent,
 } from './pages';
 
 import {
+  CourseFormComponent,
   CourseItemComponent,
   CoursesComponent,
 } from './components';
@@ -25,8 +27,10 @@ import {
 
 @NgModule({
   declarations: [
+    CourseCreatePageComponent,
     CourseItemPageComponent,
     CoursesPageComponent,
+    CourseFormComponent,
     CourseItemComponent,
     CoursesComponent,
     FreshCourseDirective,
@@ -34,8 +38,10 @@ import {
     SearchFilterPipe,
   ],
   exports: [
+    CourseCreatePageComponent,
     CourseItemPageComponent,
     CoursesPageComponent,
+    CourseFormComponent,
     CourseItemComponent,
     CoursesComponent,
   ],
