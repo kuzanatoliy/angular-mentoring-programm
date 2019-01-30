@@ -7,11 +7,11 @@ import { CoursesService } from '../../services/courses.service';
 import { ICourse } from '../../../interfaces/ICourse';
 
 @Component({
-  selector: 'app-course-item-page',
-  styleUrls: [ './course-item-page.component.sass' ],
-  templateUrl: './course-item-page.component.html',
+  selector: 'app-course-update-page',
+  styleUrls: [ './course-update-page.component.sass' ],
+  templateUrl: './course-update-page.component.html',
 })
-export class CourseItemPageComponent implements OnInit {
+export class CourseUpdatePageComponent implements OnInit {
   public course: ICourse;
 
   constructor(

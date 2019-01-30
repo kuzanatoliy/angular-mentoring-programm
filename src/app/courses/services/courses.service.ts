@@ -100,7 +100,7 @@ export class CoursesService {
       if (item.id === id) {
         item = { ...item, ...data };
         arr[index] = item;
-        courses.push(item);
+        courses.push(Course.createCourse(item));
       }
     });
 

@@ -8,7 +8,7 @@ import { SharedModule } from '../../../shared/shared.module';
 
 import {
   CourseCreatePageComponent,
-  CourseItemPageComponent,
+  CourseUpdatePageComponent,
   CoursesPageComponent,
 } from '../../pages';
 
@@ -94,7 +94,7 @@ describe('CoursesComponent', () => {
       declarations: [
         CoursesComponent,
         CourseCreatePageComponent,
-        CourseItemPageComponent,
+        CourseUpdatePageComponent,
         CoursesPageComponent,
         CourseFormComponent,
         CourseItemComponent,

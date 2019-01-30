@@ -109,6 +109,7 @@ describe('CourseFormComponent', () => {
       component = fixture.componentInstance;
       component.course = COURSE_MOCK_DATA;
       component.saveAction = testSaveAction;
+      component.cancelAction = testCancelAction;
       fixture.detectChanges();
     });
 

@@ -7,7 +7,7 @@ import { SearchModule } from '../../../search/search.module';
 import { SharedModule } from '../../../shared/shared.module';
 
 import { CourseCreatePageComponent } from '../course-create-page/course-create-page.component';
-import { CourseItemPageComponent } from '../course-item-page/course-item-page.component';
+import { CourseUpdatePageComponent } from '../course-update-page/course-update-page.component';
 import { CoursesPageComponent } from './courses-page.component';
 
 import {
@@ -32,7 +32,7 @@ describe('CoursesPageComponent', () => {
       declarations: [
         CoursesPageComponent,
         CourseCreatePageComponent,
-        CourseItemPageComponent,
+        CourseUpdatePageComponent,
         CourseFormComponent,
         CourseItemComponent,
         CoursesComponent,

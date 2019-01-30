@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { SearchFilterPipe } from '../../pipes/search-filter.pipe';
 
@@ -20,8 +21,9 @@ export class CoursesComponent implements OnInit {
   private searchFilter: SearchFilterPipe;
 
   constructor(
-    private searchService: SearchService,
     private coursesService: CoursesService,
+    private router: Router,
+    private searchService: SearchService,
   ) {
     this.searchFilter = new SearchFilterPipe(searchService);
   }
@@ -46,7 +48,6 @@ export class CoursesComponent implements OnInit {
   }
 
   public updateCourseHandler(id: number) {
-    console.log(`updateCourseHandler ${id}`);
+    this.router.navigate([`courses/${ id }`]);    
   }
-
 }

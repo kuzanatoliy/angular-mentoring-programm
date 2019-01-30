@@ -10,7 +10,7 @@ import { SharedModule } from '../../../shared/shared.module';
 
 import { CourseCreatePageComponent } from '../course-create-page/course-create-page.component';
 import { CoursesPageComponent } from '../courses-page/courses-page.component';
-import { CourseItemPageComponent } from './course-item-page.component';
+import { CourseUpdatePageComponent } from './course-update-page.component';
 
 import {
   CourseFormComponent,
@@ -27,14 +27,14 @@ import {
 
 import { routes } from '../../../app-routing.module';
 
-describe('CourseItemPageComponent', () => {
-  let component: CourseItemPageComponent;
-  let fixture: ComponentFixture<CourseItemPageComponent>;
+describe('CourseUpdatePageComponent', () => {
+  let component: CourseUpdatePageComponent;
+  let fixture: ComponentFixture<CourseUpdatePageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        CourseItemPageComponent,
+        CourseUpdatePageComponent,
         CourseCreatePageComponent,
         CoursesPageComponent,
         CourseFormComponent,
@@ -57,7 +57,7 @@ describe('CourseItemPageComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CourseItemPageComponent);
+    fixture = TestBed.createComponent(CourseUpdatePageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

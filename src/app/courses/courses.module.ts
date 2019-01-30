@@ -8,7 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 
 import {
   CourseCreatePageComponent,
-  CourseItemPageComponent,
+  CourseUpdatePageComponent,
   CoursesPageComponent,
 } from './pages';
 
@@ -28,7 +28,7 @@ import {
 @NgModule({
   declarations: [
     CourseCreatePageComponent,
-    CourseItemPageComponent,
+    CourseUpdatePageComponent,
     CoursesPageComponent,
     CourseFormComponent,
     CourseItemComponent,
@@ -39,7 +39,7 @@ import {
   ],
   exports: [
     CourseCreatePageComponent,
-    CourseItemPageComponent,
+    CourseUpdatePageComponent,
     CoursesPageComponent,
     CourseFormComponent,
     CourseItemComponent,
