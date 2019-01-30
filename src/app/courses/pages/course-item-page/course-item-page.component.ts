@@ -32,12 +32,13 @@ export class CourseItemPageComponent implements OnInit {
   public ngOnInit(): void {
     this.authService.isAuthorized()
       .then((isAuth: boolean): Promise<ICourse> => {
+        const id = this.activatedRoute.snapshot.paramMap.get('id');
         if (!isAuth) {
           this.router.navigate(['login']);
-        } else {
-          const id = this.activatedRoute.snapshot.paramMap.get('id');
-
+        } else if (id) {
           return this.coursesService.getCourse(id);
+        } else {
+          this.router.navigate(['courses']);
         }
       }).then((course: ICourse): void => {
         this.course = course;
@@ -45,7 +46,6 @@ export class CourseItemPageComponent implements OnInit {
   }
 
   public saveHandler(): void {
-    console.log('save');
     this.coursesService.updateCourse(this.course.id, this.course)
       .then((): void => {
         this.router.navigate(['courses']);
@@ -53,7 +53,6 @@ export class CourseItemPageComponent implements OnInit {
   }
 
   public cancelHandler(): void {
-    console.log('cancel');
     this.router.navigate(['courses']);
   }
 }

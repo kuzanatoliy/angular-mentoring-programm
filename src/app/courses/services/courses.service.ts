@@ -73,7 +73,9 @@ export class CoursesService {
   constructor() {}
 
   public getCourseList(): Promise<Array<ICourse>> {
-    return Promise.resolve(Course.createCourseList(this.COURSES));
+    const courses: Array<ICourse> = Course.createCourseList(this.COURSES);
+
+    return Promise.resolve(courses);
   }
 
   public createCourse(data: ICourse): Promise<ICourse> {
@@ -86,8 +88,10 @@ export class CoursesService {
   }
 
   public getCourse(id: string): Promise<ICourse> {
-    const course = this.COURSES.find((item: ICourse): boolean => item.id === id);
-    return Promise.resolve(Course.createCourse(course));
+    let course = this.COURSES.find((item: ICourse): boolean => item.id === id);
+    course = course ? Course.createCourse(course) : course;
+
+    return Promise.resolve(course);
   }
 
   public updateCourse(id: string, data: ICourse): Promise<Array<ICourse>> {
@@ -107,8 +111,10 @@ export class CoursesService {
     const course: ICourse = this.COURSES.find((item: ICourse): boolean => item.id === id);
     if (course) {
       this.COURSES = this.COURSES.filter((item: ICourse): boolean => item.id !== course.id);
+
       return Promise.resolve(id);
     }
+
     return Promise.resolve(null);
   }
 }
