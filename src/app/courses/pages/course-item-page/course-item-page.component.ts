@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { AuthService } from '../../../auth/services/auth.service';
@@ -7,6 +7,7 @@ import { CoursesService } from '../../services/courses.service';
 import { ICourse } from '../../../interfaces/ICourse';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-course-item-page',
   styleUrls: [ './course-item-page.component.sass' ],
   templateUrl: './course-item-page.component.html',
@@ -15,10 +16,11 @@ export class CourseItemPageComponent implements OnInit {
   public course: ICourse;
 
   constructor(
-    private router: Router,
-    private authService: AuthService,
-    private coursesService: CoursesService,
     private activatedRoute: ActivatedRoute,
+    private authService: AuthService,
+    private cdr: ChangeDetectorRef,
+    private coursesService: CoursesService,
+    private router: Router,
   ) { }
 
   public durationChangeHandler: (value: number) => void = (value: number) => {
@@ -42,6 +44,7 @@ export class CourseItemPageComponent implements OnInit {
         }
       }).then((course: ICourse): void => {
         this.course = course;
+        this.cdr.detectChanges();
       });
   }
 
