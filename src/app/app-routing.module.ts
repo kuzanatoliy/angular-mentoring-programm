@@ -4,16 +4,17 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginPageComponent } from './auth/login-page/login-page.component';
 import {
   CourseCreatePageComponent,
-  CourseUpdatePageComponent,
   CoursesPageComponent,
+  CourseUpdatePageComponent,
 } from './courses/pages';
+import { ErrorPageComponent } from './errors/error-page/error-page.component';
 
 export const routes: Routes = [
   { path: 'courses', component: CoursesPageComponent },
   { path: 'courses/new', component: CourseCreatePageComponent },
   { path: 'courses/:id', component: CourseUpdatePageComponent },
   { path: 'login', component: LoginPageComponent },
-  { path: '**',   redirectTo: '/login', pathMatch: 'full' },
+  { path: '**',   component: ErrorPageComponent, pathMatch: 'full' },
 ];
 
 @NgModule({

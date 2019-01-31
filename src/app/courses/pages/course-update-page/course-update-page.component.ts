@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { AuthService } from '../../../auth/services/auth.service';
@@ -7,6 +7,7 @@ import { CoursesService } from '../../services/courses.service';
 import { ICourse } from '../../../interfaces/ICourse';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-course-update-page',
   styleUrls: [ './course-update-page.component.sass' ],
   templateUrl: './course-update-page.component.html',
@@ -15,19 +16,12 @@ export class CourseUpdatePageComponent implements OnInit {
   public course: ICourse;
 
   constructor(
-    private router: Router,
-    private authService: AuthService,
-    private coursesService: CoursesService,
     private activatedRoute: ActivatedRoute,
+    private authService: AuthService,
+    private cdr: ChangeDetectorRef,
+    private coursesService: CoursesService,
+    private router: Router,
   ) { }
-
-  public durationChangeHandler: (value: number) => void = (value: number) => {
-    this.course.duration = value;
-  }
-
-  public dateChangeHandler: (value: Date) => void = (value: Date) => {
-    this.course.creationDate = value;
-  }
 
   public saveAction: (course: ICourse) => void = (course: ICourse): void => {
     this.coursesService.updateCourse(course.id, course)
@@ -53,6 +47,7 @@ export class CourseUpdatePageComponent implements OnInit {
         }
       }).then((course: ICourse): void => {
         this.course = course;
+        this.cdr.detectChanges();
       });
   }
 }

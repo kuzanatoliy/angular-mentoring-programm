@@ -1,3 +1,7 @@
 <div class="course-page">
-  <app-course-form></app-course-form>
+  <app-course-form
+    [course]="course"
+    [saveAction]="saveAction"
+    [cancelAction]="cancelAction">
+  </app-course-form>
 </div>
