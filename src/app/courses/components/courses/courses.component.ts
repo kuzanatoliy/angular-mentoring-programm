@@ -48,6 +48,6 @@ export class CoursesComponent implements OnInit {
   }
 
   public updateCourseHandler(id: number) {
-    this.router.navigate([`courses/${ id }`]);    
+    this.router.navigate([`courses/${ id }`]);
   }
 }

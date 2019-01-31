@@ -1,7 +1,12 @@
 <div class="course-page">
   <div *ngIf="course; then formBlock; else loadingBlock"></div>
   <ng-template #formBlock>
-    <form class="course-page-form">
+    <app-course-form
+      [course]="course"
+      [saveAction]="saveAction"
+      [cancelAction]="cancelAction">
+    </app-course-form>
+    <!--form class="course-page-form">
       <label class="course-page-form-title">
         <div>Title</div>
         <input type="text" name="title" [(ngModel)]="course.title" />
@@ -36,7 +41,7 @@
           class="course-page-from-control-save"
           (click)="saveHandler()">Save</button>
       </div>
-    </form>
+    </form -->
   </ng-template>
   <ng-template #loadingBlock>
     <div class="course-page-loading">Loading...</div>

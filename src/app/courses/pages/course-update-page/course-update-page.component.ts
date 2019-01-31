@@ -29,6 +29,17 @@ export class CourseUpdatePageComponent implements OnInit {
     this.course.creationDate = value;
   }
 
+  public saveAction: (course: ICourse) => void = (course: ICourse): void => {
+    this.coursesService.updateCourse(course.id, course)
+      .then((): void => {
+        this.router.navigate(['courses']);
+      });
+  }
+
+  public cancelAction: () => void = () => {
+    this.router.navigate(['courses']);
+  }
+
   public ngOnInit(): void {
     this.authService.isAuthorized()
       .then((isAuth: boolean): Promise<ICourse> => {
@@ -43,16 +54,5 @@ export class CourseUpdatePageComponent implements OnInit {
       }).then((course: ICourse): void => {
         this.course = course;
       });
-  }
-
-  public saveHandler(): void {
-    this.coursesService.updateCourse(this.course.id, this.course)
-      .then((): void => {
-        this.router.navigate(['courses']);
-      });
-  }
-
-  public cancelHandler(): void {
-    this.router.navigate(['courses']);
   }
 }
