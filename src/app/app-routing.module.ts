@@ -9,11 +9,21 @@ import {
 } from './courses/pages';
 import { ErrorPageComponent } from './errors/error-page/error-page.component';
 
+import { AuthGuard } from './auth/guards/auth.guard';
+import { AuthLoginGuard } from './auth/guards/authLogin.guard';
+
 export const routes: Routes = [
-  { path: 'courses', component: CoursesPageComponent },
-  { path: 'courses/new', component: CourseCreatePageComponent },
-  { path: 'courses/:id', component: CourseUpdatePageComponent },
-  { path: 'login', component: LoginPageComponent },
+  { path: '', redirectTo: 'courses', pathMatch: 'full' },
+  {
+    canActivate: [ AuthGuard ],
+    children: [
+      { path: '', component: CoursesPageComponent, pathMatch: 'full' },
+      { path: 'new', component: CourseCreatePageComponent, pathMatch: 'full' },
+      { path: ':id', component: CourseUpdatePageComponent, pathMatch: 'full' },
+    ],
+    path: 'courses',
+  },
+  { path: 'login', component: LoginPageComponent, canActivate: [ AuthLoginGuard ] },
   { path: '**',   component: ErrorPageComponent, pathMatch: 'full' },
 ];
 

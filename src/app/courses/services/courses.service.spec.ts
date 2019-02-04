@@ -2,7 +2,7 @@ import { CoursesService } from './courses.service';
 
 import { ICourse } from '../../interfaces/ICourse';
 
-import { Course } from '../../models/Course'; 
+import { Course } from '../../models/Course';
 
 describe('CoursesService', () => {
   const COURSES: Array<ICourse> = Course.createCourseList([{
@@ -89,7 +89,7 @@ describe('CoursesService', () => {
       id: '6',
       title: 'Courses 5',
       topRated: false,
-    }
+    };
     const newCourse: ICourse = await service.createCourse(course);
     expect(course).toEqual(newCourse);
   });

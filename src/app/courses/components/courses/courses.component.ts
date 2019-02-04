@@ -45,6 +45,10 @@ export class CoursesComponent implements OnInit {
       });
   }
 
+  public updateCourseHandler: (id: string) => void = (id: string) => {
+    this.router.navigate([`courses/${ id }`]);
+  }
+
   public ngOnInit() {
     this.loading = true;
     this.cdr.detectChanges();
@@ -59,9 +63,5 @@ export class CoursesComponent implements OnInit {
   public ngDoCheck() {
     this.courses = this.searchFilter.transform(this.COURSES);
     this.cdr.detectChanges();
-  }
-
-  public updateCourseHandler(id: number) {
-    this.router.navigate([`courses/${ id }`]);
   }
 }

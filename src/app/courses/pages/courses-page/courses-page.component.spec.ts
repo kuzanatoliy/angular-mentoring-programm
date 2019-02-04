@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AuthModule } from '../../../auth/auth.module';
+import { ErrorsModule } from '../../../errors/errors.module';
 import { SearchModule } from '../../../search/search.module';
 import { SharedModule } from '../../../shared/shared.module';
 
@@ -42,6 +43,7 @@ describe('CoursesPageComponent', () => {
       ],
       imports: [
         AuthModule,
+        ErrorsModule,
         SearchModule,
         SharedModule,
         FontAwesomeModule,
@@ -69,11 +71,6 @@ describe('CoursesPageComponent', () => {
   it('should find app-search component', () => {
     const searchComponent = fixture.nativeElement.querySelector('app-search');
     expect(searchComponent).not.toBeNull();
-  });
-
-  it('should find app-new-course component', () => {
-    const newCourseComponent = fixture.nativeElement.querySelector('app-new-course');
-    expect(newCourseComponent).not.toBeNull();
   });
 
   it('should find app-breadcrumbs component', () => {

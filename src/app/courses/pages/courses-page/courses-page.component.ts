@@ -11,16 +11,12 @@ export class CoursesPageComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authService: AuthService,
   ) { }
 
-  public ngOnInit(): void {
-    this.authService.isAuthorized()
-      .then((isAuth: boolean): void => {
-        if (!isAuth) {
-          this.router.navigate(['login']);
-        }
-      });
+  public ngOnInit(): void { }
+
+  public createCourseHandler(): void {
+    this.router.navigate(['courses/new']);
   }
 
 }

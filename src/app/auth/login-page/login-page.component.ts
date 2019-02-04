@@ -21,7 +21,7 @@ export class LoginPageComponent implements OnInit {
     private authService: AuthService,
   ) { }
 
-  public loginHandler() {
+  public loginHandler(): void {
     this.loading = true;
     this.error = false;
     this.authService.login(this.userName, this.password)
@@ -35,13 +35,6 @@ export class LoginPageComponent implements OnInit {
       });
   }
 
-  public ngOnInit() {
-    this.authService.isAuthorized()
-      .then((isAuth: boolean): void => {
-        if (isAuth) {
-          this.router.navigate(['courses']);
-        }
-      });
-  }
+  public ngOnInit(): void { }
 
 }

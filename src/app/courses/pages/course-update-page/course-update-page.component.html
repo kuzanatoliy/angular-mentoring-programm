@@ -1,8 +1,12 @@
 <div class="course-page">
   <div *ngIf="course; then formBlock; else loadingBlock"></div>
   <ng-template #formBlock>
+    <app-breadcrumbs>
+      <a routerLink='courses' routerLinkActive="active">Courses</a>
+      /{{ course.title }}
+    </app-breadcrumbs>
     <app-course-form
-      [course]="course"
+      [newCourse]="course"
       [saveAction]="saveAction"
       [cancelAction]="cancelAction">
     </app-course-form>

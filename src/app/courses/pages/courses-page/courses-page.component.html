@@ -1,8 +1,8 @@
 <div class="course-page">
-  <app-breadcrumbs></app-breadcrumbs>
+  <app-breadcrumbs>Courses</app-breadcrumbs>
   <section class="page-search">
     <app-search></app-search>
-    <app-new-course></app-new-course>
+    <button (click)="createCourseHandler()">Create course</button>
   </section>
   <section>
     <app-courses></app-courses>

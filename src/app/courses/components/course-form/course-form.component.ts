@@ -7,7 +7,7 @@ import { ICourse } from '../../../interfaces/ICourse';
   templateUrl: './course-form.component.html',
 })
 export class CourseFormComponent implements OnInit {
-  private static DEFAULT_COURSE: ICourse = {
+  public static DEFAULT_COURSE: ICourse = {
     authors: [],
     creationDate: new Date(),
     description: '',
@@ -17,11 +17,15 @@ export class CourseFormComponent implements OnInit {
     topRated: false,
   };
 
-  @Input() public course: ICourse = CourseFormComponent.DEFAULT_COURSE;
+  public course: ICourse = CourseFormComponent.DEFAULT_COURSE;
+
+  @Input() public set newCourse(course) {
+    this.course = course || CourseFormComponent.DEFAULT_COURSE;
+  }
   @Input() public saveAction?: (course: ICourse) => void;
   @Input() public cancelAction?: () => void;
 
-  constructor() { }
+  constructor() {}
 
   public durationChangeHandler: (value: number) => void = (value: number) => {
     this.course.duration = value;

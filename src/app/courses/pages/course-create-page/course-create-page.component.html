@@ -1,6 +1,10 @@
 <div class="course-page">
+  <app-breadcrumbs>
+    <a routerLink="/courses" routerLinkActive="active">Courses</a>
+    /New
+  </app-breadcrumbs>
   <app-course-form
-    [course]="course"
+    [newCourse]="course"
     [saveAction]="saveAction"
     [cancelAction]="cancelAction">
   </app-course-form>

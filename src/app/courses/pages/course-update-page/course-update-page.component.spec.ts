@@ -1,10 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { FormsModule } from '@angular/forms';
-
 import { AuthModule } from '../../../auth/auth.module';
+import { ErrorsModule } from '../../../errors/errors.module';
 import { SearchModule } from '../../../search/search.module';
 import { SharedModule } from '../../../shared/shared.module';
 
@@ -47,6 +47,7 @@ describe('CourseUpdatePageComponent', () => {
       imports: [
         RouterTestingModule.withRoutes(routes),
         AuthModule,
+        ErrorsModule,
         SearchModule,
         SharedModule,
         FontAwesomeModule,

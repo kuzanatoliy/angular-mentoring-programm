@@ -4,6 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { CoursesModule } from './courses/courses.module';
+import { ErrorsModule } from './errors/errors.module';
 import { SearchModule } from './search/search.module';
 import { SharedModule } from './shared/shared.module';
 
@@ -17,6 +18,7 @@ describe('AppComponent', () => {
         AuthModule,
         RouterTestingModule,
         CoursesModule,
+        ErrorsModule,
         SharedModule,
         SearchModule,
       ],

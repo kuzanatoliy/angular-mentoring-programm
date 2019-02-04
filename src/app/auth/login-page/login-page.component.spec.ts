@@ -5,6 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { LoginPageComponent } from './login-page.component';
 
 import { CoursesModule } from '../../courses/courses.module';
+import { ErrorsModule } from '../../errors/errors.module';
 
 import { routes } from '../../app-routing.module';
 
@@ -19,6 +20,7 @@ describe('LoginPageComponent', () => {
         RouterTestingModule.withRoutes(routes),
         FormsModule,
         CoursesModule,
+        ErrorsModule,
       ],
     })
     .compileComponents();

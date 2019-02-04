@@ -35,19 +35,15 @@ export class CourseUpdatePageComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.authService.isAuthorized()
-      .then((isAuth: boolean): Promise<ICourse> => {
-        const id = this.activatedRoute.snapshot.paramMap.get('id');
-        if (!isAuth) {
-          this.router.navigate(['login']);
-        } else if (id) {
-          return this.coursesService.getCourse(id);
-        } else {
-          this.router.navigate(['courses']);
-        }
-      }).then((course: ICourse): void => {
-        this.course = course;
-        this.cdr.detectChanges();
-      });
+    const id = this.activatedRoute.snapshot.paramMap.get('id');
+    if (id) {
+      this.coursesService.getCourse(id)
+        .then((course: ICourse): void => {
+          this.course = course;
+          this.cdr.detectChanges();
+        });
+    } else {
+      this.router.navigate(['courses']);
+    }
   }
 }

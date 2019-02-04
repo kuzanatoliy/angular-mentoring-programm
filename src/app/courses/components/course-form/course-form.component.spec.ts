@@ -107,7 +107,7 @@ describe('CourseFormComponent', () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(CourseFormComponent);
       component = fixture.componentInstance;
-      component.course = COURSE_MOCK_DATA;
+      component.newCourse = COURSE_MOCK_DATA;
       component.saveAction = testSaveAction;
       component.cancelAction = testCancelAction;
       fixture.detectChanges();
