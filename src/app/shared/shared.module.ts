@@ -14,7 +14,6 @@ import {
   LoadMoreComponent,
   LogoComponent,
   ModalWindowComponent,
-  NewCourseComponent,
   UserControlComponent,
 } from './components';
 
@@ -34,7 +33,6 @@ import {
     LoadMoreComponent,
     LogoComponent,
     ModalWindowComponent,
-    NewCourseComponent,
     UserControlComponent,
     DatePipe,
     DurationPipe,
@@ -49,7 +47,6 @@ import {
     LoadMoreComponent,
     LogoComponent,
     ModalWindowComponent,
-    NewCourseComponent,
     UserControlComponent,
     DatePipe,
     DurationPipe,

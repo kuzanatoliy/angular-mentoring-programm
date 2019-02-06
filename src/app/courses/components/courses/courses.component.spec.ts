@@ -3,14 +3,17 @@ import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AuthModule } from '../../../auth/auth.module';
+import { ErrorsModule } from '../../../errors/errors.module';
 import { SearchModule } from '../../../search/search.module';
 import { SharedModule } from '../../../shared/shared.module';
 
 import {
-  CourseItemPageComponent,
+  CourseCreatePageComponent,
   CoursesPageComponent,
+  CourseUpdatePageComponent,
 } from '../../pages';
 
+import { CourseFormComponent } from '../course-form/course-form.component';
 import { CourseItemComponent } from '../course-item/course-item.component';
 import { CoursesComponent } from './courses.component';
 
@@ -91,14 +94,17 @@ describe('CoursesComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         CoursesComponent,
-        CourseItemPageComponent,
+        CourseCreatePageComponent,
+        CourseUpdatePageComponent,
         CoursesPageComponent,
+        CourseFormComponent,
         CourseItemComponent,
         FreshCourseDirective,
         OrderByCreationDatePipe,
       ],
       imports: [
         AuthModule,
+        ErrorsModule,
         SearchModule,
         SharedModule,
         FontAwesomeModule,

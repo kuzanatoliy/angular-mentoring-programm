@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AuthModule } from '../../../auth/auth.module';
@@ -7,9 +8,9 @@ import { ErrorsModule } from '../../../errors/errors.module';
 import { SearchModule } from '../../../search/search.module';
 import { SharedModule } from '../../../shared/shared.module';
 
-import { CourseCreatePageComponent } from '../course-create-page/course-create-page.component';
 import { CourseUpdatePageComponent } from '../course-update-page/course-update-page.component';
-import { CoursesPageComponent } from './courses-page.component';
+import { CoursesPageComponent } from '../courses-page/courses-page.component';
+import { CourseCreatePageComponent } from './course-create-page.component';
 
 import {
   CourseFormComponent,
@@ -24,15 +25,17 @@ import {
   SearchFilterPipe,
 } from '../../pipes';
 
-describe('CoursesPageComponent', () => {
-  let component: CoursesPageComponent;
-  let fixture: ComponentFixture<CoursesPageComponent>;
+import { routes } from '../../../app-routing.module';
+
+describe('CourseCreatePageComponent', () => {
+  let component: CourseCreatePageComponent;
+  let fixture: ComponentFixture<CourseCreatePageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        CoursesPageComponent,
         CourseCreatePageComponent,
+        CoursesPageComponent,
         CourseUpdatePageComponent,
         CourseFormComponent,
         CourseItemComponent,
@@ -42,39 +45,26 @@ describe('CoursesPageComponent', () => {
         SearchFilterPipe,
       ],
       imports: [
+        RouterTestingModule.withRoutes(routes),
+        FontAwesomeModule,
+        FormsModule,
         AuthModule,
         ErrorsModule,
         SearchModule,
         SharedModule,
-        FontAwesomeModule,
-        FormsModule,
       ],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CoursesPageComponent);
+    fixture = TestBed.createComponent(CourseCreatePageComponent);
     component = fixture.componentInstance;
+    component.course = CourseFormComponent.DEFAULT_COURSE;
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should find app-breadcrumbs component', () => {
-    const breadcrupmbsComponent = fixture.nativeElement.querySelector('app-breadcrumbs');
-    expect(breadcrupmbsComponent).not.toBeNull();
-  });
-
-  it('should find app-search component', () => {
-    const searchComponent = fixture.nativeElement.querySelector('app-search');
-    expect(searchComponent).not.toBeNull();
-  });
-
-  it('should find app-breadcrumbs component', () => {
-    const coursesComponent = fixture.nativeElement.querySelector('app-courses');
-    expect(coursesComponent).not.toBeNull();
   });
 });
