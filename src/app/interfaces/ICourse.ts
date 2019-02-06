@@ -1,8 +1,10 @@
+import { IUser } from './IUser';
 export interface ICourse {
-  id?: number;
-  title: string;
+  authors: Array<IUser>;
   creationDate: Date;
-  duration: number;
   description: string;
+  duration: number;
+  id?: string;
+  title: string;
   topRated: boolean;
 }

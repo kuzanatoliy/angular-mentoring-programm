@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SearchService {
   private searchValue: string = '';
 
-  getValue() {
+  constructor() { }
+
+  public getValue(): string {
     return this.searchValue;
   }
 
-  setValue(value) {
+  public setValue(value): void {
     this.searchValue = value;
   }
-
-  constructor() { }
 }

@@ -3,72 +3,103 @@ import { ICourse } from '../../interfaces/ICourse';
 import { Course } from '../../models/Course';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CoursesService {
-  private COURSES: Array<ICourse> = Course.createCourseList([{
-    id: 1,
-    title: "Courses 1",
+  private COURSES: Array<ICourse> = [{
+    authors: [{
+      firstName: 'Igar',
+      id: '1',
+      lastName: 'Pupkin',
+    }],
+    creationDate: new Date('12.24.2018'),
+    description: 'Description of courses 1',
     duration: 80,
-    creationDate: new Date("12.24.2018"),
-    description: "Description of courses 1",
-    topRated: true
+    id: '1',
+    title: 'Courses 1',
+    topRated: true,
   }, {
-    id: 2,
-    title: "Courses 2",
+    authors: [{
+      firstName: 'Igar',
+      id: '1',
+      lastName: 'Pupkin',
+    }],
+    creationDate: new Date('04.25.2018'),
+    description: 'Description of courses 2',
     duration: 80,
-    creationDate: new Date("04.25.2018"),
-    description: "Description of courses 2",
-    topRated: true
+    id: '2',
+    title: 'Courses 2',
+    topRated: true,
   }, {
-    id: 3,
-    title: "Courses 3",
+    authors: [{
+      firstName: 'Igar',
+      id: '1',
+      lastName: 'Pupkin',
+    }],
+    creationDate: new Date('04.25.2018'),
+    description: 'Description of courses 3',
     duration: 80,
-    creationDate: new Date("04.25.2018"),
-    description: "Description of courses 3",
-    topRated: false
+    id: '3',
+    title: 'Courses 3',
+    topRated: false,
   }, {
-    id: 4,
-    title: "Courses 4",
+    authors: [{
+      firstName: 'Igar',
+      id: '1',
+      lastName: 'Pupkin',
+    }],
+    creationDate: new Date('04.12.2018'),
+    description: 'Description of courses 4',
     duration: 80,
-    creationDate: new Date("04.12.2018"),
-    description: "Description of courses 4",
-    topRated: false
+    id: '4',
+    title: 'Courses 4',
+    topRated: false,
   }, {
-    id: 5,
-    title: "Courses 5",
+    authors: [{
+      firstName: 'Igar',
+      id: '1',
+      lastName: 'Pupkin',
+    }],
+    creationDate: new Date('04.12.2018'),
+    description: 'Description of courses 5',
     duration: 80,
-    creationDate: new Date("04.12.2018"),
-    description: "Description of courses 5",
-    topRated: false
-  }]);
+    id: '5',
+    title: 'Courses 5',
+    topRated: false,
+  }];
 
   private nextId = 6;
 
   constructor() {}
 
-  getCourseList() {
-    return Promise.resolve(this.COURSES);
+  public getCourseList(): Promise<Array<ICourse>> {
+    const courses: Array<ICourse> = Course.createCourseList(this.COURSES);
+
+    return Promise.resolve(courses);
   }
 
-  createCourse(data: ICourse) {
-    data.id = this.nextId;
+  public createCourse(data: ICourse): Promise<ICourse> {
+    data.id = '' + this.nextId;
     this.nextId++;
     const course = data;
     this.COURSES.push(course);
-    
+
     return Promise.resolve(course);
   }
 
-  getCourse(id: number) {
-    return Promise.resolve(this.COURSES.find(item => item.id === id));
+  public getCourse(id: string): Promise<ICourse> {
+    let course = this.COURSES.find((item: ICourse): boolean => item.id === id);
+    course = course ? Course.createCourse(course) : course;
+
+    return Promise.resolve(course);
   }
 
-  updateCourse(id: number, data: ICourse) {
-    const courses: Array<ICourse> = []
-    this.COURSES.forEach(item => {
-      if(item.id === id) {
+  public updateCourse(id: string, data: ICourse): Promise<Array<ICourse>> {
+    const courses: Array<ICourse> = [];
+    this.COURSES.forEach((item: ICourse, index: number, arr: Array<ICourse>): void => {
+      if (item.id === id) {
         item = { ...item, ...data };
+        arr[index] = item;
         courses.push(item);
       }
     });
@@ -76,12 +107,14 @@ export class CoursesService {
     return Promise.resolve(courses);
   }
 
-  removeCourse(id: number) {
-    const course = this.COURSES.find(item => item.id === id);
-    if(course) {
-      this.COURSES = this.COURSES.filter(item => item.id !== course.id);
+  public removeCourse(id: string): Promise<string | null> {
+    const course: ICourse = this.COURSES.find((item: ICourse): boolean => item.id === id);
+    if (course) {
+      this.COURSES = this.COURSES.filter((item: ICourse): boolean => item.id !== course.id);
+
       return Promise.resolve(id);
     }
+
     return Promise.resolve(null);
   }
 }

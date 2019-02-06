@@ -4,25 +4,27 @@ import { SearchService } from '../services/search.service';
 
 @Component({
   selector: 'app-search',
+  styleUrls: [ './search.component.sass' ],
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.sass']
 })
 export class SearchComponent implements OnInit {
   public searchValue;
 
-  constructor(private searchService: SearchService ) {
+  constructor(
+    private searchService: SearchService,
+  ) {
     this.searchValue = searchService.getValue();
   }
 
-  setNewValue(value) {
+  public setNewValue(value): void {
     this.searchValue = value;
   }
 
-  searchHandler() {
+  public searchHandler(): void {
     this.searchService.setValue(this.searchValue);
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
   }
 
 }

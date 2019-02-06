@@ -1,17 +1,21 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
-import { CoursesPageComponent } from './courses/courses-page/courses-page.component';
 import { LoginPageComponent } from './auth/login-page/login-page.component';
+import {
+  CourseItemPageComponent,
+  CoursesPageComponent,
+} from './courses/pages';
 
 export const routes: Routes = [
   { path: 'courses', component: CoursesPageComponent },
+  { path: 'courses/:id', component: CourseItemPageComponent },
   { path: 'login', component: LoginPageComponent },
-  { path: '**',   redirectTo: '/login', pathMatch: 'full' }
+  { path: '**',   redirectTo: '/login', pathMatch: 'full' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [ RouterModule ],
+  imports: [ RouterModule.forRoot(routes) ],
 })
 export class AppRoutingModule { }

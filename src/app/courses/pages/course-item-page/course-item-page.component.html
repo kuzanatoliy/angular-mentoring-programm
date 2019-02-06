@@ -1,0 +1,44 @@
+<div class="course-page">
+  <div *ngIf="course; then formBlock; else loadingBlock"></div>
+  <ng-template #formBlock>
+    <form class="course-page-form">
+      <label class="course-page-form-title">
+        <div>Title</div>
+        <input type="text" name="title" [(ngModel)]="course.title" />
+      </label>
+      <label class="course-page-form-description">
+        <div>Description</div>
+        <textarea name="description" [(ngModel)]="course.description"></textarea>
+      </label>
+      <label class="course-page-form-title-date">
+        <div>Date</div>
+        <app-date-input
+          [date]="course.creationDate"
+          [dateChangeHandler]="dateChangeHandler">
+        </app-date-input>
+      </label>
+      <label class="course-page-form-duration">
+        <div>Duration</div>
+        <app-duration-input
+          [duration]="course.duration"
+          [durationChangeHandler]="durationChangeHandler">
+        </app-duration-input>
+      </label>
+      <label class="course-page-form-authors">
+        <div>Authors</div>
+        <app-author-list-control [authors]="course.authors"></app-author-list-control>
+      </label>
+      <div class="course-page-form-control">
+        <button
+          class="course-page-form-control-cancel"
+          (click)="cancelHandler()">Cancel</button>
+        <button
+          class="course-page-from-control-save"
+          (click)="saveHandler()">Save</button>
+      </div>
+    </form>
+  </ng-template>
+  <ng-template #loadingBlock>
+    <div class="course-page-loading">Loading...</div>
+  </ng-template>
+</div>

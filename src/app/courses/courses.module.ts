@@ -1,44 +1,50 @@
-import { NgModule } from '@angular/core';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { SharedModule } from '../shared/shared.module';
 import { SearchModule } from '../search/search.module';
+import { SharedModule } from '../shared/shared.module';
 
-import { CoursesComponent } from './courses/courses.component';
-import { CoursesPageComponent } from './courses-page/courses-page.component';
-import { CourseItemComponent } from './course-item/course-item.component';
+import {
+  CourseItemPageComponent,
+  CoursesPageComponent,
+} from './pages';
+
+import {
+  CourseItemComponent,
+  CoursesComponent,
+} from './components';
 
 import { FreshCourseDirective } from './directives/fresh-course.directive';
 
 import {
-  CourseDurationPipe,
-  CourseCreationDatePipe, 
   OrderByCreationDatePipe,
-  SearchFilterPipe
+  SearchFilterPipe,
 } from './pipes';
 
 @NgModule({
   declarations: [
-    CoursesComponent,
-    CourseItemComponent,
+    CourseItemPageComponent,
     CoursesPageComponent,
+    CourseItemComponent,
+    CoursesComponent,
     FreshCourseDirective,
-    CourseDurationPipe,
-    CourseCreationDatePipe,
     OrderByCreationDatePipe,
-    SearchFilterPipe
+    SearchFilterPipe,
+  ],
+  exports: [
+    CourseItemPageComponent,
+    CoursesPageComponent,
+    CourseItemComponent,
+    CoursesComponent,
   ],
   imports: [
     FontAwesomeModule,
     CommonModule,
     SharedModule,
-    SearchModule
+    SearchModule,
+    FormsModule,
   ],
-  exports: [
-    CoursesComponent,
-    CourseItemComponent,
-    CoursesPageComponent
-  ]
 })
 export class CoursesModule { }

@@ -5,7 +5,7 @@ describe('SearchService', () => {
 
   beforeEach(() => {
     service = new SearchService();
-  })
+  });
 
   it('should be created', () => {
     expect(service).toBeTruthy();

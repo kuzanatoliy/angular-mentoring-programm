@@ -1,44 +1,47 @@
 import { Injectable } from '@angular/core';
 
+import { IUser } from '../../interfaces/IUser';
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  private USER_NAME = 'user';
-  private PASSWORD = 'user_password';
-  private authorized = false;
+  private USER_NAME: string = 'user';
+  private PASSWORD: string = 'user_password';
+  // TODO Change after fixed course-item-page component
+  private authorized: boolean = true;
+  // TODO Change after fixed course-item-page component
+  private userName?: string = 'user';
 
-  private userName?: string = null;
+  constructor() { }
 
-  login(userName, password) {
-    if(this.USER_NAME === userName && this.PASSWORD === password) {
+  public login(userName: string, password: string): Promise<IUser | object> {
+    if (this.USER_NAME === userName && this.PASSWORD === password) {
       this.authorized = true;
     }
 
-    if(this.authorized) {
+    if (this.authorized) {
       this.userName = this.USER_NAME;
       return Promise.resolve({
-        userName: this.USER_NAME
+        userName: this.USER_NAME,
       });
     }
 
     return Promise.resolve({});
   }
 
-  logout() {
+  public logout(): Promise<object> {
     this.authorized = false;
     this.userName = null;
 
     return Promise.resolve({});
   }
 
-  isAuthorized() {
+  public isAuthorized(): Promise<boolean> {
     return Promise.resolve(this.authorized);
   }
 
-  getUserInfo() {
+  public getUserInfo(): string {
     return this.userName;
   }
-
-  constructor() { }
 }
