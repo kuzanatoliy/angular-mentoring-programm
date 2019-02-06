@@ -1,3 +1,9 @@
 <div class="breadcrumbs">
-  <ng-content></ng-content>
+  <div>
+    <span *ngIf="isShowSecondLevel(); then linkedParentTitleBlock; else parentTitleBlock"></span>
+    <ng-template #parentTitleBlock>{{ parentTitle }}</ng-template>
+    <ng-template #linkedParentTitleBlock><a [routerLink]="parentUrl">{{ parentTitle }}</a></ng-template>
+    <span *ngIf="isShowSecondLevel(); then currentTitleBlock"></span>
+    <ng-template #currentTitleBlock> / {{ currentTitle }}</ng-template>
+  </div>
 </div>
