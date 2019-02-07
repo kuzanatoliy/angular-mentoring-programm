@@ -10,28 +10,28 @@ import { LOGIN_URL, LOGOUT_URL, USER_INFO_URL } from '../../constants/urls';
 })
 export class AuthService {
   private userInfo: IUser = {};
-  private USER_NAME: string = 'user';
-  private PASSWORD: string = 'user_password';
-  // TODO Change after fixed course-item-page component
   private authorized: boolean = false;
-  // TODO Change after fixed course-item-page component
-  private userName?: string = null;
 
   constructor(
     private http: HttpClient,
   ) { }
 
-  public login(userName: string, password: string): Promise<IUser | object> {
+  public login(userName: string, password: string): Promise<IUser> {
     return this.http.post(LOGIN_URL, { userName, password })
       .toPromise()
-      .then((data) => this.userInfo = data);
+      .then(this.auth);
   }
 
-  public logout(): Promise<object> {
-    this.authorized = false;
-    this.userName = null;
+  public logout(): Promise<IUser> {
+    return this.http.post(LOGOUT_URL, {})
+      .toPromise()
+      .then(this.auth);
+  }
 
-    return Promise.resolve({});
+  public checkUserInfo(): Promise<IUser> {
+    return this.http.get(USER_INFO_URL)
+      .toPromise()
+      .then(this.auth);
   }
 
   public isAuthorized(): Promise<boolean> {
@@ -39,6 +39,17 @@ export class AuthService {
   }
 
   public getUserInfo(): string {
-    return this.userName;
+    return this.userInfo.userName;
+  }
+
+  private auth(user: IUser): IUser {
+    if (user.userName) {
+      this.userInfo = user;
+      this.authorized = true;
+    } else {
+      this.userInfo = {};
+      this.authorized = false;
+    }
+    return this.userInfo;
   }
 }
