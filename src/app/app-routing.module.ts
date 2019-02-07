@@ -29,7 +29,7 @@ export const loginRoute: Route = { path: 'login', component: LoginPageComponent,
 
 export const errorRoute: Route = { path: '**',   component: ErrorPageComponent, pathMatch: 'full' };
 
-export const routes: Routes = [ coursesRoute, errorRoute, loginRoute, homeRoute ];
+export const routes: Routes = [ homeRoute, coursesRoute, loginRoute, errorRoute ];
 
 @NgModule({
   exports: [ RouterModule ],
