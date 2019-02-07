@@ -16,11 +16,10 @@ export class AuthGuard implements CanActivate {
   public canActivate(): Observable<boolean> | Promise<boolean> | boolean {
     return this.authService.isAuthorized()
       .then((isAuth: boolean): boolean => {
-        console.log(isAuth);
         if (!isAuth) {
           this.router.navigate(['login']);
         }
-        return !isAuth;
+        return isAuth;
       });
   }
 }

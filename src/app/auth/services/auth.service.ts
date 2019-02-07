@@ -1,33 +1,30 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { IUser } from '../../interfaces/IUser';
+
+import { LOGIN_URL, LOGOUT_URL, USER_INFO_URL } from '../../constants/urls';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  private userInfo: IUser = {};
   private USER_NAME: string = 'user';
   private PASSWORD: string = 'user_password';
   // TODO Change after fixed course-item-page component
-  private authorized: boolean = true;
+  private authorized: boolean = false;
   // TODO Change after fixed course-item-page component
-  private userName?: string = 'user';
+  private userName?: string = null;
 
-  constructor() { }
+  constructor(
+    private http: HttpClient,
+  ) { }
 
   public login(userName: string, password: string): Promise<IUser | object> {
-    if (this.USER_NAME === userName && this.PASSWORD === password) {
-      this.authorized = true;
-    }
-
-    if (this.authorized) {
-      this.userName = this.USER_NAME;
-      return Promise.resolve({
-        userName: this.USER_NAME,
-      });
-    }
-
-    return Promise.resolve({});
+    return this.http.post(LOGIN_URL, { userName, password })
+      .toPromise()
+      .then((data) => this.userInfo = data);
   }
 
   public logout(): Promise<object> {
