@@ -29,6 +29,6 @@ export function loginTreatment(req, res, next) {
 }
 
 export function logoutTreatment(req, res, next) {
-  req.session = {};
+  req.session.userData = null;
   next();
 }

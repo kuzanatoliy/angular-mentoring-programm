@@ -42,7 +42,7 @@ export class AuthService {
     return this.userInfo.userName;
   }
 
-  private auth(user: IUser): IUser {
+  public auth: (user: IUser) => IUser = (user: IUser): IUser => {
     if (user.userName) {
       this.userInfo = user;
       this.authorized = true;
