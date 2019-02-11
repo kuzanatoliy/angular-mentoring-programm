@@ -1,6 +1,10 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 import { ICourse } from '../../interfaces/ICourse';
 import { Course } from '../../models/Course';
+
+import { TokenService } from '../../auth/services/token.service';
 
 @Injectable({
   providedIn: 'root',
@@ -70,12 +74,16 @@ export class CoursesService {
 
   private nextId = 6;
 
-  constructor() {}
+  constructor(
+    private tokenService: TokenService,
+    private http: HttpClient,
+  ) {}
 
   public getCourseList(): Promise<Array<ICourse>> {
-    const courses: Array<ICourse> = Course.createCourseList(this.COURSES);
-
-    return Promise.resolve(courses);
+    return this.http.get('http://localhost:4201/courses', { withCredentials: true }).toPromise().then((data: Array<ICourse>) => data);
+    // const courses: Array<ICourse> = Course.createCourseList(this.COURSES);
+    //
+    // return Promise.resolve(courses);
   }
 
   public createCourse(data: ICourse): Promise<ICourse> {

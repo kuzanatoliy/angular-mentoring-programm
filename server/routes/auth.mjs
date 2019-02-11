@@ -12,6 +12,7 @@ export function setAuthRoutes(router) {
 }
 
 export function userInfoTreatment(req, res) {
+  console.log(req.session);
   res.json(req.session.userData || {});
 }
 
@@ -22,6 +23,7 @@ export function loginTreatment(req, res, next) {
     req.session.userData = {
       firstName,
       lastName,
+      token: userName,
       userName,
     };
   }

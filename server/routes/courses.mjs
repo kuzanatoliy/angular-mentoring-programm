@@ -1,14 +1,16 @@
+import { COURSE_LIST } from '../utils/courses';
+
+import { authTreatment } from '../middlewares/authMiddlewares';
+
 export function setCoursesRoutes(router) {
   router.route('/courses')
-    .get(getCourseListTreatment)
-    .post(createCourseTreatment);
+    .get(authTreatment, getCourseListTreatment)
+    .post(authTreatment, createCourseTreatment);
 
   router.route('/coures/:id')
-    .get(getCourseTreatment)
-    .post(updateCourseTreatment)
-    .delete(removeCourseTreatment);
-
-  router.route();
+    .get(authTreatment, getCourseTreatment)
+    .post(authTreatment, updateCourseTreatment)
+    .delete(authTreatment, removeCourseTreatment);
 }
 
 export function getCourseListTreatment(req, res) {

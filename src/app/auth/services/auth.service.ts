@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import { TokenService } from './token.service';
+
 import { IUser } from '../../interfaces/IUser';
 
 import { LOGIN_URL, LOGOUT_URL, USER_INFO_URL } from '../../constants/urls';
@@ -13,11 +15,14 @@ export class AuthService {
   private authorized: boolean = false;
 
   constructor(
+    private tokenService: TokenService,
     private http: HttpClient,
-  ) { }
+  ) {
+    this.checkUserInfo().then((data) => console.log(data));
+  }
 
   public login(userName: string, password: string): Promise<IUser> {
-    return this.http.post(LOGIN_URL, { userName, password })
+    return this.http.post(LOGIN_URL, { userName, password, withCredentials: true })
       .toPromise()
       .then(this.auth);
   }
@@ -29,7 +34,7 @@ export class AuthService {
   }
 
   public checkUserInfo(): Promise<IUser> {
-    return this.http.get(USER_INFO_URL)
+    return this.http.get(USER_INFO_URL, { withCredentials: true })
       .toPromise()
       .then(this.auth);
   }
@@ -44,7 +49,13 @@ export class AuthService {
 
   public auth: (user: IUser) => IUser = (user: IUser): IUser => {
     if (user.userName) {
-      this.userInfo = user;
+      const { userName, firstName, lastName, token } = user;
+      this.userInfo = {
+        firstName,
+        lastName,
+        userName,
+      };
+      this.tokenService.token = token;
       this.authorized = true;
     } else {
       this.userInfo = {};

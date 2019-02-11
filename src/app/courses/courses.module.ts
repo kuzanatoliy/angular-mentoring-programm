@@ -8,8 +8,8 @@ import { SharedModule } from '../shared/shared.module';
 
 import {
   CourseCreatePageComponent,
-  CourseUpdatePageComponent,
   CoursesPageComponent,
+  CourseUpdatePageComponent,
 } from './pages';
 
 import {

@@ -6,7 +6,7 @@ const middlewares = [
   express.json(),
   session({
     resave: true,
-    saveUninitialized: true,
+    saveUninitialized: false,
     secret: 'Angular mentoring programm 2018 - 2019',
   }),
 ];
