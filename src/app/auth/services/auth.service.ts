@@ -8,10 +8,8 @@ import { IUser } from '../../interfaces/IUser';
 export class AuthService {
   private USER_NAME: string = 'user';
   private PASSWORD: string = 'user_password';
-  // TODO Change after fixed course-item-page component
-  private authorized: boolean = true;
-  // TODO Change after fixed course-item-page component
-  private userName?: string = 'user';
+  private authorized: boolean = false;
+  private userName?: string = null;
 
   constructor() { }
 
