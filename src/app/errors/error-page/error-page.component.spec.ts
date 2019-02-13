@@ -2,32 +2,41 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { LoginPageComponent } from './login-page.component';
+import { ErrorPageComponent } from './error-page.component';
 
+import { AuthModule } from '../../auth/auth.module';
 import { CoursesModule } from '../../courses/courses.module';
-import { ErrorsModule } from '../../errors/errors.module';
+import { SearchModule } from '../../search/search.module';
+import { SharedModule } from '../../shared/shared.module';
+
+import { ErrorMessageComponent } from '../error-message/error-message.component';
 
 import { routes } from '../../app-routing.module';
 
-describe('LoginPageComponent', () => {
-  let component: LoginPageComponent;
-  let fixture: ComponentFixture<LoginPageComponent>;
+describe('ErrorPageComponent', () => {
+  let component: ErrorPageComponent;
+  let fixture: ComponentFixture<ErrorPageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginPageComponent ],
+      declarations: [
+        ErrorPageComponent,
+        ErrorMessageComponent,
+      ],
       imports: [
         RouterTestingModule.withRoutes(routes),
-        FormsModule,
+        AuthModule,
         CoursesModule,
-        ErrorsModule,
+        SearchModule,
+        SharedModule,
+        FormsModule,
       ],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoginPageComponent);
+    fixture = TestBed.createComponent(ErrorPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

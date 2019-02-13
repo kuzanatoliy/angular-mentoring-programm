@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { SearchFilterPipe } from '../../pipes/search-filter.pipe';
 
@@ -8,7 +9,6 @@ import { CoursesService } from '../../services/courses.service';
 import { ICourse } from '../../../interfaces/ICourse';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-courses',
   styleUrls: [ './courses.component.sass' ],
   templateUrl: './courses.component.html',
@@ -23,6 +23,7 @@ export class CoursesComponent implements OnInit {
   constructor(
     private cdr: ChangeDetectorRef,
     private coursesService: CoursesService,
+    private router: Router,
     private searchService: SearchService,
   ) {
     this.searchFilter = new SearchFilterPipe(searchService);
@@ -33,34 +34,28 @@ export class CoursesComponent implements OnInit {
     this.coursesService.removeCourse(id)
       .then((): void => {
         this.loading = true;
-        this.cdr.detectChanges();
       })
       .then((): Promise<Array<ICourse>> => this.coursesService.getCourseList())
       .then((courses: Array<ICourse>): void => {
           this.COURSES = courses;
           this.loading = false;
-          this.cdr.detectChanges();
       });
+  }
+
+  public updateCourseHandler: (id: string) => void = (id: string) => {
+    this.router.navigate([`courses/${ id }`]);
   }
 
   public ngOnInit() {
     this.loading = true;
-    this.cdr.detectChanges();
     this.coursesService.getCourseList()
       .then((courses: Array<ICourse>): void => {
         this.COURSES = courses;
         this.loading = false;
-        this.cdr.detectChanges();
       });
   }
 
   public ngDoCheck() {
     this.courses = this.searchFilter.transform(this.COURSES);
-    this.cdr.detectChanges();
   }
-
-  public updateCourseHandler(id: number) {
-    console.log(`updateCourseHandler ${id}`);
-  }
-
 }

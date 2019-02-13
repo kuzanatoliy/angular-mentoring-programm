@@ -7,5 +7,4 @@ export * from './header/header.component';
 export * from './load-more/load-more.component';
 export * from './logo/logo.component';
 export * from './modal-window/modal-window.component';
-export * from './new-course/new-course.component';
 export * from './user-control/user-control.component';

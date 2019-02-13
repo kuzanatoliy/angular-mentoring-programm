@@ -18,11 +18,9 @@ export class CourseItemComponent implements OnInit {
 
   public isActiveRemoveWindow: boolean = false;
 
-  constructor(
-    private router: Router,
-  ) {}
+  constructor() { }
 
-  public ngOnInit() { }
+  public ngOnInit(): void { }
 
   public cancelRemoveHandler: () => void = () => {
     this.isActiveRemoveWindow = false;
@@ -38,8 +36,6 @@ export class CourseItemComponent implements OnInit {
   }
 
   public updateHandler(): void {
-    this.router.navigate([`courses/${ this.course.id }`]);
-    return this.updateAction && this.updateAction(this.course.id);
+    this.updateAction && this.updateAction(this.course.id);
   }
-
 }

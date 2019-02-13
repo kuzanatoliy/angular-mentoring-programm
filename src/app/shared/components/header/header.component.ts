@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AuthService } from '../../../auth/services/auth.service';
-// TODO Change after course item page component fixing
-// import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -14,8 +13,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    // TODO Change after course item page component fixing
-    // private router: Router
+    private router: Router,
   ) { }
 
   public ngOnInit(): void {
@@ -29,8 +27,7 @@ export class HeaderComponent implements OnInit {
   public logoutHandler(): void {
     this.authService.logout().then(() => {
       this.userName = null;
-      // TODO Chnage after course item page component fixing
-      // this.router.navigate(['login']);
+      this.router.navigate(['login']);
     });
   }
 

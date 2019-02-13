@@ -1,0 +1,36 @@
+<form class="course-form">
+  <label class="course-form-title">
+    <div>Title</div>
+    <input type="text" name="title" [(ngModel)]="course.title" />
+  </label>
+  <label class="course-form-description">
+    <div>Description</div>
+    <textarea name="description" [(ngModel)]="course.description"></textarea>
+  </label>
+  <label class="course-form-date">
+    <div>Date</div>
+    <app-date-input
+      [date]="course.creationDate"
+      [dateChangeHandler]="dateChangeHandler">
+    </app-date-input>
+  </label>
+  <label class="course-form-duration">
+    <div>Duration</div>
+    <app-duration-input
+      [duration]="course.duration"
+      [durationChangeHandler]="durationChangeHandler">
+    </app-duration-input>
+  </label>
+  <label class="course-form-authors">
+    <div>Authors</div>
+    <app-author-list-control [authors]="course.authors"></app-author-list-control>
+  </label>
+  <div class="course-form-control">
+    <button
+      class="course-form-control-cancel"
+      (click)="cancelHandler()">Cancel</button>
+    <button
+      class="course-from-control-save"
+      (click)="saveHandler()">Save</button>
+  </div>
+</form>
