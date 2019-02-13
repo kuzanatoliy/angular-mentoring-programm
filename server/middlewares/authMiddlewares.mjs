@@ -1,13 +1,15 @@
+import { USER_DATA } from '../configs';
+
 export function setAuthMiddlewares(router) {
   router.use(authTreatment);
 }
 
 export function authTreatment(req, res, next) {
-  console.log(req.session);
   const { token } = req.headers;
-  if (token && token === req.session.userData.token) {
-    next();
+  if (token && token === USER_DATA.userName) {
+    req.session.userData = USER_DATA;
+    return next();
   }
 
-  res.status(403).json({ message: 'Forbidden Access' });
+  return res.status(403).json({ message: 'Forbidden Access' });
 }

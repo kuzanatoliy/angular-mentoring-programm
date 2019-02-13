@@ -51,7 +51,7 @@ export function generateRandomCourse(id) {
     creationDate: new Date(new Date().setMonth(Math.floor(Math.random() * 12))),
     description: `This is course number ${ index }`,
     duration: Math.round(Math.random() * 500),
-    id: index,
+    id: '' + index ,
     title: `The course ${ index }`,
     topRated: !!Math.round(Math.random()),
   };

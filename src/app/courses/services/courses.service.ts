@@ -1,10 +1,11 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { ICourse } from '../../interfaces/ICourse';
 import { Course } from '../../models/Course';
 
-import { TokenService } from '../../auth/services/token.service';
+import { RequestService } from '../../shared/services/request.service';
+
+import { COURSES_URL } from '../../constants/urls';
 
 @Injectable({
   providedIn: 'root',
@@ -75,15 +76,15 @@ export class CoursesService {
   private nextId = 6;
 
   constructor(
-    private tokenService: TokenService,
-    private http: HttpClient,
+    private request: RequestService,
   ) {}
 
-  public getCourseList(): Promise<Array<ICourse>> {
-    return this.http.get('http://localhost:4201/courses', { withCredentials: true }).toPromise().then((data: Array<ICourse>) => data);
-    // const courses: Array<ICourse> = Course.createCourseList(this.COURSES);
-    //
-    // return Promise.resolve(courses);
+  public getCourseList(page: number = 1, count: number = 10): Promise<Array<ICourse>> {
+    return this.request.get(COURSES_URL, { page, count })
+      .then((data: Array<ICourse>) => data.map((item: ICourse) => {
+        item.creationDate = new Date(item.creationDate);
+        return item;
+      }));
   }
 
   public createCourse(data: ICourse): Promise<ICourse> {
@@ -115,14 +116,7 @@ export class CoursesService {
     return Promise.resolve(courses);
   }
 
-  public removeCourse(id: string): Promise<string | null> {
-    const course: ICourse = this.COURSES.find((item: ICourse): boolean => item.id === id);
-    if (course) {
-      this.COURSES = this.COURSES.filter((item: ICourse): boolean => item.id !== course.id);
-
-      return Promise.resolve(id);
-    }
-
-    return Promise.resolve(null);
+  public removeCourse(id: string): Promise<object> {
+    return this.request.delete(`${ COURSES_URL }/${ id }`);
   }
 }

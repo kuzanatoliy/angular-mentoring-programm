@@ -1,18 +1,19 @@
 import { USER_DATA } from '../configs';
 
+import { authTreatment } from '../middlewares/authMiddlewares';
+
 export function setAuthRoutes(router) {
   router.route('/auth/login')
     .post(loginTreatment, userInfoTreatment);
 
   router.route('/auth/user-info')
-    .get(userInfoTreatment);
+    .get(authTreatment, userInfoTreatment);
 
   router.route('/auth/logout')
     .post(logoutTreatment, userInfoTreatment);
 }
 
 export function userInfoTreatment(req, res) {
-  console.log(req.session);
   res.json(req.session.userData || {});
 }
 

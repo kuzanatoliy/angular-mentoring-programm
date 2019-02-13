@@ -5,7 +5,7 @@ import { ICourse } from '../../interfaces/ICourse';
 import { Course } from '../../models/Course';
 
 describe('CoursesService', () => {
-  const COURSES: Array<ICourse> = Course.createCourseList([{
+  /* const COURSES: Array<ICourse> = Course.createCourseList([{
     authors: [{
       firstName: 'Igar',
       id: '1',
@@ -118,5 +118,5 @@ describe('CoursesService', () => {
   it('removeCourse should return id', async () => {
     const course = await service.removeCourse(COURSES[0].id);
     expect(course).toEqual(COURSES[0].id);
-  });
+  }); */
 });
