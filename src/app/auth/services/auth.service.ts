@@ -11,15 +11,8 @@ import { LOGIN_URL, LOGOUT_URL, USER_INFO_URL } from '../../constants/urls';
   providedIn: 'root',
 })
 export class AuthService {
-<<<<<<< HEAD
   private userInfo: IUser = {};
   private authorized: boolean = false;
-=======
-  private USER_NAME: string = 'user';
-  private PASSWORD: string = 'user_password';
-  private authorized: boolean = false;
-  private userName?: string = null;
->>>>>>> master
 
   constructor(
     private tokenService: TokenService,
