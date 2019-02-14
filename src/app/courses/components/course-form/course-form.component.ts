@@ -20,6 +20,7 @@ export class CourseFormComponent implements OnInit {
   public course: ICourse = CourseFormComponent.DEFAULT_COURSE;
 
   @Input() public set newCourse(course) {
+    console.log(course);
     this.course = course || CourseFormComponent.DEFAULT_COURSE;
   }
   @Input() public saveAction?: (course: ICourse) => void;

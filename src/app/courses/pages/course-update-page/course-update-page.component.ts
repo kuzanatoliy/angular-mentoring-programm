@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { AuthService } from '../../../auth/services/auth.service';
 import { CoursesService } from '../../services/courses.service';
 
 import { ICourse } from '../../../interfaces/ICourse';
@@ -17,7 +16,6 @@ export class CourseUpdatePageComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private authService: AuthService,
     private cdr: ChangeDetectorRef,
     private coursesService: CoursesService,
     private router: Router,

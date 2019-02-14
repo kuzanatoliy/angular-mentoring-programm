@@ -37,7 +37,8 @@ export class AuthService {
       return Promise.resolve(this.authorized);
     } else {
       return this.checkUserInfo()
-        .then(() => Promise.resolve(this.authorized));
+        .then(() => Promise.resolve(this.authorized))
+        .catch(() => Promise.resolve(this.authorized));
     }
   }
 

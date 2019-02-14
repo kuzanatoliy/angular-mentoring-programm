@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { IUser } from '../../interfaces/IUser';
 
 interface IRequestData {
-  [key: string]: number | string;
+  [key: string]: number | string | Date | Array<IUser>;
 }
 
 @Injectable({
@@ -35,8 +35,8 @@ export class RequestService {
       });
   }
 
-  public post(url) {
-    return this.http.post(url, {}, { headers: this.headers }).toPromise();
+  public post(url, data: IRequestData = {}) {
+    return this.http.post(url, data, { headers: this.headers }).toPromise();
   }
 
   public get(url, data: IRequestData = {}) {
