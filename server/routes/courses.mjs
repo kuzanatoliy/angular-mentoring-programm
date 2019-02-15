@@ -20,9 +20,10 @@ export function getCourseListTreatment(req, res) {
   let resCourseList = courseList;
 
   if (searchStr) {
+    const str = searchStr.toLowerCase();
     resCourseList = resCourseList.filter((item) => {
-      return !(item.title.toLowerCase().indexOf(searchStr) < 0)
-        || !(item.description.toLowerCase().indexOf(searchStr) < 0);
+      return !(item.title.toLowerCase().indexOf(str) < 0)
+        || !(item.description.toLowerCase().indexOf(str) < 0);
     });
   }
 
@@ -74,19 +75,19 @@ export function updateCourseTreatment(req, res) {
   } = req.body;
   const courses = [];
   courseList.forEach((item, index, arr) => {
-      if (item.id === id) {
-        item = {
-          ...item,
-          authors,
-          creationDate,
-          description,
-          duration,
-          title,
-        };
-        arr[index] = item;
-        courses.push(item);
-      }
-    });
+    if (item.id === id) {
+      item = {
+        ...item,
+        authors,
+        creationDate,
+        description,
+        duration,
+        title,
+      };
+      arr[index] = item;
+      courses.push(item);
+    }
+  });
   res.json(courses);
 }
 
