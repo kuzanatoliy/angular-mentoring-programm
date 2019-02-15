@@ -5,10 +5,17 @@ import { IListemable, ListenerCallback } from '../../interfaces/IListenable';
 @Injectable({
   providedIn: 'root',
 })
-export class SearchService implements IListemable {
+export class TokenService implements IListemable {
   private listeners: Array<ListenerCallback> = [];
 
-  private searchValue: string = '';
+  public get token(): string {
+    return localStorage.getItem('token');
+  }
+
+  public set token(token: string) {
+    localStorage.setItem('token', token);
+    this.listeners.forEach((item: ListenerCallback): void => item(token));
+  }
 
   constructor() { }
 
@@ -18,14 +25,5 @@ export class SearchService implements IListemable {
 
   public unsubscribe(listener: ListenerCallback): void {
     this.listeners = this.listeners.filter((item) => !(item || item === listener));
-  }
-
-  public getValue(): string {
-    return this.searchValue;
-  }
-
-  public setValue(value): void {
-    this.searchValue = value;
-    this.listeners.forEach((item) => item(this.searchValue));
   }
 }

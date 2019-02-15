@@ -5,6 +5,7 @@ import { IUser } from '../../interfaces/IUser';
 import { LOGIN_URL, LOGOUT_URL, USER_INFO_URL } from '../../constants/urls';
 
 import { RequestService } from '../../shared/services/request.service';
+import { TokenService } from '../../shared/services/token.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,10 +16,11 @@ export class AuthService {
 
   constructor(
     private request: RequestService,
+    private tokenService: TokenService,
   ) { }
 
   public login(userName: string, password: string): Promise<IUser> {
-    return this.request.auth(LOGIN_URL, userName, password)
+    return this.request.post(LOGIN_URL, { userName, password })
       .then(this.auth);
   }
 
@@ -47,8 +49,13 @@ export class AuthService {
   }
 
   public auth: (user: IUser) => IUser = (user: IUser): IUser => {
-    if (user.userName) {
-      const { userName, firstName, lastName } = user;
+    const { userName, firstName, lastName, token } = user;
+
+    if (token) {
+      this.tokenService.token = token;
+    }
+
+    if (userName) {
       this.userInfo = {
         firstName,
         lastName,
@@ -56,9 +63,11 @@ export class AuthService {
       };
       this.authorized = true;
     } else {
+      this.tokenService.token = null;
       this.userInfo = {};
       this.authorized = false;
     }
+
     return this.userInfo;
   }
 }

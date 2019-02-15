@@ -1,7 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+import { IListener, ListenerCallback } from '../../interfaces/IListenable';
 import { IUser } from '../../interfaces/IUser';
+
+import { TokenService } from './token.service';
 
 interface IRequestData {
   [key: string]: number | string | Date | Array<IUser>;
@@ -10,16 +13,16 @@ interface IRequestData {
 @Injectable({
   providedIn: 'root',
 })
-export class RequestService {
-  private headers: HttpHeaders = new HttpHeaders();
+export class RequestService implements IListener {
+  private headers: HttpHeaders = new HttpHeaders({});
 
   constructor(
     private http: HttpClient,
+    private tokenService: TokenService,
   ) {
-    const token = localStorage.getItem('token');
-    if (token) {
-      this.headers = new HttpHeaders({ token });
-    }
+    const token = this.tokenService.token;
+    token && (this.headers = new HttpHeaders({ token }));
+    tokenService.subscribe(this.listenCallback);
   }
 
   public auth(url, userName, password) {
@@ -28,8 +31,7 @@ export class RequestService {
       .then((user: IUser) => {
         const { token } = user;
         if (token) {
-          localStorage.setItem('token', token);
-          this.headers = new HttpHeaders({ token });
+          this.tokenService.token = token;
         }
         return user;
       });
@@ -48,5 +50,11 @@ export class RequestService {
 
   public delete(url) {
     return this.http.delete(url, { headers: this.headers }).toPromise();
+  }
+
+  public listenCallback = (token: string): void => {
+    this.headers = token
+      ? new HttpHeaders({ token })
+      : new HttpHeaders();
   }
 }

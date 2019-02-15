@@ -4,7 +4,6 @@ export * from './date-input/date-input.component';
 export * from './duration-input/duration-input.component';
 export * from './footer/footer.component';
 export * from './header/header.component';
-export * from './load-more/load-more.component';
 export * from './logo/logo.component';
 export * from './modal-window/modal-window.component';
 export * from './user-control/user-control.component';

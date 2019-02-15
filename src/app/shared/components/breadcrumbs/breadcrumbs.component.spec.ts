@@ -29,7 +29,6 @@ import { SearchComponent } from '../../../search/search/search.component';
 import { AuthorListControlComponent } from '../author-list-control/author-list-control.component';
 import { DateInputComponent } from '../date-input/date-input.component';
 import { DurationInputComponent } from '../duration-input/duration-input.component';
-import { LoadMoreComponent } from '../load-more/load-more.component';
 import { ModalWindowComponent } from '../modal-window/modal-window.component';
 import { UserControlComponent } from '../user-control/user-control.component';
 
@@ -58,7 +57,6 @@ describe('BreadcrumbsComponent', () => {
         AuthorListControlComponent,
         DateInputComponent,
         DurationInputComponent,
-        LoadMoreComponent,
         ModalWindowComponent,
         UserControlComponent,
         DatePipe,

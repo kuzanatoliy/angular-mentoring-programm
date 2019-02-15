@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ISearchListener, SearchService } from '../../../search/services/search.service';
+import { SearchService } from '../../../search/services/search.service';
 import { CoursesService } from '../../services/courses.service';
 
 import { ICourse } from '../../../interfaces/ICourse';
+import { IListener, ListenerCallback } from '../../../interfaces/IListenable';
 
 @Component({
   selector: 'app-courses',
   styleUrls: [ './courses.component.sass' ],
   templateUrl: './courses.component.html',
 })
-export class CoursesComponent implements OnInit {
+export class CoursesComponent implements OnInit, IListener {
   public courses: Array<ICourse>;
   public loading: boolean = false;
 
@@ -42,7 +43,7 @@ export class CoursesComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.searchService.subscribeForListening(this.searchListener);
+    this.searchService.subscribe(this.listenCallback);
     this.loading = true;
     this.page = 1;
     this.coursesService.getCourseList(this.page, this.count, this.searchService.getValue())
@@ -63,13 +64,13 @@ export class CoursesComponent implements OnInit {
   }
 
   public ngOnDestroy() {
-    this.searchService.unsubscribeForListening(this.searchListener);
+    this.searchService.unsubscribe(this.listenCallback);
   }
 
-  private searchListener: ISearchListener = (str: string): void => {
+  public listenCallback: ListenerCallback = (str: string): void => {
     this.page = 1;
     this.loading = true;
-    this.coursesService.getCourseList(this.page, this.count, this.searchService.getValue())
+    this.coursesService.getCourseList(this.page, this.count, str)
       .then((courses: Array<ICourse>): void => {
         this.courses = courses;
         this.loading = false;
