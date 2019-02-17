@@ -1,3 +1,4 @@
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -23,6 +24,8 @@ import { OrderByCreationDatePipe } from '../../pipes';
 
 import { ICourse } from '../../../interfaces/ICourse';
 import { Course } from '../../../models/Course';
+
+import { COURSES_URL } from '../../../constants/urls';
 
 describe('CoursesComponent', () => {
   let component: CoursesComponent;
@@ -109,6 +112,7 @@ describe('CoursesComponent', () => {
         SharedModule,
         FontAwesomeModule,
         FormsModule,
+        HttpClientTestingModule,
       ],
     })
     .compileComponents();
@@ -117,11 +121,17 @@ describe('CoursesComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CoursesComponent);
     component = fixture.componentInstance;
-    component.ngOnInit();
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('check course content description', () => {
+    component.courses = COURSES_MOCK;
+    fixture.detectChanges();
+    const count = fixture.nativeElement.querySelectorAll('app-course-item').length;
+    expect(count).toBe(COURSES_MOCK.length);
   });
 });

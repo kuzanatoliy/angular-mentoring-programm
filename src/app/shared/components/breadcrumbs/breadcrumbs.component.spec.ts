@@ -19,10 +19,7 @@ import {
 
 import { FreshCourseDirective } from '../../../courses/directives/fresh-course.directive';
 
-import {
-  OrderByCreationDatePipe,
-  SearchFilterPipe,
-} from '../../../courses/pipes';
+import { OrderByCreationDatePipe } from '../../../courses/pipes';
 
 import { SearchComponent } from '../../../search/search/search.component';
 
@@ -52,7 +49,6 @@ describe('BreadcrumbsComponent', () => {
         CoursesComponent,
         FreshCourseDirective,
         OrderByCreationDatePipe,
-        SearchFilterPipe,
         SearchComponent,
         AuthorListControlComponent,
         DateInputComponent,

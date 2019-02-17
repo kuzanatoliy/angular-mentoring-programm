@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -19,10 +20,7 @@ import {
 
 import { FreshCourseDirective } from '../../directives/fresh-course.directive';
 
-import {
-  OrderByCreationDatePipe,
-  SearchFilterPipe,
-} from '../../pipes';
+import { OrderByCreationDatePipe } from '../../pipes';
 
 describe('CoursesPageComponent', () => {
   let component: CoursesPageComponent;
@@ -39,7 +37,6 @@ describe('CoursesPageComponent', () => {
         CoursesComponent,
         FreshCourseDirective,
         OrderByCreationDatePipe,
-        SearchFilterPipe,
       ],
       imports: [
         AuthModule,
@@ -48,6 +45,7 @@ describe('CoursesPageComponent', () => {
         SharedModule,
         FontAwesomeModule,
         FormsModule,
+        HttpClientTestingModule,
       ],
     })
     .compileComponents();
