@@ -25,8 +25,6 @@ import { OrderByCreationDatePipe } from '../../pipes';
 import { ICourse } from '../../../interfaces/ICourse';
 import { Course } from '../../../models/Course';
 
-import { COURSES_URL } from '../../../constants/urls';
-
 describe('CoursesComponent', () => {
   let component: CoursesComponent;
   let fixture: ComponentFixture<CoursesComponent>;
