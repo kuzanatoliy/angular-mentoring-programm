@@ -13,7 +13,11 @@ export class TokenService implements IListemable {
   }
 
   public set token(token: string) {
-    localStorage.setItem('token', token);
+    if (token) {
+      localStorage.setItem('token', token);
+    } else {
+      localStorage.removeItem('token');
+    }
     this.listeners.forEach((item: ListenerCallback): void => item(token));
   }
 

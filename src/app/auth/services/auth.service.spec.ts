@@ -9,6 +9,7 @@ import { LOGIN_URL, LOGOUT_URL, USER_INFO_URL } from '../../constants/urls';
 
 describe('AuthService', () => {
   let service: AuthService;
+  let tokenService: TokenService;
   let http: HttpTestingController;
 
   const userInfo = {
@@ -24,7 +25,9 @@ describe('AuthService', () => {
 
   beforeEach(() => {
     service = TestBed.get(AuthService);
+    tokenService = TestBed.get(TokenService);
     http = TestBed.get(HttpTestingController);
+    tokenService.token = 'Some.User';
   });
 
   afterEach(() => {

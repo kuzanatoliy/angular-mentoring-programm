@@ -26,6 +26,7 @@ export class AuthService {
 
   public logout(): Promise<IUser> {
     return this.request.post(LOGOUT_URL)
+      .then(() => this.tokenService.token = null)
       .then(this.auth);
   }
 
@@ -35,12 +36,15 @@ export class AuthService {
   }
 
   public isAuthorized(): Promise<boolean> {
-    if (this.userInfo.userName) {
+    if (this.userInfo.userName || !this.tokenService.token) {
       return Promise.resolve(this.authorized);
     } else {
       return this.checkUserInfo()
         .then(() => Promise.resolve(this.authorized))
-        .catch(() => Promise.resolve(this.authorized));
+        .catch(() => {
+          this.tokenService.token = null;
+          return Promise.resolve(this.authorized);
+        });
     }
   }
 
