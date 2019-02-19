@@ -10,6 +10,15 @@ export class SearchService implements IListemable {
 
   private searchValue: string = '';
 
+  public get value(): string {
+    return this.searchValue;
+  }
+
+  public set value(value) {
+    this.searchValue = value;
+    this.listeners.forEach((item) => item(this.searchValue));
+  }
+
   constructor() { }
 
   public subscribe(listener: ListenerCallback): void {

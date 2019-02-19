@@ -46,7 +46,7 @@ export class CoursesComponent implements OnInit, IListener {
     this.searchService.subscribe(this.listenCallback);
     this.loading = true;
     this.page = 1;
-    this.coursesService.getCourseList(this.page, this.count, this.searchService.getValue())
+    this.coursesService.getCourseList(this.page, this.count, this.searchService.value)
       .then((courses: Array<ICourse>): void => {
         this.courses = courses;
         this.loading = false;
@@ -56,7 +56,7 @@ export class CoursesComponent implements OnInit, IListener {
   public loadMoreHandler(): void {
     this.page++;
     this.loading = true;
-    this.coursesService.getCourseList(this.page, this.count, this.searchService.getValue())
+    this.coursesService.getCourseList(this.page, this.count, this.searchService.value)
       .then((courses: Array<ICourse>): void => {
         this.courses = this.courses.concat(courses);
         this.loading = false;

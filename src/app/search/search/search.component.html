@@ -1,4 +1,3 @@
 <div>
-  <input [(ngModel)] = "searchValue"/>
-  <button (click)="searchHandler()">Search</button>
+  <input [(ngModel)] = "searchValue" (ngModelChange)="searchHandler()"/>
 </div>
