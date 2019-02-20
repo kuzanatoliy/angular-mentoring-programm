@@ -1,3 +1,6 @@
-<p>
-  loading works!
-</p>
+<div class='loading'>
+  <div *ngIf="isShow; then loadingBlock"></div>
+  <ng-template #loadingBlock>
+    <img src="assets/loading.gif">
+  </ng-template>
+</div>
