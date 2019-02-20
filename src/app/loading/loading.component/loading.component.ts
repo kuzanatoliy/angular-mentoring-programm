@@ -16,6 +16,7 @@ export class LoadingComponent implements OnInit {
   constructor(
     private loadingService: LoadingService,
   ) {
+    this.isShow = this.loadingService.showed();
     this.subscription = this.loadingService.subscribe(this.changeShowHandler);
   }
 

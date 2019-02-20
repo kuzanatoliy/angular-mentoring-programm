@@ -1,3 +1,4 @@
+import { APP_BASE_HREF } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
@@ -21,6 +22,18 @@ import {
 import { FreshCourseDirective } from '../../directives/fresh-course.directive';
 
 import { OrderByCreationDatePipe } from '../../pipes';
+
+import { LoadingService } from '../../../loading/services/loading.service';
+
+class MockLoadingService {
+
+  constructor() { }
+
+  public show(): void { }
+
+  public hide(): void { }
+
+}
 
 describe('CoursesPageComponent', () => {
   let component: CoursesPageComponent;
@@ -46,6 +59,10 @@ describe('CoursesPageComponent', () => {
         FontAwesomeModule,
         FormsModule,
         HttpClientTestingModule,
+      ],
+      providers: [
+        { provide: APP_BASE_HREF, useValue : '/' },
+        { provide: LoadingService, useClass: MockLoadingService },
       ],
     })
     .compileComponents();

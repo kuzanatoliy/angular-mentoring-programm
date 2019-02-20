@@ -1,3 +1,4 @@
+import { APP_BASE_HREF } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
@@ -51,6 +52,7 @@ describe('CourseUpdatePageComponent', () => {
         FormsModule,
         HttpClientTestingModule,
       ],
+      providers: [ { provide: APP_BASE_HREF, useValue : '/' } ],
     })
     .compileComponents();
   }));

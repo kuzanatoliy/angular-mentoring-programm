@@ -5,7 +5,7 @@ import { Observable, Observer, Subscription } from 'rxjs';
   providedIn: 'root',
 })
 export class LoadingService {
-  private loading: boolean = true;
+  private loading: boolean = false;
   private observer: Observer<boolean>;
   private observable: Observable<boolean>;
 

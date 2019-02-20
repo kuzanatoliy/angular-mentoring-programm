@@ -26,8 +26,7 @@ export class AuthService {
 
   public logout(): Promise<IUser> {
     return this.request.post(LOGOUT_URL)
-      .then(this.auth)
-      .then(() => this.tokenService.token = null);
+      .then(this.auth);
   }
 
   public checkUserInfo(): Promise<IUser> {

@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { LoadingService } from '../../../loading/services/loading.service';
 import { CoursesService } from '../../services/courses.service';
 
 import { ICourse } from '../../../interfaces/ICourse';
@@ -16,12 +17,15 @@ export class CourseCreatePageComponent implements OnInit {
 
   constructor(
     private coursesService: CoursesService,
+    private loadingService: LoadingService,
     private router: Router,
   ) { }
 
   public saveAction: (course: ICourse) => void = (course: ICourse): void => {
+    this.loadingService.show();
     this.coursesService.createCourse(course)
       .then((): void => {
+        this.loadingService.hide();
         this.router.navigate(['courses']);
       });
   }

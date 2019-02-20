@@ -1,6 +1,6 @@
-<div class='loading'>
+<div>
   <div *ngIf="isShow; then loadingBlock"></div>
   <ng-template #loadingBlock>
-    <img src="assets/loading.gif">
+    <div class='loading'><img src="assets/loading.gif"></div>
   </ng-template>
 </div>

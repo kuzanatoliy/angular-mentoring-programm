@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { LoadingService } from '../../loading/services/loading.service';
 import { AuthService } from '../services/auth.service';
 
 import { IUser } from '../../interfaces/IUser';
@@ -11,18 +12,18 @@ import { IUser } from '../../interfaces/IUser';
   templateUrl: './login-page.component.html',
 })
 export class LoginPageComponent implements OnInit {
-  public loading: boolean = false;
   public error: boolean = false;
   public userName: string;
   public password: string;
 
   constructor(
-    private router: Router,
     private authService: AuthService,
+    private loadingService: LoadingService,
+    private router: Router,
   ) { }
 
   public loginHandler(): void {
-    this.loading = true;
+    this.loadingService.show();
     this.error = false;
     this.authService.login(this.userName, this.password)
       .then(({ userName }: IUser): void => {
@@ -31,7 +32,7 @@ export class LoginPageComponent implements OnInit {
         } else {
           this.error = true;
         }
-        this.loading = false;
+        this.loadingService.hide();
       });
   }
 
