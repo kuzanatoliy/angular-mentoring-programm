@@ -35,13 +35,15 @@ export class CoursesComponent implements OnInit, IListener {
   }
 
   public removeCourseHandler: (id: string) => void = (id: string): void => {
+    this.loadingService.show();
     this.coursesService.removeCourse(id)
       .then((): void => {
         this.page = 1;
-        this.loadingService.show();
       })
-      .then((): Promise<Array<ICourse>> => this.coursesService.getCourseList())
+      .then((): Promise<Array<ICourse>> =>
+        this.coursesService.getCourseList(this.page, this.count, this.searchService.value))
       .then((courses: Array<ICourse>): void => {
+          console.log(courses);
           this.courses = courses;
           this.loadingService.hide();
       });
