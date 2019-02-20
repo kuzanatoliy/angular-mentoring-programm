@@ -1,8 +1,8 @@
 import { CoursesService } from './courses.service';
 
-import { ICourse } from '../../interfaces/ICourse';
+import { ICourse } from 'src/app/interfaces/ICourse';
 
-import { Course } from '../../models/Course';
+import { Course } from 'src/app/models/Course';
 
 describe('CoursesService', () => {
   /* const COURSES: Array<ICourse> = Course.createCourseList([{

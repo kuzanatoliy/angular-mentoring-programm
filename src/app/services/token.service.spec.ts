@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { TokenService } from './token.service';
 
-import { ListenerCallback } from '../../interfaces/IListenable';
+import { ListenerCallback } from 'src/app/interfaces/IListenable';
 
 describe('TokenService', () => {
   let service: TokenService;

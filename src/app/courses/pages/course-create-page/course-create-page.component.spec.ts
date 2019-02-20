@@ -5,10 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { AuthModule } from '../../../auth/auth.module';
-import { ErrorsModule } from '../../../errors/errors.module';
-import { SearchModule } from '../../../search/search.module';
-import { SharedModule } from '../../../shared/shared.module';
+import { AuthModule } from 'src/app/auth/auth.module';
+import { ErrorsModule } from 'src/app/errors/errors.module';
+import { SearchModule } from 'src/app/search/search.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 import { CourseUpdatePageComponent } from '../course-update-page/course-update-page.component';
 import { CoursesPageComponent } from '../courses-page/courses-page.component';
@@ -24,7 +24,7 @@ import { FreshCourseDirective } from '../../directives/fresh-course.directive';
 
 import { OrderByCreationDatePipe } from '../../pipes';
 
-import { routes } from '../../../app-routing.module';
+import { routes } from 'src/app/app-routing.module';
 
 describe('CourseCreatePageComponent', () => {
   let component: CourseCreatePageComponent;

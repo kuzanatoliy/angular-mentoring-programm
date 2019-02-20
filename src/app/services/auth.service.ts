@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 
-import { IUser } from '../../interfaces/IUser';
+import { IUser } from 'src/app/interfaces/IUser';
 
-import { LOGIN_URL, LOGOUT_URL, USER_INFO_URL } from '../../constants/urls';
+import { LOGIN_URL, LOGOUT_URL, USER_INFO_URL } from 'src/app/constants/urls';
 
-import { RequestService } from '../../shared/services/request.service';
-import { TokenService } from '../../shared/services/token.service';
+import { RequestService } from './request.service';
+import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root',

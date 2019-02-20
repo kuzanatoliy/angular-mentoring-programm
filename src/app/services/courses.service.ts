@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 
-import { ICourse } from '../../interfaces/ICourse';
-import { Course } from '../../models/Course';
+import { ICourse } from 'src/app/interfaces/ICourse';
+import { Course } from 'src/app/models/Course';
 
-import { RequestService } from '../../shared/services/request.service';
+import { RequestService } from './request.service';
 
-import { COURSES_URL } from '../../constants/urls';
+import { COURSES_URL } from 'src/app/constants/urls';
 
 @Injectable({
   providedIn: 'root',

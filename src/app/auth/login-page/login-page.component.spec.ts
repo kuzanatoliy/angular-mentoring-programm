@@ -6,10 +6,10 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { LoginPageComponent } from './login-page.component';
 
-import { CoursesModule } from '../../courses/courses.module';
-import { ErrorsModule } from '../../errors/errors.module';
+import { CoursesModule } from 'src/app/courses/courses.module';
+import { ErrorsModule } from 'src/app/errors/errors.module';
 
-import { routes } from '../../app-routing.module';
+import { routes } from 'src/app/app-routing.module';
 
 describe('LoginPageComponent', () => {
   let component: LoginPageComponent;

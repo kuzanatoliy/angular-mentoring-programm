@@ -1,10 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { LoadingService } from '../../../loading/services/loading.service';
-import { CoursesService } from '../../services/courses.service';
+import { CoursesService, LoadingService } from 'src/app/services';
 
-import { ICourse } from '../../../interfaces/ICourse';
+import { ICourse } from 'src/app/interfaces/ICourse';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,

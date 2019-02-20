@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { LoadingService } from '../../loading/services/loading.service';
-import { AuthService } from '../services/auth.service';
+import { AuthService, LoadingService } from 'src/app/services';
 
-import { IUser } from '../../interfaces/IUser';
+import { IUser } from 'src/app/interfaces/IUser';
 
 @Component({
   selector: 'app-login-page',

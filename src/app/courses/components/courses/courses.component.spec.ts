@@ -4,10 +4,10 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { AuthModule } from '../../../auth/auth.module';
-import { ErrorsModule } from '../../../errors/errors.module';
-import { SearchModule } from '../../../search/search.module';
-import { SharedModule } from '../../../shared/shared.module';
+import { AuthModule } from 'src/app/auth/auth.module';
+import { ErrorsModule } from 'src/app/errors/errors.module';
+import { SearchModule } from 'src/app/search/search.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 import {
   CourseCreatePageComponent,
@@ -23,10 +23,10 @@ import { FreshCourseDirective } from '../../directives/fresh-course.directive';
 
 import { OrderByCreationDatePipe } from '../../pipes';
 
-import { ICourse } from '../../../interfaces/ICourse';
-import { Course } from '../../../models/Course';
+import { ICourse } from 'src/app/interfaces/ICourse';
+import { Course } from 'src/app/models/Course';
 
-import { LoadingService } from '../../../loading/services/loading.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 class MockLoadingService {
 

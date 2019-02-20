@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Observer } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { Observable, Observer, timer } from 'rxjs';
+import { debounce, filter } from 'rxjs/operators';
 
-import { SearchService } from '../services/search.service';
+import { SearchService } from 'src/app/services';
 
 @Component({
   selector: 'app-search',
@@ -28,6 +28,7 @@ export class SearchComponent implements OnInit {
     this.searchValue = this.searchService.value;
     new Observable(this.observerHandler)
       .pipe(filter(this.filterHandler))
+      .pipe(debounce(() => timer(1000)))
       .subscribe({ next: this.searchValueHandler });
   }
 

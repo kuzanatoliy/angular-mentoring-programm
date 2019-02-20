@@ -1,10 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { IListener, ListenerCallback } from '../../interfaces/IListenable';
-import { IUser } from '../../interfaces/IUser';
-
-import { TokenService } from './token.service';
+import { IUser } from 'src/app/interfaces/IUser';
 
 interface IRequestData {
   [key: string]: number | string | Date | Array<IUser>;
@@ -18,7 +15,6 @@ export class RequestService {
 
   constructor(
     private http: HttpClient,
-    private tokenService: TokenService,
   ) { }
 
   public post(url, data: IRequestData = {}) {
