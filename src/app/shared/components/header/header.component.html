@@ -3,13 +3,13 @@
   <div *ngIf="userName; then logout; else login"></div>
   <ng-template #login>
     <div class="header-auth-user">
-      <button routerLink="login">Login</button>
+      <button class="header-login-button" routerLink="login">Login</button>
     </div>
   </ng-template>
   <ng-template #logout>
     <div class="header-auth-user">
-      <p class="header-auth-user">User: {{ userName }}</p>
-      <button (click)="logoutHandler()">Logout</button>
+      <p class="header-auth-user-name">User: {{ userName }}</p>
+      <button class="header-logout-button" (click)="logoutHandler()">Logout</button>
     </div>
   </ng-template>
 </div>

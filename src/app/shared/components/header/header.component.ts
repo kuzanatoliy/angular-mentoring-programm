@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from 'src/app/services/auth.service';
+import { IUser } from 'src/app/interfaces/IUser';
 
 @Component({
   selector: 'app-header',
@@ -17,11 +18,7 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-    this.userName = this.authService.getUserInfo();
-  }
-
-  public ngDoCheck(): void {
-    this.userName = this.authService.getUserInfo();
+    this.authService.subscribe(this.nextHandler);
   }
 
   public logoutHandler(): void {
@@ -31,4 +28,7 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  private nextHandler = (userInfo: IUser): void => {
+    this.userName = userInfo.userName;
+  }
 }

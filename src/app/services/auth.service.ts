@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Observer, Subscription } from 'rxjs';
+import { Observable, Observer, Subscription, from } from 'rxjs';
 
 import { IUser } from 'src/app/interfaces/IUser';
 
@@ -53,6 +53,10 @@ export class AuthService {
           return Promise.resolve(this.authorized);
         });
     }
+  }
+
+  public isAuthToObservable(): Observable<boolean> {
+    return from(this.isAuthorized());
   }
 
   public getUserInfo(): string {
