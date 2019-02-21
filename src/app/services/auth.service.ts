@@ -1,10 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, Observer, Subscription } from 'rxjs';
 
 import { IUser } from 'src/app/interfaces/IUser';
 
 import { LOGIN_URL, LOGOUT_URL, USER_INFO_URL } from 'src/app/constants/urls';
 
-import { RequestService } from './request.service';
 import { TokenService } from './token.service';
 
 @Injectable({
@@ -13,24 +14,31 @@ import { TokenService } from './token.service';
 export class AuthService {
   private userInfo: IUser = {};
   private authorized: boolean = false;
+  private observable: Observable<IUser>;
+  private observer: Observer<IUser>;
 
   constructor(
-    private request: RequestService,
     private tokenService: TokenService,
-  ) { }
+    private http: HttpClient,
+  ) {
+    this.observable = new Observable(this.observerHandler);
+  }
 
   public login(userName: string, password: string): Promise<IUser> {
-    return this.request.post(LOGIN_URL, { userName, password })
+    return this.http.post(LOGIN_URL, { userName, password })
+      .toPromise()
       .then(this.auth);
   }
 
   public logout(): Promise<IUser> {
-    return this.request.post(LOGOUT_URL)
+    return this.http.post(LOGOUT_URL, {})
+      .toPromise()
       .then(this.auth);
   }
 
   public checkUserInfo(): Promise<IUser> {
-    return this.request.get(USER_INFO_URL)
+    return this.http.get(USER_INFO_URL)
+      .toPromise()
       .then(this.auth);
   }
 
@@ -51,7 +59,15 @@ export class AuthService {
     return this.userInfo.userName;
   }
 
-  public auth: (user: IUser) => IUser = (user: IUser): IUser => {
+  public subscribe(
+    next: (val: IUser) => void,
+    error?: (err: any) => void,
+    complete?: () => void,
+  ): Subscription {
+    return this.observable.subscribe({ next, error, complete });
+  }
+
+  private auth: (user: IUser) => IUser = (user: IUser): IUser => {
     const { userName, firstName, lastName, token } = user;
 
     if (token) {
@@ -71,6 +87,12 @@ export class AuthService {
       this.authorized = false;
     }
 
+    this.observer.next(this.userInfo);
+
     return this.userInfo;
+  }
+
+  private observerHandler = (observer: Observer<IUser>): void => {
+    this.observer = observer;
   }
 }

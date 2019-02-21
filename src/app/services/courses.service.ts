@@ -1,9 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { ICourse } from 'src/app/interfaces/ICourse';
 import { Course } from 'src/app/models/Course';
-
-import { RequestService } from './request.service';
 
 import { COURSES_URL } from 'src/app/constants/urls';
 
@@ -12,39 +11,45 @@ import { COURSES_URL } from 'src/app/constants/urls';
 })
 export class CoursesService {
   constructor(
-    private request: RequestService,
+    private http: HttpClient,
   ) {}
 
   public getCourseList(page: number = 1, count: number = 10, searchStr: string = null): Promise<Array<ICourse>> {
-    return this.request.get(COURSES_URL, { page, count, searchStr })
-      .then((data: Array<ICourse>) => Course.createCourseList(data));
+    let url = `${ COURSES_URL }?page=${ page }&count=${ count }`;
+    if (searchStr && searchStr !== '') {
+      url += `&searchStr=${ searchStr }`;
+    }
+    return this.http.get(url)
+      .toPromise()
+      .then(Course.createCourseList);
   }
 
   public createCourse(course: ICourse): Promise<ICourse> {
-    const {
-      authors,
-      creationDate,
-      description,
-      duration,
-      title,
-    } = course;
-    const data = {
-      authors,
-      creationDate,
-      description,
-      duration,
-      title,
-    };
-    return this.request.post(`${ COURSES_URL }`, data)
-      .then((newCourse: ICourse): ICourse => Course.createCourse(newCourse));
+    const data = this.prepareCourseData(course);
+    return this.http.post(`${ COURSES_URL }`, data)
+      .toPromise()
+      .then(Course.createCourse);
   }
 
   public getCourse(id: string): Promise<ICourse> {
-    return this.request.get(`${ COURSES_URL }/${ id }`)
-      .then((course: ICourse): ICourse => Course.createCourse(course));
+    return this.http.get(`${ COURSES_URL }/${ id }`)
+      .toPromise()
+      .then(Course.createCourse);
   }
 
   public updateCourse(id: string, course: ICourse): Promise<Array<object | ICourse>> {
+    const data = this.prepareCourseData(course);
+    return this.http.post(`${ COURSES_URL }/${ id }`, data)
+      .toPromise()
+      .then(Course.createCourseList);
+  }
+
+  public removeCourse(id: string): Promise<object | ICourse> {
+    return this.http.delete(`${ COURSES_URL }/${ id }`)
+      .toPromise();
+  }
+
+  private prepareCourseData(course) {
     const {
       authors,
       creationDate,
@@ -52,18 +57,12 @@ export class CoursesService {
       duration,
       title,
     } = course;
-    const upData = {
+    return {
       authors,
       creationDate,
       description,
       duration,
       title,
     };
-    return this.request.post(`${ COURSES_URL }/${ id }`, upData)
-      .then((data: Array<ICourse>) => Course.createCourseList(data));
-  }
-
-  public removeCourse(id: string): Promise<object | ICourse> {
-    return this.request.delete(`${ COURSES_URL }/${ id }`);
   }
 }
