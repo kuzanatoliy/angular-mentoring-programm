@@ -2,44 +2,76 @@ import { Injectable } from '@angular/core';
 
 import { IUser } from '../../interfaces/IUser';
 
+import { LOGIN_URL, LOGOUT_URL, USER_INFO_URL } from '../../constants/urls';
+
+import { RequestService } from '../../shared/services/request.service';
+import { TokenService } from '../../shared/services/token.service';
+
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private USER_NAME: string = 'user';
-  private PASSWORD: string = 'user_password';
+  private userInfo: IUser = {};
   private authorized: boolean = false;
-  private userName?: string = null;
 
-  constructor() { }
+  constructor(
+    private request: RequestService,
+    private tokenService: TokenService,
+  ) { }
 
-  public login(userName: string, password: string): Promise<IUser | object> {
-    if (this.USER_NAME === userName && this.PASSWORD === password) {
-      this.authorized = true;
-    }
-
-    if (this.authorized) {
-      this.userName = this.USER_NAME;
-      return Promise.resolve({
-        userName: this.USER_NAME,
-      });
-    }
-
-    return Promise.resolve({});
+  public login(userName: string, password: string): Promise<IUser> {
+    return this.request.post(LOGIN_URL, { userName, password })
+      .then(this.auth);
   }
 
-  public logout(): Promise<object> {
-    this.authorized = false;
-    this.userName = null;
+  public logout(): Promise<IUser> {
+    return this.request.post(LOGOUT_URL)
+      .then(this.auth)
+      .then(() => this.tokenService.token = null);
+  }
 
-    return Promise.resolve({});
+  public checkUserInfo(): Promise<IUser> {
+    return this.request.get(USER_INFO_URL)
+      .then(this.auth);
   }
 
   public isAuthorized(): Promise<boolean> {
-    return Promise.resolve(this.authorized);
+    if (this.userInfo.userName || !this.tokenService.token) {
+      return Promise.resolve(this.authorized);
+    } else {
+      return this.checkUserInfo()
+        .then(() => Promise.resolve(this.authorized))
+        .catch(() => {
+          this.tokenService.token = null;
+          return Promise.resolve(this.authorized);
+        });
+    }
   }
 
   public getUserInfo(): string {
-    return this.userName;
+    return this.userInfo.userName;
+  }
+
+  public auth: (user: IUser) => IUser = (user: IUser): IUser => {
+    const { userName, firstName, lastName, token } = user;
+
+    if (token) {
+      this.tokenService.token = token;
+    }
+
+    if (userName) {
+      this.userInfo = {
+        firstName,
+        lastName,
+        userName,
+      };
+      this.authorized = true;
+    } else {
+      this.tokenService.token = null;
+      this.userInfo = {};
+      this.authorized = false;
+    }
+
+    return this.userInfo;
   }
 }

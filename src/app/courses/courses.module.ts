@@ -8,8 +8,8 @@ import { SharedModule } from '../shared/shared.module';
 
 import {
   CourseCreatePageComponent,
-  CourseUpdatePageComponent,
   CoursesPageComponent,
+  CourseUpdatePageComponent,
 } from './pages';
 
 import {
@@ -20,10 +20,7 @@ import {
 
 import { FreshCourseDirective } from './directives/fresh-course.directive';
 
-import {
-  OrderByCreationDatePipe,
-  SearchFilterPipe,
-} from './pipes';
+import { OrderByCreationDatePipe } from './pipes';
 
 @NgModule({
   declarations: [
@@ -35,7 +32,6 @@ import {
     CoursesComponent,
     FreshCourseDirective,
     OrderByCreationDatePipe,
-    SearchFilterPipe,
   ],
   exports: [
     CourseCreatePageComponent,

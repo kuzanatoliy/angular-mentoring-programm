@@ -1,4 +1,6 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { HeaderComponent } from './header.component';
 
@@ -13,6 +15,10 @@ describe('HeaderComponent', () => {
       declarations: [
         HeaderComponent,
         LogoComponent,
+      ],
+      imports: [
+        RouterTestingModule,
+        HttpClientTestingModule,
       ],
     })
     .compileComponents();

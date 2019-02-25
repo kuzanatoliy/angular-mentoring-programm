@@ -19,17 +19,13 @@ import {
 
 import { FreshCourseDirective } from '../../../courses/directives/fresh-course.directive';
 
-import {
-  OrderByCreationDatePipe,
-  SearchFilterPipe,
-} from '../../../courses/pipes';
+import { OrderByCreationDatePipe } from '../../../courses/pipes';
 
 import { SearchComponent } from '../../../search/search/search.component';
 
 import { AuthorListControlComponent } from '../author-list-control/author-list-control.component';
 import { DateInputComponent } from '../date-input/date-input.component';
 import { DurationInputComponent } from '../duration-input/duration-input.component';
-import { LoadMoreComponent } from '../load-more/load-more.component';
 import { ModalWindowComponent } from '../modal-window/modal-window.component';
 import { UserControlComponent } from '../user-control/user-control.component';
 
@@ -53,12 +49,10 @@ describe('BreadcrumbsComponent', () => {
         CoursesComponent,
         FreshCourseDirective,
         OrderByCreationDatePipe,
-        SearchFilterPipe,
         SearchComponent,
         AuthorListControlComponent,
         DateInputComponent,
         DurationInputComponent,
-        LoadMoreComponent,
         ModalWindowComponent,
         UserControlComponent,
         DatePipe,

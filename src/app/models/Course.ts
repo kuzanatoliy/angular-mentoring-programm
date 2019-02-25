@@ -29,6 +29,8 @@ export class Course implements ICourse {
     public duration: number,
     public description: string,
     public topRated: boolean,
-  ) {}
+  ) {
+    this.creationDate = new Date(creationDate);
+  }
 
 }
