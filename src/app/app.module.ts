@@ -1,6 +1,8 @@
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +20,8 @@ import { TokenInterceptor } from './shared/interceptors/token.interseptor';
   imports: [
     AuthModule,
     BrowserModule,
+    EffectsModule.forRoot([ ]),
+    StoreModule.forRoot([ ]),
     HttpClientModule,
     AppRoutingModule,
     CoursesModule,

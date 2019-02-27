@@ -8,6 +8,7 @@
     "no-implicit-dependencies": false,
     "no-submodule-imports": false,
     "no-unused-expression": false,
-    "jsdoc-format": false
+    "jsdoc-format": false,
+    "max-classes-per-file": false,
   }
 }
