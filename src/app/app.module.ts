@@ -14,14 +14,21 @@ import { SharedModule } from './shared/shared.module';
 
 import { TokenInterceptor } from './shared/interceptors/token.interseptor';
 
+import { CourseListEffects } from './store/effects';
+import { courseListReducer } from './store/reducers';
+
 @NgModule({
   bootstrap: [ AppComponent ],
   declarations: [ AppComponent ],
   imports: [
     AuthModule,
     BrowserModule,
-    EffectsModule.forRoot([ ]),
-    StoreModule.forRoot([ ]),
+    EffectsModule.forRoot([
+      CourseListEffects,
+    ]),
+    StoreModule.forRoot({
+      courseList: courseListReducer,
+    }),
     HttpClientModule,
     AppRoutingModule,
     CoursesModule,

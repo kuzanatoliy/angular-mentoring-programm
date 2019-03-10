@@ -2,6 +2,7 @@ import { APP_BASE_HREF } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
+import { provideMockStore } from '@ngrx/store/testing';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AuthModule } from 'src/app/auth/auth.module';
@@ -28,6 +29,8 @@ import { Course } from 'src/app/models/Course';
 
 import { LoadingService } from 'src/app/services/loading.service';
 
+import { ICoursListState } from 'src/app/store/reducers/course-list.reducer';
+
 class MockLoadingService {
 
   constructor() { }
@@ -41,6 +44,12 @@ class MockLoadingService {
 describe('CoursesComponent', () => {
   let component: CoursesComponent;
   let fixture: ComponentFixture<CoursesComponent>;
+
+  const initialState: ICoursListState = {
+    items: [],
+    loading: false,
+    error: false,
+  }
 
   const COURSES_MOCK: Array<ICourse> = Course.createCourseList([{
     authors: [{
@@ -128,6 +137,7 @@ describe('CoursesComponent', () => {
       providers: [
         { provide: APP_BASE_HREF, useValue : '/' },
         { provide: LoadingService, useClass: MockLoadingService },
+        provideMockStore({ initialState }),
       ],
     })
     .compileComponents();

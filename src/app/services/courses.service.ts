@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { ICourse } from 'src/app/interfaces/ICourse';
 import { Course } from 'src/app/models/Course';
@@ -14,14 +16,17 @@ export class CoursesService {
     private http: HttpClient,
   ) {}
 
-  public getCourseList(page: number = 1, count: number = 10, searchStr: string = null): Promise<Array<ICourse>> {
+  public getCourseList(
+    page: number = 1,
+    count: number = 10,
+    searchStr: string = null
+  ): Observable<Array<ICourse>> {
     let url = `${ COURSES_URL }?page=${ page }&count=${ count }`;
     if (searchStr && searchStr !== '') {
       url += `&searchStr=${ searchStr }`;
     }
-    return this.http.get(url)
-      .toPromise()
-      .then(Course.createCourseList);
+    
+    return this.http.get(url).pipe(map(Course.createCourseList));
   }
 
   public createCourse(course: ICourse): Promise<ICourse> {
@@ -44,9 +49,8 @@ export class CoursesService {
       .then(Course.createCourseList);
   }
 
-  public removeCourse(id: string): Promise<object | ICourse> {
-    return this.http.delete(`${ COURSES_URL }/${ id }`)
-      .toPromise();
+  public removeCourse(id: string): Observable<object | ICourse> {
+    return this.http.delete(`${ COURSES_URL }/${ id }`);
   }
 
   private prepareCourseData(course) {
