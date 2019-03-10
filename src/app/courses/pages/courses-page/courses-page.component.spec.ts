@@ -26,7 +26,7 @@ import { OrderByCreationDatePipe } from '../../pipes';
 
 import { LoadingService } from 'src/app/services/loading.service';
 
-import { ICoursListState } from 'src/app/store/reducers/course-list.reducer';
+import { ICourseListState } from 'src/app/store/reducers/course-list.reducer';
 
 class MockLoadingService {
 
@@ -42,7 +42,7 @@ describe('CoursesPageComponent', () => {
   let component: CoursesPageComponent;
   let fixture: ComponentFixture<CoursesPageComponent>;
 
-  const initialState: ICoursListState = {
+  const initialState: ICourseListState = {
     items: [],
     loading: false,
     error: false,

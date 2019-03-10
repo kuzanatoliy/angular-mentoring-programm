@@ -7,7 +7,7 @@ import { CoursesService, LoadingService, SearchService } from 'src/app/services'
 
 import { ICourse } from '../../../interfaces/ICourse';
 import { IListener, ListenerCallback } from '../../../interfaces/IListenable';
-import { ICoursListState } from 'src/app/store/reducers/course-list.reducer';
+import { ICourseListState } from 'src/app/store/reducers/course-list.reducer';
 
 import {
   CourseListLoadingStartAction,
@@ -21,7 +21,7 @@ import {
 })
 export class CoursesComponent implements OnInit, IListener {
   public courses: Array<ICourse>;
-  public courseList$: Observable<ICoursListState>
+  public courseList$: Observable<ICourseListState>
 
   private page: number;
   private count: number = 10;
@@ -31,12 +31,12 @@ export class CoursesComponent implements OnInit, IListener {
     private loadingService: LoadingService,
     private router: Router,
     private searchService: SearchService,
-    private store: Store<{ courseList: ICoursListState }>
+    private store: Store<{ courseList: ICourseListState }>
   ) {
     this.courseList$ = this.store.pipe(select('courseList'));
-    this.courseList$.subscribe((courseList) => {
+    this.courseList$.subscribe((courseList: ICourseListState) => {
       this.courses = courseList.items
-      loadingService.hide();
+      this.loadingService.hide();
     });
   }
 

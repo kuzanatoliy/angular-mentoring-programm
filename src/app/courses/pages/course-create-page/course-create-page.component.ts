@@ -1,9 +1,14 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
-import { CoursesService, LoadingService } from 'src/app/services';
+import { LoadingService } from 'src/app/services';
 
 import { ICourse } from 'src/app/interfaces/ICourse';
+
+import { ICourseState } from 'src/app/store/reducers/course.reducer';
+import { CourseInitAction, CourseCreateAction } from 'src/app/store/actions/course.actions';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -13,26 +18,28 @@ import { ICourse } from 'src/app/interfaces/ICourse';
 })
 export class CourseCreatePageComponent implements OnInit {
   public course: ICourse;
+  public course$: Observable<ICourseState>;
 
   constructor(
-    private coursesService: CoursesService,
     private loadingService: LoadingService,
     private router: Router,
+    private store: Store<{ course: ICourseState }>
   ) { }
 
   public saveAction: (course: ICourse) => void = (course: ICourse): void => {
-    this.loadingService.show();
-    this.coursesService.createCourse(course)
-      .then((): void => {
-        this.loadingService.hide();
-        this.router.navigate(['courses']);
-      });
+    this.store.dispatch(new CourseCreateAction({ course }));
   }
 
   public cancelAction: () => void = () => {
     this.router.navigate(['courses']);
   }
 
-  public ngOnInit(): void { }
-
+  public ngOnInit(): void {
+    this.store.dispatch(new CourseInitAction());
+    this.course$ = this.store.pipe(select('course'));
+    this.course$.subscribe((state: ICourseState) => {
+      this.course = state.course;
+      this.loadingService.hide();
+    });
+  }
 }

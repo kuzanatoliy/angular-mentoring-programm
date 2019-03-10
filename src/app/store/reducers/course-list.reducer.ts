@@ -2,20 +2,20 @@ import { ActionsUnion, ActionTypes } from '../actions/course-list.actions';
 
 import { ICourse } from 'src/app/interfaces/ICourse';
 
-export interface ICoursListState {
+export interface ICourseListState {
   items: Array<ICourse>
   loading: boolean;
   error: boolean;
 }
 
-export const initialCourseState: ICoursListState = {
+export const initialCourseListState: ICourseListState = {
   items: [],
   loading: false,
   error: false,
 }
 
 export function courseListReducer(
-  state = initialCourseState,
+  state = initialCourseListState,
   action: ActionsUnion
 ) {
   switch(action.type) {

@@ -116,7 +116,9 @@ describe('CoursesService', () => {
     };
 
     service.createCourse(course)
-      .then((createdCourse) => expect(createdCourse).toEqual(Course.createCourse(course)));
+      .subscribe({
+        next: (createdCourse) => expect(createdCourse).toEqual(Course.createCourse(course)),
+      });
 
     const req = http.expectOne(`${ COURSES_URL }`);
     expect(req.request.method).toEqual('POST');

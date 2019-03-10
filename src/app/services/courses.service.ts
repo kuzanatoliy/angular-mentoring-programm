@@ -29,11 +29,10 @@ export class CoursesService {
     return this.http.get(url).pipe(map(Course.createCourseList));
   }
 
-  public createCourse(course: ICourse): Promise<ICourse> {
+  public createCourse(course: ICourse): Observable<ICourse> {
     const data = this.prepareCourseData(course);
     return this.http.post(`${ COURSES_URL }`, data)
-      .toPromise()
-      .then(Course.createCourse);
+      .pipe(map(Course.createCourse));
   }
 
   public getCourse(id: string): Promise<ICourse> {

@@ -25,7 +25,7 @@ export class Course implements ICourse {
     public id: string,
     public title: string,
     public authors: Array<IUser> = [],
-    public creationDate: Date,
+    public creationDate: Date = new Date(),
     public duration: number,
     public description: string,
     public topRated: boolean,
