@@ -127,7 +127,9 @@ describe('CoursesService', () => {
 
   it('getCourse should return course item', async () => {
     service.getCourse(COURSES[0].id)
-      .then((course) => expect(course).toEqual(Course.createCourse(COURSES[0])));
+      .subscribe({
+        next: (course) => expect(course).toEqual(Course.createCourse(COURSES[0])),
+      });
 
     const req = http.expectOne(`${ COURSES_URL }/${ COURSES[0].id }`);
     expect(req.request.method).toEqual('GET');

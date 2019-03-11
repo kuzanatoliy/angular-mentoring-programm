@@ -19,7 +19,7 @@ export class CourseInitAction implements Action {
 }
 
 export class CourseLoadAction implements Action {
-  constructor(public payload: { id: number }) {};
+  constructor(public payload: { id: string }) {};
   
   public readonly type = ActionTypes.courseLoad;
 }

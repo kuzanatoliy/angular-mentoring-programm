@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 
 import {
-  ActionTypes, CourseCreateAction, CourseCreateSuccessAction, CourseCreateFailedAction,
+  ActionTypes, CourseCreateAction, CourseCreateSuccessAction, CourseCreateFailedAction, CourseLoadAction, CourseLoadSuccessAction, CourseLoadFailedAction, CourseUpdateAction, CourseUpdateSuccessAction, CourseUpdateFailedAction,
   // CourseListLoadingStartAction,
   // CourseListLoadingSuccessAction,
   // CourseListLoadingFailedAction,
@@ -32,15 +32,25 @@ export class CourseEffects {
       .pipe(map((course: ICourse) => new CourseCreateSuccessAction({ course })),
       catchError(() => of(new CourseCreateFailedAction())))),
   );
-  /*public courseListLoading$: Observable<Action> = this.actions$.pipe(
-    ofType(ActionTypes.courseListLoadingStart),
-    mergeMap((action: CourseListLoadingStartAction) => {
-      const { page, count, query } = action.payload;
-      return this.coursesService.getCourseList(page, count, query)
-        .pipe(map((items: Array<ICourse>) => new CourseListLoadingSuccessAction({ items })),
-        catchError(() => of(new CourseListLoadingFailedAction())))
-      }),
-  );*/
+
+  @Effect()
+  public courseLoad$: Observable<Action> = this.actions$.pipe(
+    ofType(ActionTypes.courseLoad),
+    mergeMap((action: CourseLoadAction) => this.coursesService.getCourse(action.payload.id)
+      .pipe(map((course: ICourse) => new CourseLoadSuccessAction({ course })),
+      catchError(() => of(new CourseLoadFailedAction())))),
+  );
+
+  @Effect()
+  public courseUpdate$: Observable<Action> = this.actions$.pipe(
+    ofType(ActionTypes.courseUpdate),
+    mergeMap((action: CourseUpdateAction) => {
+      const { course } = action.payload
+      return this.coursesService.updateCourse(course.id, course)
+        .pipe(map(() => new CourseUpdateSuccessAction({ course })),
+        catchError(() => of(new CourseUpdateFailedAction())));
+    }),
+  );
 
   /*@Effect()
   public courseListLoadMore$: Observable<Action> = this.actions$.pipe(

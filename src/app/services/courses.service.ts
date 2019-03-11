@@ -31,21 +31,21 @@ export class CoursesService {
 
   public createCourse(course: ICourse): Observable<ICourse> {
     const data = this.prepareCourseData(course);
+
     return this.http.post(`${ COURSES_URL }`, data)
       .pipe(map(Course.createCourse));
   }
 
-  public getCourse(id: string): Promise<ICourse> {
+  public getCourse(id: string): Observable<ICourse> {
     return this.http.get(`${ COURSES_URL }/${ id }`)
-      .toPromise()
-      .then(Course.createCourse);
+      .pipe(map(Course.createCourse));
   }
 
-  public updateCourse(id: string, course: ICourse): Promise<Array<object | ICourse>> {
+  public updateCourse(id: string, course: ICourse): Observable<Array<object | ICourse>> {
     const data = this.prepareCourseData(course);
+
     return this.http.post(`${ COURSES_URL }/${ id }`, data)
-      .toPromise()
-      .then(Course.createCourseList);
+      .pipe(map(Course.createCourseList));
   }
 
   public removeCourse(id: string): Observable<object | ICourse> {
