@@ -18,7 +18,7 @@ import { CourseInitAction, CourseCreateAction } from 'src/app/store/actions/cour
 })
 export class CourseCreatePageComponent implements OnInit {
   public course: ICourse;
-  public course$: Observable<ICourseState>;
+  private course$: Observable<ICourseState>;
 
   constructor(
     private loadingService: LoadingService,

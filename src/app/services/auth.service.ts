@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Observer, Subscription, from } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { IUser } from 'src/app/interfaces/IUser';
 
@@ -30,10 +31,9 @@ export class AuthService {
       .then(this.auth);
   }
 
-  public logout(): Promise<IUser> {
+  public logout(): Observable<IUser> {
     return this.http.post(LOGOUT_URL, {})
-      .toPromise()
-      .then(this.auth);
+      .pipe(map(this.auth));
   }
 
   public checkUserInfo(): Promise<IUser> {

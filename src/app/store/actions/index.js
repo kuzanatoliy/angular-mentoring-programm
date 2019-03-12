@@ -26,3 +26,14 @@ export {
   CourseUpdateFailedAction,
   ActionsUnion as CourseActionUnion,
 } from './course.actions';
+
+export {
+  ActionTypes as UserInfoActionTypes,
+  LoginSuccessAction,
+  LoginFailedAction,
+  LogoutAction,
+  LogoutSuccessAction,
+  LogoutFailedAction,
+  CheckUserInfoAction,
+  ActionsUnion as UserInfoActionsUnion
+} from './user-info.actions';

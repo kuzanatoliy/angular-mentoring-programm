@@ -14,8 +14,8 @@ import { SharedModule } from './shared/shared.module';
 
 import { TokenInterceptor } from './shared/interceptors/token.interseptor';
 
-import { CourseListEffects, CourseEffects } from './store/effects';
-import { courseListReducer, courseReducer } from './store/reducers';
+import { CourseListEffects, CourseEffects, UserInfoEffects } from './store/effects';
+import { courseListReducer, courseReducer, userInfoReducer } from './store/reducers';
 
 @NgModule({
   bootstrap: [ AppComponent ],
@@ -26,10 +26,12 @@ import { courseListReducer, courseReducer } from './store/reducers';
     EffectsModule.forRoot([
       CourseListEffects,
       CourseEffects,
+      UserInfoEffects,
     ]),
     StoreModule.forRoot({
       courseList: courseListReducer,
       course: courseReducer,
+      userInfo: userInfoReducer,
     }),
     HttpClientModule,
     AppRoutingModule,

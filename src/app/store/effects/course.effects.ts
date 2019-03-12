@@ -5,13 +5,16 @@ import { Observable, of } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 
 import {
-  ActionTypes, CourseCreateAction, CourseCreateSuccessAction, CourseCreateFailedAction, CourseLoadAction, CourseLoadSuccessAction, CourseLoadFailedAction, CourseUpdateAction, CourseUpdateSuccessAction, CourseUpdateFailedAction,
-  // CourseListLoadingStartAction,
-  // CourseListLoadingSuccessAction,
-  // CourseListLoadingFailedAction,
-  // CourseListLoadMoreAction,
-  // CourseListLoadMoreSuccessAction,
-  // CourseListLoadMoreFailedAction,
+  ActionTypes,
+  CourseCreateAction,
+  CourseCreateSuccessAction,
+  CourseCreateFailedAction,
+  CourseLoadAction,
+  CourseLoadSuccessAction,
+  CourseLoadFailedAction,
+  CourseUpdateAction,
+  CourseUpdateSuccessAction,
+  CourseUpdateFailedAction,
 } from '../actions/course.actions';
 
 import { CoursesService } from 'src/app/services';
@@ -51,15 +54,4 @@ export class CourseEffects {
         catchError(() => of(new CourseUpdateFailedAction())));
     }),
   );
-
-  /*@Effect()
-  public courseListLoadMore$: Observable<Action> = this.actions$.pipe(
-    ofType(ActionTypes.courseListLoadMore),
-    mergeMap((action: CourseListLoadMoreAction) => {
-      const { page, count, query } = action.payload;
-      return this.coursesService.getCourseList(page, count, query)
-        .pipe(map((items: Array<ICourse>) => new CourseListLoadMoreSuccessAction({ items })),
-        catchError(() => of(new CourseListLoadMoreFailedAction())))
-      }),
-  );*/
 }

@@ -21,7 +21,7 @@ import {
 })
 export class CoursesComponent implements OnInit, IListener {
   public courses: Array<ICourse>;
-  public courseList$: Observable<ICourseListState>
+  private courseList$: Observable<ICourseListState>
 
   private page: number;
   private count: number = 10;

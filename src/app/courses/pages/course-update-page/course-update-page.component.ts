@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { CoursesService, LoadingService } from 'src/app/services';
+import { LoadingService } from 'src/app/services';
 
 import { ICourse } from 'src/app/interfaces/ICourse';
 import { ICourseState } from 'src/app/store/reducers/course.reducer';
@@ -18,12 +18,11 @@ import { CourseLoadAction, CourseUpdateAction } from 'src/app/store/actions/cour
 })
 export class CourseUpdatePageComponent implements OnInit {
   public course: ICourse;
-  public course$: Observable<ICourseState>;
+  private course$: Observable<ICourseState>;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private cdr: ChangeDetectorRef,
-    private coursesService: CoursesService,
     private loadingService: LoadingService,
     private router: Router,
     private store: Store<{ course: ICourseState }>

@@ -80,7 +80,9 @@ describe('AuthService', () => {
     });
 
     it('logout should return empty object', () => {
-      service.logout().then((result) => expect(result).toEqual({}));
+      service.logout().subscribe({
+        next: (result) => expect(result).toEqual({}),
+      });
 
       const req = http.expectOne(LOGOUT_URL);
       expect(req.request.method).toEqual('POST');
@@ -108,7 +110,9 @@ describe('AuthService', () => {
     });
 
     it('logout should return empty object', () => {
-      service.logout().then((result) => expect(result).toEqual({}));
+      service.logout().subscribe({
+        next: (result) => expect(result).toEqual({}),
+      });
 
       const req = http.expectOne(LOGOUT_URL);
       expect(req.request.method).toEqual('POST');

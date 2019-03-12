@@ -58,7 +58,7 @@ export function courseReducer(
       return { ...state, loading: false, error: true };
     }
     default: {
-      return state;
+      return { ...state };
     }
   }
 }
