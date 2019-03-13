@@ -28,7 +28,6 @@ export class HeaderComponent implements OnInit {
   public ngOnInit(): void {
     this.userInfo$ = this.store.pipe(select('userInfo'));
     this.userInfo$.subscribe((userInfo: IUserInfoState) => {
-      console.log(userInfo);
       this.userName = userInfo.user.userName;
     });
   }

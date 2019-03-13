@@ -21,16 +21,15 @@ export function userInfoReducer(
   state = initialUserInfoState,
   action: ActionsUnion
 ) {
-  console.log(state);
   switch(action.type) {
     case ActionTypes.login: {
-      return state;
+      return { ...state, loading: true, error: false };
     }
     case ActionTypes.loginSuccess: {
-      return state;
+      return { ...state, loading: false, user: action.payload.user }
     }
     case ActionTypes.loginFailed: {
-      return state;
+      return { ...state, loading: false, error: true };
     }
     case ActionTypes.logout: {
       return { ...state, loading: true, error: false };
@@ -40,6 +39,15 @@ export function userInfoReducer(
     }
     case ActionTypes.logoutFailed: {
       return { ...state, loading: false, error: true };
+    }
+    case ActionTypes.checkUserInfo: {
+      return { ...state, loading: true, error: false };
+    }
+    case ActionTypes.checkUserInfoSuccess: {
+      return { ...state, loading: false, user: action.payload.user }
+    }
+    case ActionTypes.checkUserInfoFailed: {
+      return { ...state, loading: false, error: true }
     }
     default: {
       return { ...state };

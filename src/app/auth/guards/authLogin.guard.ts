@@ -15,12 +15,13 @@ export class AuthLoginGuard implements CanActivate {
   ) { }
 
   public canActivate(): Observable<boolean> | Promise<boolean> | boolean {
-    return this.authService.isAuthToObservable()
+    return true;
+    /*return this.authService.isAuthToObservable()
       .pipe(map((isAuth: boolean): boolean => {
         if (isAuth) {
           this.router.navigate(['courses']);
         }
         return !isAuth;
-      }));
+      }));*/
   }
 }

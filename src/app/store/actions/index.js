@@ -35,5 +35,7 @@ export {
   LogoutSuccessAction,
   LogoutFailedAction,
   CheckUserInfoAction,
+  CheckUserInfoSuccessAction,
+  CheckUserInfoFailedAction,
   ActionsUnion as UserInfoActionsUnion
 } from './user-info.actions';
