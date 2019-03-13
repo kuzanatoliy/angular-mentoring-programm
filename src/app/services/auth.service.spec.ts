@@ -40,7 +40,9 @@ describe('AuthService', () => {
   });
 
   it('login should return empty object', () => {
-    service.login('', '').then((result) => expect(result).toEqual({}));
+    service.login('', '').subscribe({
+      next: (result) => expect(result).toEqual({}),
+    });
 
     const req = http.expectOne(LOGIN_URL);
     expect(req.request.method).toEqual('POST');
@@ -48,8 +50,9 @@ describe('AuthService', () => {
   });
 
   it('login should return object with userInfo', () => {
-    service.login(userInfo.userName, 'User.Password')
-      .then((result) => expect(result).toEqual(userInfo));
+    service.login(userInfo.userName, 'User.Password').subscribe({
+      next: (result) => expect(result).toEqual(userInfo),
+    });
 
     const req = http.expectOne(LOGIN_URL);
     expect(req.request.method).toEqual('POST');
@@ -58,21 +61,9 @@ describe('AuthService', () => {
 
   describe('should check not authorized functionality', () => {
     it('checkUserInfo should return empty object', () => {
-      service.checkUserInfo()
-        .then((result) => expect(result).toEqual({}));
-
-      const req = http.expectOne(USER_INFO_URL);
-      expect(req.request.method).toEqual('GET');
-      req.flush({});
-    });
-
-    it('getUserInfo should return null', () => {
-      const result = service.getUserInfo();
-      expect(result).toBeUndefined();
-    });
-
-    it('isAuthorize should return false', () => {
-      service.isAuthorized().then((isAuth) => expect(isAuth).toBeFalsy());
+      service.checkUserInfo().subscribe({
+        next: (result) => expect(result).toEqual({}),
+      });
 
       const req = http.expectOne(USER_INFO_URL);
       expect(req.request.method).toEqual('GET');
@@ -92,17 +83,9 @@ describe('AuthService', () => {
 
   describe('should check authorized functionality', () => {
     it('checkUserInfo should return userInfo', () => {
-      service.checkUserInfo()
-        .then((result) => expect(result).toEqual(userInfo));
-
-      const req = http.expectOne(USER_INFO_URL);
-      expect(req.request.method).toEqual('GET');
-      req.flush(userInfo);
-    });
-
-    it('isAuthorize should return true', () => {
-      service.isAuthorized()
-        .then((isAuth) => expect(isAuth).toBeTruthy());
+      service.checkUserInfo().subscribe({
+        next: (result) => expect(result).toEqual(userInfo),
+      });
 
       const req = http.expectOne(USER_INFO_URL);
       expect(req.request.method).toEqual('GET');

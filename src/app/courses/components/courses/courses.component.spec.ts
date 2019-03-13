@@ -29,8 +29,6 @@ import { Course } from 'src/app/models/Course';
 
 import { LoadingService } from 'src/app/services/loading.service';
 
-import { ICourseListState } from 'src/app/store/reducers/course-list.reducer';
-
 class MockLoadingService {
 
   constructor() { }
@@ -45,10 +43,12 @@ describe('CoursesComponent', () => {
   let component: CoursesComponent;
   let fixture: ComponentFixture<CoursesComponent>;
 
-  const initialState: ICourseListState = {
-    items: [],
-    loading: false,
-    error: false,
+  const initialState = {
+    courseList: {
+      items: [],
+      loading: false,
+      error: false,
+    }
   }
 
   const COURSES_MOCK: Array<ICourse> = Course.createCourseList([{

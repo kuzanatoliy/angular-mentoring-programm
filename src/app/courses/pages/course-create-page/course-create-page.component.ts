@@ -27,6 +27,7 @@ export class CourseCreatePageComponent implements OnInit {
   ) { }
 
   public saveAction: (course: ICourse) => void = (course: ICourse): void => {
+    this.loadingService.show();
     this.store.dispatch(new CourseCreateAction({ course }));
   }
 
@@ -38,8 +39,9 @@ export class CourseCreatePageComponent implements OnInit {
     this.store.dispatch(new CourseInitAction());
     this.course$ = this.store.pipe(select('course'));
     this.course$.subscribe((state: ICourseState) => {
-      this.course = state.course;
-      this.loadingService.hide();
+      const { course, loading } = state;
+      this.course = course;
+      loading || this.loadingService.hide();
     });
   }
 }

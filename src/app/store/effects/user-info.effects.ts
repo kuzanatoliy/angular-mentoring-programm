@@ -5,23 +5,20 @@ import { Observable, of } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 
 import {
-  ActionTypes, LogoutSuccessAction, LogoutFailedAction, LoginAction, LoginSuccessAction, LoginFailedAction, CheckUserInfoAction, CheckUserInfoSuccessAction, CheckUserInfoFailedAction,
-  // CourseCreateAction,
-  // CourseCreateSuccessAction,
-  // CourseCreateFailedAction,
-  // CourseLoadAction,
-  // CourseLoadSuccessAction,
-  // CourseLoadFailedAction,
-  // CourseUpdateAction,
-  // CourseUpdateSuccessAction,
-  // CourseUpdateFailedAction,
+  ActionTypes,
+  LogoutSuccessAction,
+  LogoutFailedAction,
+  LoginAction,
+  LoginSuccessAction,
+  LoginFailedAction,
+  CheckUserInfoSuccessAction,
+  CheckUserInfoFailedAction,
 } from '../actions/user-info.actions';
 
 import { AuthService, TokenService } from 'src/app/services';
 
 import { IUser } from 'src/app/interfaces/IUser';
 import { IUserInfoState } from '../reducers/user-info.reducer';
-import { userInfo } from 'os';
  
 @Injectable()
 export class UserInfoEffects {
@@ -77,16 +74,16 @@ export class UserInfoEffects {
     })
   );
 
-  /*@Effect()
+  @Effect()
   public checkUserInfo$: Observable<Action> = this.actions$.pipe(
     ofType(ActionTypes.checkUserInfo),
     mergeMap(() => {
-      if(this.user.userName) {
-        return new CheckUserInfoSuccessAction({ user: this.user });
-      }
-      return this.auth.checkUserInfo()
+      if(!this.user.userName && this.tokenService.token) {
+        return this.auth.checkUserInfo()
         .pipe(map((user: IUser) => new CheckUserInfoSuccessAction({ user })),
         catchError(() => of(new CheckUserInfoFailedAction())));
-    })
-  );*/
+      }
+      return of(new CheckUserInfoSuccessAction({ user: this.user }));
+    }),
+  );
 }

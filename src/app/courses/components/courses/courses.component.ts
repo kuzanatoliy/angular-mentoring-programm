@@ -35,8 +35,9 @@ export class CoursesComponent implements OnInit, IListener {
   ) {
     this.courseList$ = this.store.pipe(select('courseList'));
     this.courseList$.subscribe((courseList: ICourseListState) => {
-      this.courses = courseList.items
-      this.loadingService.hide();
+      const { items, loading } = courseList;
+      this.courses = items
+      loading || this.loadingService.hide();
     });
   }
 

@@ -44,8 +44,9 @@ export class CourseUpdatePageComponent implements OnInit {
       this.store.dispatch(new CourseLoadAction({ id }));
       this.course$ = this.store.pipe(select('course'));
       this.course$.subscribe((state: ICourseState) => {
-        this.course = state.course;
-        this.loadingService.hide();
+        const { course, loading } = state;
+        this.course = course;
+        loading || this.loadingService.hide();
         this.cdr.detectChanges();
       });
     }

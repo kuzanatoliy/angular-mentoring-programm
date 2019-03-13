@@ -34,17 +34,19 @@ describe('CourseUpdatePageComponent', () => {
   let component: CourseUpdatePageComponent;
   let fixture: ComponentFixture<CourseUpdatePageComponent>;
 
-  const initialState: ICourseState = {
-    course: Course.createCourse({
-      authors: [],
-      creationDate: new Date(),
-      description: '',
-      duration: 0,
-      title: '',
-      topRated: false,
-    }),
-    loading: false,
-    error: false,
+  const initialState = {
+    course: {
+      course: Course.createCourse({
+        authors: [],
+        creationDate: new Date(),
+        description: '',
+        duration: 0,
+        title: '',
+        topRated: false,
+      }),
+      loading: false,
+      error: false,
+    }
   }
 
   beforeEach(async(() => {

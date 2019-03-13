@@ -2,6 +2,7 @@ import { APP_BASE_HREF } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
@@ -11,6 +12,8 @@ import { LoadingModule } from './loading/loading.module';
 import { SearchModule } from './search/search.module';
 import { SharedModule } from './shared/shared.module';
 
+import { courseListReducer, courseReducer, userInfoReducer } from './store/reducers';
+
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -18,6 +21,11 @@ describe('AppComponent', () => {
         AppComponent,
       ],
       imports: [
+        StoreModule.forRoot({
+          courseList: courseListReducer,
+          course: courseReducer,
+          userInfo: userInfoReducer,
+        }),
         AuthModule,
         RouterTestingModule,
         CoursesModule,

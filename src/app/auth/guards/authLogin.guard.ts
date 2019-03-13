@@ -1,27 +1,31 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
+import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { AuthService } from 'src/app/services/auth.service';
+import { IUserInfoState } from 'src/app/store/reducers/user-info.reducer';
+import { CheckUserInfoAction } from 'src/app/store/actions/user-info.actions';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthLoginGuard implements CanActivate {
+  private userInfo$: Observable<IUserInfoState>;
+
   constructor(
-    private authService: AuthService,
     private router: Router,
-  ) { }
+    private store: Store<{ userInfo: IUserInfoState }>,
+  ) {
+    this.userInfo$ = this.store.pipe(select('userInfo'));
+    this.store.dispatch(new CheckUserInfoAction());
+  }
 
   public canActivate(): Observable<boolean> | Promise<boolean> | boolean {
-    return true;
-    /*return this.authService.isAuthToObservable()
-      .pipe(map((isAuth: boolean): boolean => {
-        if (isAuth) {
-          this.router.navigate(['courses']);
-        }
-        return !isAuth;
-      }));*/
+    return this.userInfo$.pipe(map((state: IUserInfoState) => {
+      const isAuth = !!state.user.userName;
+      isAuth && this.router.navigate(['courses']);
+      return !isAuth;
+    }));
   }
 }
