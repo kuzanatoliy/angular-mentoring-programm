@@ -13,8 +13,8 @@ describe('SearchService', () => {
 
   it('should check service functionality', () => {
     const value = 'Search value';
-    service.setValue(value);
-    const serviceValue = service.getValue();
+    service.value = value;
+    const serviceValue = service.value;
     expect(value).toBe(serviceValue);
   });
 });

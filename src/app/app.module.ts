@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { CoursesModule } from './courses/courses.module';
 import { ErrorsModule } from './errors/errors.module';
+import { LoadingModule } from './loading/loading.module';
 import { SharedModule } from './shared/shared.module';
 
 import { TokenInterceptor } from './shared/interceptors/token.interseptor';
@@ -21,6 +22,7 @@ import { TokenInterceptor } from './shared/interceptors/token.interseptor';
     AppRoutingModule,
     CoursesModule,
     ErrorsModule,
+    LoadingModule,
     SharedModule,
   ],
   providers: [

@@ -32,6 +32,6 @@ describe('SearchComponent', () => {
     inputComponent.value = value;
     inputComponent.dispatchEvent(new Event('input'));
     fixture.detectChanges();
-    expect(component.searchValue).toEqual(value);
+    expect(component.value).toEqual(value);
   });
 });

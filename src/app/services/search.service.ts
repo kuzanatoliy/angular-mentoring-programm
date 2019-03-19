@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { IListemable, ListenerCallback } from '../../interfaces/IListenable';
+import { IListemable, ListenerCallback } from 'src/app/interfaces/IListenable';
 
 @Injectable({
   providedIn: 'root',
@@ -9,6 +9,15 @@ export class SearchService implements IListemable {
   private listeners: Array<ListenerCallback> = [];
 
   private searchValue: string = '';
+
+  public get value(): string {
+    return this.searchValue;
+  }
+
+  public set value(value) {
+    this.searchValue = value;
+    this.listeners.forEach((item) => item(this.searchValue));
+  }
 
   constructor() { }
 

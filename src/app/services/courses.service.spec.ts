@@ -1,11 +1,16 @@
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { TestBed } from '@angular/core/testing';
+
 import { CoursesService } from './courses.service';
 
-import { ICourse } from '../../interfaces/ICourse';
+import { ICourse } from 'src/app/interfaces/ICourse';
 
-import { Course } from '../../models/Course';
+import { Course } from 'src/app/models/Course';
+
+import { COURSES_URL } from 'src/app/constants/urls';
 
 describe('CoursesService', () => {
-  /* const COURSES: Array<ICourse> = Course.createCourseList([{
+  const COURSES: Array<ICourse> = [{
     authors: [{
       firstName: 'Igar',
       id: '1',
@@ -65,19 +70,36 @@ describe('CoursesService', () => {
     id: '5',
     title: 'Courses 5',
     topRated: false,
-  }]);
+  }];
 
   let service: CoursesService;
+  let http: HttpTestingController;
 
-  beforeEach(() => service = new CoursesService());
+  beforeEach(() => TestBed.configureTestingModule({
+    imports: [ HttpClientTestingModule ],
+    providers: [ CoursesService ],
+  }));
+
+  beforeEach(() => {
+    service = TestBed.get(CoursesService);
+    http = TestBed.get(HttpTestingController);
+  });
+
+  afterEach(() => {
+    http.verify();
+  });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it('getCourseList should return list of courses', async () => {
-    const courses: Array<ICourse> = await service.getCourseList();
-    expect(courses).toEqual(COURSES);
+  it('getCourseList should return list of courses', () => {
+    service.getCourseList(1, 5)
+      .then((courses) => expect(courses).toEqual(Course.createCourseList(COURSES)));
+    
+    const req = http.expectOne(`${ COURSES_URL }?page=1&count=5`);
+    expect(req.request.method).toEqual('GET');
+    req.flush(COURSES);
   });
 
   it('createCourse should return new course', async () => {
@@ -90,33 +112,21 @@ describe('CoursesService', () => {
       title: 'Courses 5',
       topRated: false,
     };
-    const newCourse: ICourse = await service.createCourse(course);
-    expect(course).toEqual(newCourse);
-  });
 
-  it('getCourse should return undefined', async () => {
-    const course = await service.getCourse('10');
-    expect(course).toBeUndefined();
+    service.createCourse(course)
+      .then((createdCourse) => expect(createdCourse).toEqual(Course.createCourse(course)));
+
+    const req = http.expectOne(`${ COURSES_URL }`);
+    expect(req.request.method).toEqual('POST');
+    req.flush(course);  
   });
 
   it('getCourse should return course item', async () => {
-    const course = await service.getCourse(COURSES[0].id);
-    expect(course).toEqual(COURSES[0]);
-  });
+    service.getCourse(COURSES[0].id)
+      .then((course) => expect(course).toEqual(Course.createCourse(COURSES[0])));
 
-  it('updateCourse should return updated courses list', async () => {
-    const courseList = await service.updateCourse(COURSES[0].id, { ...COURSES[0], duration: 100 });
-    expect(courseList.length).toBe(1);
-    expect(courseList[0].duration).toEqual(100);
+    const req = http.expectOne(`${ COURSES_URL }/${ COURSES[0].id }`);
+    expect(req.request.method).toEqual('GET');
+    req.flush(COURSES[0]);
   });
-
-  it('removeCourse should return null', async () => {
-    const course = await service.removeCourse('10');
-    expect(course).toBeNull();
-  });
-
-  it('removeCourse should return id', async () => {
-    const course = await service.removeCourse(COURSES[0].id);
-    expect(course).toEqual(COURSES[0].id);
-  }); */
 });

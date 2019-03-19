@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { IListemable, ListenerCallback } from '../../interfaces/IListenable';
+import { IListemable, ListenerCallback } from 'src/app/interfaces/IListenable';
 
 @Injectable({
   providedIn: 'root',

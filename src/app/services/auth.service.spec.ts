@@ -3,9 +3,9 @@ import { TestBed } from '@angular/core/testing';
 
 import { AuthService } from './auth.service';
 
-import { TokenService } from '../../shared/services/token.service';
+import { TokenService } from './token.service';
 
-import { LOGIN_URL, LOGOUT_URL, USER_INFO_URL } from '../../constants/urls';
+import { LOGIN_URL, LOGOUT_URL, USER_INFO_URL } from 'src/app/constants/urls';
 
 describe('AuthService', () => {
   let service: AuthService;

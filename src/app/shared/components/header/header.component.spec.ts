@@ -34,8 +34,20 @@ describe('HeaderComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should find app-header component', () => {
+  it('should find logo component', () => {
     const coursesComponent = fixture.nativeElement.querySelector('app-logo');
     expect(coursesComponent).not.toBeNull();
+  });
+
+  it('should find login button', () => {
+    const loginButton = fixture.nativeElement.querySelector('.header-login-button');
+    expect(loginButton).not.toBeNull();
+  });
+
+  it('should find logout button', () => {
+    component.userName = 'User';
+    fixture.detectChanges();
+    const logoutButton = fixture.nativeElement.querySelector('.header-logout-button');
+    expect(logoutButton).not.toBeNull();
   });
 });

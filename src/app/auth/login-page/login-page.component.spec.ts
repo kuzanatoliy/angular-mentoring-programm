@@ -1,3 +1,4 @@
+import { APP_BASE_HREF } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
@@ -5,10 +6,10 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { LoginPageComponent } from './login-page.component';
 
-import { CoursesModule } from '../../courses/courses.module';
-import { ErrorsModule } from '../../errors/errors.module';
+import { CoursesModule } from 'src/app/courses/courses.module';
+import { ErrorsModule } from 'src/app/errors/errors.module';
 
-import { routes } from '../../app-routing.module';
+import { routes } from 'src/app/app-routing.module';
 
 describe('LoginPageComponent', () => {
   let component: LoginPageComponent;
@@ -24,6 +25,7 @@ describe('LoginPageComponent', () => {
         ErrorsModule,
         HttpClientTestingModule,
       ],
+      providers: [ { provide: APP_BASE_HREF, useValue : '/' } ],
     })
     .compileComponents();
   }));

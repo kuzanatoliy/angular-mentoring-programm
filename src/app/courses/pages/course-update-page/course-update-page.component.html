@@ -1,5 +1,5 @@
 <div class="course-page">
-  <div *ngIf="course; then formBlock; else loadingBlock"></div>
+  <div *ngIf="course; then formBlock"></div>
   <ng-template #formBlock>
     <app-breadcrumbs
       [title]="course.title">
@@ -9,8 +9,5 @@
       [saveAction]="saveAction"
       [cancelAction]="cancelAction">
     </app-course-form>
-  </ng-template>
-  <ng-template #loadingBlock>
-    <div class="course-page-loading">Loading...</div>
   </ng-template>
 </div>
