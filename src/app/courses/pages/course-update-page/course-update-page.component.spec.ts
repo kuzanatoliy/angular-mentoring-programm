@@ -3,6 +3,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AuthModule } from 'src/app/auth/auth.module';
@@ -26,9 +27,27 @@ import { OrderByCreationDatePipe } from '../../pipes';
 
 import { routes } from 'src/app/app-routing.module';
 
+import { Course } from 'src/app/models/Course';
+import { ICourseState } from 'src/app/store/reducers/course.reducer';
+
 describe('CourseUpdatePageComponent', () => {
   let component: CourseUpdatePageComponent;
   let fixture: ComponentFixture<CourseUpdatePageComponent>;
+
+  const initialState = {
+    course: {
+      course: Course.createCourse({
+        authors: [],
+        creationDate: new Date(),
+        description: '',
+        duration: 0,
+        title: '',
+        topRated: false,
+      }),
+      loading: false,
+      error: false,
+    }
+  }
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -52,7 +71,10 @@ describe('CourseUpdatePageComponent', () => {
         FormsModule,
         HttpClientTestingModule,
       ],
-      providers: [ { provide: APP_BASE_HREF, useValue : '/' } ],
+      providers: [
+        { provide: APP_BASE_HREF, useValue : '/' },
+        provideMockStore({ initialState }),
+      ],
     })
     .compileComponents();
   }));

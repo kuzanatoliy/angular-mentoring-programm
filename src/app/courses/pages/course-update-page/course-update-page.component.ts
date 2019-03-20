@@ -1,9 +1,14 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
-import { CoursesService, LoadingService } from 'src/app/services';
+import { LoadingService } from 'src/app/services';
 
 import { ICourse } from 'src/app/interfaces/ICourse';
+import { ICourseState } from 'src/app/store/reducers/course.reducer';
+
+import { CourseLoadAction, CourseUpdateAction } from 'src/app/store/actions/course.actions';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -13,22 +18,19 @@ import { ICourse } from 'src/app/interfaces/ICourse';
 })
 export class CourseUpdatePageComponent implements OnInit {
   public course: ICourse;
+  private course$: Observable<ICourseState>;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private cdr: ChangeDetectorRef,
-    private coursesService: CoursesService,
     private loadingService: LoadingService,
     private router: Router,
+    private store: Store<{ course: ICourseState }>
   ) { }
 
   public saveAction: (course: ICourse) => void = (course: ICourse): void => {
     this.loadingService.show();
-    this.coursesService.updateCourse(course.id, course)
-      .then((): void => {
-        this.loadingService.hide();
-        this.router.navigate(['courses']);
-      });
+    this.store.dispatch(new CourseUpdateAction({ course }));
   }
 
   public cancelAction: () => void = () => {
@@ -39,14 +41,14 @@ export class CourseUpdatePageComponent implements OnInit {
     const id = this.activatedRoute.snapshot.paramMap.get('id');
     if (id) {
       this.loadingService.show();
-      this.coursesService.getCourse(id)
-        .then((course: ICourse): void => {
-          this.course = course;
-          this.loadingService.hide();
-          this.cdr.detectChanges();
-        });
-    } else {
-      this.router.navigate(['courses']);
+      this.store.dispatch(new CourseLoadAction({ id }));
+      this.course$ = this.store.pipe(select('course'));
+      this.course$.subscribe((state: ICourseState) => {
+        const { course, loading } = state;
+        this.course = course;
+        loading || this.loadingService.hide();
+        this.cdr.detectChanges();
+      });
     }
   }
 }

@@ -1,6 +1,8 @@
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,12 +14,25 @@ import { SharedModule } from './shared/shared.module';
 
 import { TokenInterceptor } from './shared/interceptors/token.interseptor';
 
+import { CourseListEffects, CourseEffects, UserInfoEffects } from './store/effects';
+import { courseListReducer, courseReducer, userInfoReducer } from './store/reducers';
+
 @NgModule({
   bootstrap: [ AppComponent ],
   declarations: [ AppComponent ],
   imports: [
     AuthModule,
     BrowserModule,
+    EffectsModule.forRoot([
+      CourseListEffects,
+      CourseEffects,
+      UserInfoEffects,
+    ]),
+    StoreModule.forRoot({
+      courseList: courseListReducer,
+      course: courseReducer,
+      userInfo: userInfoReducer,
+    }),
     HttpClientModule,
     AppRoutingModule,
     CoursesModule,
