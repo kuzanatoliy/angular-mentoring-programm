@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -61,6 +61,7 @@ describe('BreadcrumbsComponent', () => {
       imports: [
         RouterTestingModule.withRoutes([ coursesRoute ]),
         FormsModule,
+        ReactiveFormsModule,
         FontAwesomeModule,
       ],
     })

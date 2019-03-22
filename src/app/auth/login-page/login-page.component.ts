@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 
@@ -15,9 +16,12 @@ import { LoginAction } from 'src/app/store/actions/user-info.actions';
 })
 export class LoginPageComponent implements OnInit {
   public error: boolean = false;
-  public userName: string;
-  public password: string;
   public userInfo$: Observable<IUserInfoState>;
+  
+  public authData = new FormGroup({
+    userName: new FormControl(''),
+    password: new FormControl(''),
+  });
 
   constructor(
     private loadingService: LoadingService,
@@ -28,14 +32,14 @@ export class LoginPageComponent implements OnInit {
     this.userInfo$.subscribe((userInfo: IUserInfoState) => {
       const { error, loading, user } = userInfo;
       this.error = error;
-      loading || loadingService.hide();
+      loading || this.loadingService.hide();
       user.userName && this.router.navigate(['courses']);
     });
   }
 
   public loginHandler(): void {
     this.loadingService.show();
-    this.store.dispatch(new LoginAction({ userName: this.userName, password: this.password }));
+    this.store.dispatch(new LoginAction(this.authData.value));
   }
 
   public ngOnInit(): void { }

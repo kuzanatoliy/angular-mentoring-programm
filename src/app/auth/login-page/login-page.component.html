@@ -1,15 +1,15 @@
 <div class="login">
-  <div class="login-form">
+  <form [formGroup]="authData">
     <label class="login-form-user-name">
-      User name: <input type="text" [(ngModel)]="userName"/>
+      User name: <input type="text" formControlName="userName"/>
     </label>
     <label class="login-form-password">
-      Password: <input type="password" [(ngModel)]="password"/>
+      Password: <input type="password" formControlName="password"/>
     </label>
     <div *ngIf="error; then errorBlock" class="login-form-error"></div>
     <ng-template #errorBlock>User not found!</ng-template>
     <div class="login-form-control">
       <button (click)="loginHandler()">Login</button>
     </div>
-  </div>
+  </form>
 </div>
