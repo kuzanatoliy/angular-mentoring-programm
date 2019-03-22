@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
+import { Observable, Subscription } from 'rxjs';
 
 import { LoadingService } from 'src/app/services';
 
 import { IUserInfoState } from 'src/app/store/reducers/user-info.reducer';
-import { Observable } from 'rxjs';
 import { LoginAction } from 'src/app/store/actions/user-info.actions';
 
 @Component({
@@ -23,13 +23,22 @@ export class LoginPageComponent implements OnInit {
     password: new FormControl(''),
   });
 
+  private subscription: Subscription;
+
   constructor(
     private loadingService: LoadingService,
     private router: Router,
     private store: Store<{ userInfo: IUserInfoState }>
-  ) {
+  ) { }
+
+  public loginHandler(): void {
+    this.loadingService.show();
+    this.store.dispatch(new LoginAction(this.authData.value));
+  }
+
+  public ngOnInit(): void {
     this.userInfo$ = this.store.pipe(select('userInfo'));
-    this.userInfo$.subscribe((userInfo: IUserInfoState) => {
+    this.subscription = this.subscription = this.userInfo$.subscribe((userInfo: IUserInfoState) => {
       const { error, loading, user } = userInfo;
       this.error = error;
       loading || this.loadingService.hide();
@@ -37,11 +46,7 @@ export class LoginPageComponent implements OnInit {
     });
   }
 
-  public loginHandler(): void {
-    this.loadingService.show();
-    this.store.dispatch(new LoginAction(this.authData.value));
+  public ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
-
-  public ngOnInit(): void { }
-
 }
