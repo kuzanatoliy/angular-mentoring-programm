@@ -1,7 +1,7 @@
 {
   "extends": "tslint:latest",
   "rules": {
-    "array-type": [true, "generic"],
+    "array-type": [ true, "generic" ],
     "quotemark": [ true, "single" ],
     "no-console": false,
     "no-empty": false,
@@ -9,6 +9,6 @@
     "no-submodule-imports": false,
     "no-unused-expression": false,
     "jsdoc-format": false,
-    "max-classes-per-file": false,
+    "max-classes-per-file": false
   }
 }

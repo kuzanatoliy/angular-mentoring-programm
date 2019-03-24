@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Store, select } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 
 import { LoadingService } from 'src/app/services';
 
-import { IUserInfoState } from 'src/app/store/reducers/user-info.reducer';
 import { LoginAction } from 'src/app/store/actions/user-info.actions';
+import { IUserInfoState } from 'src/app/store/reducers/user-info.reducer';
 
 @Component({
   selector: 'app-login-page',
@@ -17,10 +17,10 @@ import { LoginAction } from 'src/app/store/actions/user-info.actions';
 export class LoginPageComponent implements OnInit {
   public error: boolean = false;
   public userInfo$: Observable<IUserInfoState>;
-  
+
   public authData = new FormGroup({
-    userName: new FormControl(''),
     password: new FormControl(''),
+    userName: new FormControl(''),
   });
 
   private subscription: Subscription;
@@ -28,7 +28,7 @@ export class LoginPageComponent implements OnInit {
   constructor(
     private loadingService: LoadingService,
     private router: Router,
-    private store: Store<{ userInfo: IUserInfoState }>
+    private store: Store<{ userInfo: IUserInfoState }>,
   ) { }
 
   public loginHandler(): void {

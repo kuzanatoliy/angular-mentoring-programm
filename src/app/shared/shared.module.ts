@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from '../app-routing.module';
 
@@ -52,6 +52,7 @@ import {
     AppRoutingModule,
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
 })
 export class SharedModule { }

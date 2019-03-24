@@ -11,15 +11,15 @@ export enum ActionTypes {
 }
 
 export class CourseListLoadingStartAction implements Action {
-  constructor(public payload: { page?: number, count?: number, query?: string } = {}) {};
-  
   public readonly type = ActionTypes.courseListLoadingStart;
+
+  constructor(public payload: { page?: number, count?: number, query?: string } = {}) {}
 }
 
 export class CourseListLoadingSuccessAction implements Action {
-  constructor(public payload: { items: Array<ICourse> }) {}
-  
   public readonly type = ActionTypes.courseListLoadingSuccess;
+
+  constructor(public payload: { items: Array<ICourse> }) {}
 }
 
 export class CourseListLoadingFailedAction implements Action {
@@ -27,15 +27,15 @@ export class CourseListLoadingFailedAction implements Action {
 }
 
 export class CourseListLoadMoreAction implements Action {
-  constructor(public payload: { page?: number, count?: number, query?: string } = {}) {};
-  
   public readonly type = ActionTypes.courseListLoadMore;
+
+  constructor(public payload: { page?: number, count?: number, query?: string } = {}) {}
 }
 
 export class CourseListLoadMoreSuccessAction implements Action {
-  constructor(public payload: { items: Array<ICourse> }) {}
-  
   public readonly type = ActionTypes.courseListLoadMoreSuccess;
+
+  constructor(public payload: { items: Array<ICourse> }) {}
 }
 
 export class CourseListLoadMoreFailedAction implements Action {

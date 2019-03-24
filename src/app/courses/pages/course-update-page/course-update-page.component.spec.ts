@@ -1,10 +1,10 @@
 import { APP_BASE_HREF } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
-import { provideMockStore } from '@ngrx/store/testing';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { provideMockStore } from '@ngrx/store/testing';
 
 import { AuthModule } from 'src/app/auth/auth.module';
 import { ErrorsModule } from 'src/app/errors/errors.module';
@@ -28,7 +28,6 @@ import { OrderByCreationDatePipe } from '../../pipes';
 import { routes } from 'src/app/app-routing.module';
 
 import { Course } from 'src/app/models/Course';
-import { ICourseState } from 'src/app/store/reducers/course.reducer';
 
 describe('CourseUpdatePageComponent', () => {
   let component: CourseUpdatePageComponent;
@@ -44,10 +43,10 @@ describe('CourseUpdatePageComponent', () => {
         title: '',
         topRated: false,
       }),
-      loading: false,
       error: false,
-    }
-  }
+      loading: false,
+    },
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -68,7 +67,7 @@ describe('CourseUpdatePageComponent', () => {
         SearchModule,
         SharedModule,
         FontAwesomeModule,
-        FormsModule,
+        ReactiveFormsModule,
         HttpClientTestingModule,
       ],
       providers: [

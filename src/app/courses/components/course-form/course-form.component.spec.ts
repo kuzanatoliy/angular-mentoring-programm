@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { CourseFormComponent } from './course-form.component';
 
@@ -46,7 +46,7 @@ describe('CourseFormComponent', () => {
         DurationPipe,
       ],
       imports: [
-        FormsModule,
+        ReactiveFormsModule,
       ],
     })
     .compileComponents();
@@ -65,29 +65,25 @@ describe('CourseFormComponent', () => {
   describe('should check default initial state', () => {
     it('should check title field', () => {
       const titleValue = fixture.nativeElement
-        .querySelector('.course-form-title input')
-        .getAttribute('ng-reflect-model');
+        .querySelector('.course-form-title input').value;
       expect(titleValue).toBe('');
     });
 
     it('should check description field', () => {
       const descriptionValue = fixture.nativeElement
-        .querySelector('.course-form-description textarea')
-        .getAttribute('ng-reflect-model');
+        .querySelector('.course-form-description textarea').value;
       expect(descriptionValue).toBe('');
     });
 
     it('should check duration field', () => {
       const durationValue = fixture.nativeElement
-        .querySelector('.course-form-duration input')
-        .getAttribute('ng-reflect-model');
+        .querySelector('.course-form-duration input').value;
       expect(durationValue).toBe('0');
     });
 
     it('should check date field', () => {
       const dateValue = fixture.nativeElement
-        .querySelector('.course-form-date input')
-        .getAttribute('ng-reflect-model');
+        .querySelector('.course-form-date input').value;
       expect(dateValue).toBe(new DatePipe().transform(new Date()));
     });
   });
@@ -115,29 +111,25 @@ describe('CourseFormComponent', () => {
 
     it('should check title field', () => {
       const titleValue = fixture.nativeElement
-        .querySelector('.course-form-title input')
-        .getAttribute('ng-reflect-model');
+        .querySelector('.course-form-title input').value;
       expect(titleValue).toBe(COURSE_MOCK_DATA.title);
     });
 
     it('should check description field', () => {
       const descriptionValue = fixture.nativeElement
-        .querySelector('.course-form-description textarea')
-        .getAttribute('ng-reflect-model');
+        .querySelector('.course-form-description textarea').value;
       expect(descriptionValue).toBe(COURSE_MOCK_DATA.description);
     });
 
     it('should check duration field', () => {
       const durationValue = fixture.nativeElement
-        .querySelector('.course-form-duration input')
-        .getAttribute('ng-reflect-model');
+        .querySelector('.course-form-duration input').value;
       expect(durationValue).toBe('' + COURSE_MOCK_DATA.duration);
     });
 
     it('should check date field', () => {
       const dateValue = fixture.nativeElement
-        .querySelector('.course-form-date input')
-        .getAttribute('ng-reflect-model');
+        .querySelector('.course-form-date input').value;
       expect(dateValue).toBe(new DatePipe().transform(new Date(COURSE_MOCK_DATA.creationDate)));
     });
 

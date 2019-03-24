@@ -3,22 +3,22 @@ import { ActionsUnion, ActionTypes } from '../actions/course-list.actions';
 import { ICourse } from 'src/app/interfaces/ICourse';
 
 export interface ICourseListState {
-  items: Array<ICourse>
+  items: Array<ICourse>;
   loading: boolean;
   error: boolean;
 }
 
 export const initialCourseListState: ICourseListState = {
+  error: false,
   items: [],
   loading: false,
-  error: false,
-}
+};
 
 export function courseListReducer(
   state = initialCourseListState,
-  action: ActionsUnion
+  action: ActionsUnion,
 ) {
-  switch(action.type) {
+  switch (action.type) {
     case ActionTypes.courseListLoadingStart: {
       return { ...state, loading: true, error: false };
     }
@@ -32,7 +32,7 @@ export function courseListReducer(
       return { ...state, loading: true, error: false };
     }
     case ActionTypes.courseListLoadMoreSuccess: {
-      const items = state.items.concat(action.payload.items)
+      const items = state.items.concat(action.payload.items);
 
       return { ...state, loading: false, error: false, items };
     }

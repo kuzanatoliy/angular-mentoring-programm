@@ -19,13 +19,13 @@ export class CoursesService {
   public getCourseList(
     page: number = 1,
     count: number = 10,
-    searchStr: string = null
+    searchStr: string = null,
   ): Observable<Array<ICourse>> {
     let url = `${ COURSES_URL }?page=${ page }&count=${ count }`;
     if (searchStr && searchStr !== '') {
       url += `&searchStr=${ searchStr }`;
     }
-    
+
     return this.http.get(url).pipe(map(Course.createCourseList));
   }
 

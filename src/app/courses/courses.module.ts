@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { SearchModule } from '../search/search.module';
@@ -46,7 +46,7 @@ import { OrderByCreationDatePipe } from './pipes';
     CommonModule,
     SharedModule,
     SearchModule,
-    FormsModule,
+    ReactiveFormsModule,
   ],
 })
 export class CoursesModule { }

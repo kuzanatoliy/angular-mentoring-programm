@@ -1,27 +1,21 @@
-<form class="course-form">
+<form class="course-form" [formGroup]='courseData'>
   <label class="course-form-title">
     <div>Title</div>
-    <input type="text" name="title" [(ngModel)]="course.title" />
+    <input type="text" formControlName="title"/>
   </label>
   <label class="course-form-description">
     <div>Description</div>
-    <textarea name="description" [(ngModel)]="course.description"></textarea>
+    <textarea formControlName="description"></textarea>
   </label>
   <label class="course-form-date">
     <div>Date</div>
-    <app-date-input
-      [date]="course.creationDate"
-      [dateChangeHandler]="dateChangeHandler">
-    </app-date-input>
+    <app-date-input formControlName="creationDate"></app-date-input>
   </label>
   <label class="course-form-duration">
     <div>Duration</div>
-    <app-duration-input
-      [duration]="course.duration"
-      [durationChangeHandler]="durationChangeHandler">
-    </app-duration-input>
+    <app-duration-input formControlName="duration"></app-duration-input>
   </label>
-  <label class="course-form-authors">
+  <!--label class="course-form-authors">
     <div>Authors</div>
     <app-author-list-control [authors]="course.authors"></app-author-list-control>
   </label>
@@ -32,5 +26,5 @@
     <button
       class="course-from-control-save"
       (click)="saveHandler()">Save</button>
-  </div>
+  </div-->
 </form>

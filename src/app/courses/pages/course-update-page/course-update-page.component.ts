@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Store, select } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { LoadingService } from 'src/app/services';
@@ -25,7 +25,7 @@ export class CourseUpdatePageComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private loadingService: LoadingService,
     private router: Router,
-    private store: Store<{ course: ICourseState }>
+    private store: Store<{ course: ICourseState }>,
   ) { }
 
   public saveAction: (course: ICourse) => void = (course: ICourse): void => {

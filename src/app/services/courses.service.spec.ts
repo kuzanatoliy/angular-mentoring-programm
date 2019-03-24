@@ -1,5 +1,5 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { CoursesService } from './courses.service';
 
@@ -98,7 +98,7 @@ describe('CoursesService', () => {
       .subscribe({
         next: (courses) => expect(courses).toEqual(Course.createCourseList(COURSES)),
       });
-    
+
     const req = http.expectOne(`${ COURSES_URL }?page=1&count=5`);
     expect(req.request.method).toEqual('GET');
     req.flush(COURSES);
@@ -122,7 +122,7 @@ describe('CoursesService', () => {
 
     const req = http.expectOne(`${ COURSES_URL }`);
     expect(req.request.method).toEqual('POST');
-    req.flush(course);  
+    req.flush(course);
   });
 
   it('getCourse should return course item', async () => {
@@ -145,5 +145,5 @@ describe('CoursesService', () => {
     const req = http.expectOne(`${ COURSES_URL }/${ COURSES[0].id }`);
     expect(req.request.method).toEqual('DELETE');
     req.flush({});
-  })
+  });
 });

@@ -11,7 +11,7 @@ export enum ActionTypes {
   logoutFailed = '[User info] logout failed',
   checkUserInfo = '[User info] check user info',
   checkUserInfoSuccess = '[User info] check user info success',
-  checkUserInfoFailed = '[User info] check user info failed'
+  checkUserInfoFailed = '[User info] check user info failed',
 }
 
 export class LoginAction implements Action {

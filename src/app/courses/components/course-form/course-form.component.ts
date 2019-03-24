@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ICourse } from '../../../interfaces/ICourse';
 
 @Component({
@@ -7,42 +8,43 @@ import { ICourse } from '../../../interfaces/ICourse';
   templateUrl: './course-form.component.html',
 })
 export class CourseFormComponent implements OnInit {
-  public static DEFAULT_COURSE: ICourse = {
-    authors: [],
-    creationDate: new Date(),
-    description: '',
-    duration: 0,
-    id: '1',
-    title: '',
-    topRated: false,
-  };
-
-  public course: ICourse = CourseFormComponent.DEFAULT_COURSE;
+  public courseData = new FormGroup({
+    creationDate: new FormControl(new Date(), [ Validators.required ]),
+    description: new FormControl('', [ Validators.required, Validators.minLength(500) ]),
+    duration: new FormControl(0, [ Validators.required ]),
+    title: new FormControl('', [ Validators.required, Validators.minLength(50) ]),
+  });
 
   @Input() public set newCourse(course) {
-    this.course = course || CourseFormComponent.DEFAULT_COURSE;
+    this.course = course || {};
+    if (course) {
+      const { creationDate, description, duration, title } = course;
+      this.courseData.setValue({
+        creationDate,
+        description,
+        duration,
+        title,
+      });
+    }
   }
+
   @Input() public saveAction?: (course: ICourse) => void;
   @Input() public cancelAction?: () => void;
 
+  private course: ICourse | {} = {};
+
   constructor() {}
-
-  public durationChangeHandler: (value: number) => void = (value: number) => {
-    this.course.duration = value;
-  }
-
-  public dateChangeHandler: (value: Date) => void = (value: Date) => {
-    this.course.creationDate = value;
-  }
 
   public ngOnInit(): void {}
 
   public saveHandler(): void {
-    this.saveAction && this.saveAction(this.course);
+    this.saveAction && this.saveAction({
+      ...this.course,
+      ...this.courseData.value,
+    });
   }
 
   public cancelHandler(): void {
     this.cancelAction && this.cancelAction();
   }
-
 }

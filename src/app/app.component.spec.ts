@@ -22,8 +22,8 @@ describe('AppComponent', () => {
       ],
       imports: [
         StoreModule.forRoot({
-          courseList: courseListReducer,
           course: courseReducer,
+          courseList: courseListReducer,
           userInfo: userInfoReducer,
         }),
         AuthModule,
