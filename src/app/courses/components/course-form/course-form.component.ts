@@ -9,6 +9,7 @@ import { ICourse } from '../../../interfaces/ICourse';
 })
 export class CourseFormComponent implements OnInit {
   public courseData = new FormGroup({
+    authors: new FormControl([]),
     creationDate: new FormControl(new Date(), [Validators.required ]),
     description: new FormControl('', [ Validators.required, Validators.maxLength(500) ]),
     duration: new FormControl(0, [ Validators.required ]),
@@ -34,8 +35,9 @@ export class CourseFormComponent implements OnInit {
   @Input() public set newCourse(course) {
     this.course = course || {};
     if (course) {
-      const { creationDate, description, duration, title } = course;
+      const { authors, creationDate, description, duration, title } = course;
       this.courseData.setValue({
+        authors,
         creationDate,
         description,
         duration,

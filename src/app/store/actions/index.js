@@ -1,14 +1,19 @@
 export {
+  ActionTypes as AuthorListActionType,
+  AuthorListLoadAction,
+  AuthorListLoadSuccessAction,
+  AuthorListLoadFailedAction,
+  ActionsUnion as AuthorListActionType,
+}
+
+export {
   ActionTypes as CourseListActionTypes,
-  CourseLoadAction,
-  CourseLoadSuccessAction,
-  CourseLoadFailedAction,
-  CourseCreateAction,
-  CourseCreateSuccessAction,
-  CourseCreateFailedAction,
-  CourseUpdateAction,
-  CourseUpdateSuccessAction,
-  CourseUpdateFailedAction,
+  CourseListLoadingStartAction,
+  CourseListLoadingSuccessAction,
+  CourseListLoadingFailedAction,
+  CourseListLoadMoreAction,
+  CourseListLoadMoreSuccessAction,
+  CourseListLoadMoreFailedAction,
   ActionsUnion as CourseListActionsUnion,
 } from './course-list.actions';
 

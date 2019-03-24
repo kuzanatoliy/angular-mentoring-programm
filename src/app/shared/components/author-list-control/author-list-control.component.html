@@ -2,5 +2,16 @@
   <app-user-control
     *ngFor="let author of authors"
     [user]="author"
+    [removeAction]="removeAction"
   ></app-user-control>
+  <div class='author-list-add'>
+    <input type="text"
+      [formControl]='author'
+      (input)="updateOptions()"
+      (focus)="updateOptions()"/>
+    <div *ngFor="let option of options | slice:0:5"
+      (click)="addAction(option)">
+      {{ option.firstName }} {{ option.lastName }}
+    </div>
+  </div>
 </div>
