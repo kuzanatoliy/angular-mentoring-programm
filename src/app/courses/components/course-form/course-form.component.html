@@ -1,30 +1,43 @@
 <form class="course-form" [formGroup]='courseData'>
   <label class="course-form-title">
-    <div>Title</div>
+    <div>Title <span class="error"><span
+      *ngIf="title.invalid && (title.dirty || title.touched); then titleErrorMessage">
+    </span></span></div>
     <input type="text" formControlName="title"/>
   </label>
   <label class="course-form-description">
-    <div>Description</div>
+    <div>Description <span class="error"><span
+      *ngIf="description.invalid && (description.dirty || description.touched); then descriptionErrorMessage">
+    </span></span></div>
     <textarea formControlName="description"></textarea>
   </label>
   <label class="course-form-date">
-    <div>Date</div>
+    <div>Date <span class="error"><span
+      *ngIf="creationDate.invalid && (creationDate.dirty || creationDate.touched); then creationDateErrorMessage">
+    </span></span></div>
     <app-date-input formControlName="creationDate"></app-date-input>
   </label>
   <label class="course-form-duration">
-    <div>Duration</div>
+    <div>Duration <span class="error"><span
+      *ngIf="duration.invalid && (duration.dirty || duration.touched); then durationErrorMessage">
+    </span></span></div>
     <app-duration-input formControlName="duration"></app-duration-input>
   </label>
   <!--label class="course-form-authors">
     <div>Authors</div>
     <app-author-list-control [authors]="course.authors"></app-author-list-control>
-  </label>
+  </label-->
   <div class="course-form-control">
     <button
       class="course-form-control-cancel"
       (click)="cancelHandler()">Cancel</button>
     <button
       class="course-from-control-save"
+      [disabled]='!courseData.valid'
       (click)="saveHandler()">Save</button>
-  </div-->
+  </div>
+  <ng-template #titleErrorMessage>- should be required and less then 50 symbols</ng-template>
+  <ng-template #descriptionErrorMessage>- should be required and less then 500 symbols</ng-template>
+  <ng-template #durationErrorMessage>- should be required and have number value</ng-template>
+  <ng-template #creationDateErrorMessage>- should be required and have mm.dd.yyyy format</ng-template>
 </form>

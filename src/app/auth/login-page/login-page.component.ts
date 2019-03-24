@@ -38,7 +38,7 @@ export class LoginPageComponent implements OnInit {
 
   public ngOnInit(): void {
     this.userInfo$ = this.store.pipe(select('userInfo'));
-    this.subscription = this.subscription = this.userInfo$.subscribe((userInfo: IUserInfoState) => {
+    this.subscription = this.userInfo$.subscribe((userInfo: IUserInfoState) => {
       const { error, loading, user } = userInfo;
       this.error = error;
       loading || this.loadingService.hide();

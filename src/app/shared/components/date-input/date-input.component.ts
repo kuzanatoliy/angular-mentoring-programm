@@ -35,6 +35,7 @@ export class DateInputComponent implements ControlValueAccessor, Validator {
   private onTouch: () => void;
 
   constructor() {
+    // this.date.
     this.datePipe = new DatePipe();
   }
 

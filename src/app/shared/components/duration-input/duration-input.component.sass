@@ -1,8 +1,11 @@
+@import '../../../style/forms'
+
 .duration
   display: flex
   .duration-input
     width: 50%
     input
+      @extend %error-control
       width: 100%
   .duration-view
     padding-left: 1rem

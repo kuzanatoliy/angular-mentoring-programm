@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ICourse } from '../../../interfaces/ICourse';
 
 @Component({
@@ -9,11 +9,27 @@ import { ICourse } from '../../../interfaces/ICourse';
 })
 export class CourseFormComponent implements OnInit {
   public courseData = new FormGroup({
-    creationDate: new FormControl(new Date(), [ Validators.required ]),
-    description: new FormControl('', [ Validators.required, Validators.minLength(500) ]),
+    creationDate: new FormControl(new Date(), [Validators.required ]),
+    description: new FormControl('', [ Validators.required, Validators.maxLength(500) ]),
     duration: new FormControl(0, [ Validators.required ]),
-    title: new FormControl('', [ Validators.required, Validators.minLength(50) ]),
+    title: new FormControl('', [ Validators.required, Validators.maxLength(50) ]),
   });
+
+  get creationDate(): AbstractControl {
+    return this.courseData.get('creationDate');
+  }
+
+  get description(): AbstractControl {
+    return this.courseData.get('description');
+  }
+
+  get duration(): AbstractControl {
+    return this.courseData.get('duration');
+  }
+
+  get title(): AbstractControl {
+    return this.courseData.get('title');
+  }
 
   @Input() public set newCourse(course) {
     this.course = course || {};
