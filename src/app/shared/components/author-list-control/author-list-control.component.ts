@@ -98,7 +98,7 @@ export class AuthorListControlComponent implements ControlValueAccessor, Validat
     this.onTouch = callback;
   }
 
-  private updateOptions() {
+  public updateOptions(): void {
     const filter = this.author.value;
     this.options = this.authorList.filter((item): boolean =>
       !!(item.firstName.toLowerCase().startsWith(filter)
