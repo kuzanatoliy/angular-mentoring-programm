@@ -10,7 +10,7 @@ import { ICourse } from '../../../interfaces/ICourse';
 export class CourseFormComponent implements OnInit {
   public courseData = new FormGroup({
     authors: new FormControl([]),
-    creationDate: new FormControl(new Date(), [Validators.required ]),
+    creationDate: new FormControl(new Date(), [ Validators.required ]),
     description: new FormControl('', [ Validators.required, Validators.maxLength(500) ]),
     duration: new FormControl(0, [ Validators.required ]),
     title: new FormControl('', [ Validators.required, Validators.maxLength(50) ]),

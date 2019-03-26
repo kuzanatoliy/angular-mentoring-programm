@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
@@ -19,8 +19,8 @@ export class LoginPageComponent implements OnInit {
   public userInfo$: Observable<IUserInfoState>;
 
   public authData = new FormGroup({
-    password: new FormControl(''),
-    userName: new FormControl(''),
+    password: new FormControl('', [ Validators.required ]),
+    userName: new FormControl('', [ Validators.required ]),
   });
 
   private subscription: Subscription;

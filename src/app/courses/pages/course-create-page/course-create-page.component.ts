@@ -29,6 +29,7 @@ export class CourseCreatePageComponent implements OnInit {
   public saveAction: (course: ICourse) => void = (course: ICourse): void => {
     this.loadingService.show();
     this.store.dispatch(new CourseCreateAction({ course }));
+    this.router.navigate(['courses']);
   }
 
   public cancelAction: () => void = () => {

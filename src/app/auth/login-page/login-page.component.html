@@ -9,7 +9,7 @@
     <div *ngIf="error; then errorBlock" class="login-form-error"></div>
     <ng-template #errorBlock>User not found!</ng-template>
     <div class="login-form-control">
-      <button (click)="loginHandler()">Login</button>
+      <button (click)="loginHandler()" [disabled]="authData.invalid">Login</button>
     </div>
   </form>
 </div>
