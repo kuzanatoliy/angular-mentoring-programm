@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Observable, Observer, timer } from 'rxjs';
 import { debounce, filter } from 'rxjs/operators';
 
@@ -10,22 +11,15 @@ import { SearchService } from 'src/app/services';
   templateUrl: './search.component.html',
 })
 export class SearchComponent implements OnInit {
-  private searchValue: string;
+  public searchControl = new FormControl('');
+
   private observer: Observer<string>;
   private charsCount: number = 0;
-
-  public get value() {
-    return this.searchValue;
-  }
-
-  public set value(value) {
-    this.searchValue = value;
-  }
 
   constructor(
     private searchService: SearchService,
   ) {
-    this.searchValue = this.searchService.value;
+    this.searchControl.setValue(this.searchService.value);
     new Observable(this.observerHandler)
       .pipe(filter(this.filterHandler))
       .pipe(debounce(() => timer(1000)))
@@ -33,12 +27,12 @@ export class SearchComponent implements OnInit {
   }
 
   public setNewValue(value): void {
-    this.searchValue = value;
+    this.searchControl.setValue(value);
   }
 
   public searchHandler(): void {
     this.charsCount++;
-    this.observer.next(this.searchValue);
+    this.observer.next(this.searchControl.value);
   }
 
   public ngOnInit(): void { }

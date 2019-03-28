@@ -3,5 +3,6 @@
   <ng-template #viewBlock>
     <span class="user-control-first-name">{{ user.firstName }}</span>
     <span class="user-control-last-name">{{ user.lastName }}</span>
+    <span class="user-control-remove" (click)="removeHandler()">X</span>
   </ng-template>
 </div>

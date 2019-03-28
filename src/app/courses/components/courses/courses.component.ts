@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store, select } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { CoursesService, LoadingService, SearchService } from 'src/app/services';
 
-import { ICourse } from '../../../interfaces/ICourse';
-import { IListener, ListenerCallback } from '../../../interfaces/IListenable';
+import { ICourse } from 'src/app/interfaces/ICourse';
+import { IListener, ListenerCallback } from 'src/app/interfaces/IListenable';
 import { ICourseListState } from 'src/app/store/reducers/course-list.reducer';
 
 import {
@@ -21,7 +21,7 @@ import {
 })
 export class CoursesComponent implements OnInit, IListener {
   public courses: Array<ICourse>;
-  private courseList$: Observable<ICourseListState>
+  private courseList$: Observable<ICourseListState>;
 
   private page: number;
   private count: number = 10;
@@ -31,12 +31,12 @@ export class CoursesComponent implements OnInit, IListener {
     private loadingService: LoadingService,
     private router: Router,
     private searchService: SearchService,
-    private store: Store<{ courseList: ICourseListState }>
+    private store: Store<{ courseList: ICourseListState }>,
   ) {
     this.courseList$ = this.store.pipe(select('courseList'));
     this.courseList$.subscribe((courseList: ICourseListState) => {
       const { items, loading } = courseList;
-      this.courses = items
+      this.courses = items;
       loading || this.loadingService.hide();
     });
   }
@@ -47,7 +47,7 @@ export class CoursesComponent implements OnInit, IListener {
       .then((): void => {
         this.page = 1;
         this.loadingFacade(this.searchService.value);
-      })
+      });
   }
 
   public updateCourseHandler: (id: string) => void = (id: string) => {
@@ -55,7 +55,7 @@ export class CoursesComponent implements OnInit, IListener {
   }
 
   public ngOnInit(): void {
-    this.searchService.subscribe(this.listenCallback);    
+    this.searchService.subscribe(this.listenCallback);
     this.loadingFacade(this.searchService.value);
   }
 
@@ -75,9 +75,9 @@ export class CoursesComponent implements OnInit, IListener {
     this.page = 1;
     this.loadingService.show();
     this.store.dispatch(new CourseListLoadingStartAction({
-      page: this.page,
       count: this.count,
-      query: query,
+      page: this.page,
+      query,
     }));
   }
 
@@ -85,8 +85,8 @@ export class CoursesComponent implements OnInit, IListener {
     this.page++;
     this.loadingService.show();
     this.store.dispatch(new CourseListLoadMoreAction({
-      page: this.page,
       count: this.count,
+      page: this.page,
       query: this.searchService.value,
     }));
   }

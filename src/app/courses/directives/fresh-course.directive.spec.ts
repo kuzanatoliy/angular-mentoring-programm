@@ -8,12 +8,11 @@ import { CourseItemComponent } from '../components';
 
 import {
   DurationPipe,
-} from '../../shared/pipes';
+} from 'src/app/shared/pipes';
 
-import { ModalWindowComponent } from '../../shared/components';
+import { ModalWindowComponent } from 'src/app/shared/components';
 
-
-import { ICourse } from '../../interfaces/ICourse';
+import { ICourse } from 'src/app/interfaces/ICourse';
 
 describe('FreshCourseDirective', () => {
   const COURSE_MOCK: ICourse = {

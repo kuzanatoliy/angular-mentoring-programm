@@ -19,15 +19,15 @@ export class CourseInitAction implements Action {
 }
 
 export class CourseLoadAction implements Action {
-  constructor(public payload: { id: string }) {};
-  
   public readonly type = ActionTypes.courseLoad;
+
+  constructor(public payload: { id: string }) {}
 }
 
 export class CourseLoadSuccessAction implements Action {
-  constructor(public payload: { course: ICourse }) {}
-  
   public readonly type = ActionTypes.courseLoadSuccess;
+
+  constructor(public payload: { course: ICourse }) {}
 }
 
 export class CourseLoadFailedAction implements Action {
@@ -35,15 +35,15 @@ export class CourseLoadFailedAction implements Action {
 }
 
 export class CourseCreateAction implements Action {
-  constructor(public payload: { course: ICourse }) {}
-  
   public readonly type = ActionTypes.courseCreate;
+
+  constructor(public payload: { course: ICourse }) {}
 }
 
 export class CourseCreateSuccessAction implements Action {
-  constructor(public payload: { course: ICourse }) {}
-  
   public readonly type = ActionTypes.courseCreateSuccess;
+
+  constructor(public payload: { course: ICourse }) {}
 }
 
 export class CourseCreateFailedAction implements Action {
@@ -51,15 +51,15 @@ export class CourseCreateFailedAction implements Action {
 }
 
 export class CourseUpdateAction implements Action {
-  constructor(public payload: { course: ICourse }) {};
-  
   public readonly type = ActionTypes.courseUpdate;
+
+  constructor(public payload: { course: ICourse }) {}
 }
 
 export class CourseUpdateSuccessAction implements Action {
-  constructor(public payload: { course: ICourse }) {}
-  
   public readonly type = ActionTypes.courseUpdateSuccess;
+
+  constructor(public payload: { course: ICourse }) {}
 }
 
 export class CourseUpdateFailedAction implements Action {
@@ -75,4 +75,4 @@ export type ActionsUnion = CourseInitAction
   | CourseCreateFailedAction
   | CourseUpdateAction
   | CourseUpdateSuccessAction
-  | CourseUpdateFailedAction
+  | CourseUpdateFailedAction;

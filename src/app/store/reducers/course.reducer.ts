@@ -18,15 +18,15 @@ export const initialCourseState: ICourseState = {
     title: '',
     topRated: false,
   }),
-  loading: false,
   error: false,
-}
+  loading: false,
+};
 
 export function courseReducer(
   state = initialCourseState,
-  action: ActionsUnion
+  action: ActionsUnion,
 ) {
-  switch(action.type) {
+  switch (action.type) {
     case ActionTypes.courseInit: {
       return { ...state, loading: false, error: false, course: initialCourseState.course };
     }

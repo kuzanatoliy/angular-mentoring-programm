@@ -1,15 +1,23 @@
 @import '../../../style/button'
+@import '../../../style/forms'
 
 .course-form
   textarea
-    width: 100%
-  textarea
+    @extend %error-control
+    width: 95%
     height: 5rem
   input
+    @extend %error-control
     width: 50%
   label
     margin-top: 1rem
     display: block
+
+.course-form-control
+  margin: 1rem
+  
+.error
+  @extend %error-message
 
 button
   @extend %button-style

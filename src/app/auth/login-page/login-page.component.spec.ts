@@ -1,7 +1,7 @@
 import { APP_BASE_HREF } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { StoreModule } from '@ngrx/store';
 
@@ -26,7 +26,7 @@ describe('LoginPageComponent', () => {
           userInfo: userInfoReducer,
         }),
         RouterTestingModule.withRoutes(routes),
-        FormsModule,
+        ReactiveFormsModule,
         CoursesModule,
         ErrorsModule,
         HttpClientTestingModule,

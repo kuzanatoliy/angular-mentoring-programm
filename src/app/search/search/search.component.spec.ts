@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { SearchComponent } from './search.component';
 
@@ -10,7 +10,7 @@ describe('SearchComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ SearchComponent ],
-      imports: [ FormsModule ],
+      imports: [ ReactiveFormsModule ],
     })
     .compileComponents();
   }));
@@ -32,6 +32,6 @@ describe('SearchComponent', () => {
     inputComponent.value = value;
     inputComponent.dispatchEvent(new Event('input'));
     fixture.detectChanges();
-    expect(component.value).toEqual(value);
+    expect(component.searchControl.value).toEqual(value);
   });
 });

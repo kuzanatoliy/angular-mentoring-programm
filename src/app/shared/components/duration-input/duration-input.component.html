@@ -1,8 +1,10 @@
 <div class="duration">
-  <div class="duration-input">
-    <input type="number" [(ngModel)]="duration" (blur)="changeHandler()">
-  </div>
+  <input type="number"
+    class="duration-input"
+    [formControl]="duration"
+    (click)="touchHandler()"
+    (change)="changeHandler()"/>
   <div class="duration-view">
-    {{ duration | duration }}
+    {{ duration.value | duration }}
   </div>
 </div>

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ICourse } from '../../../interfaces/ICourse';
 
 @Component({
@@ -7,42 +8,61 @@ import { ICourse } from '../../../interfaces/ICourse';
   templateUrl: './course-form.component.html',
 })
 export class CourseFormComponent implements OnInit {
-  public static DEFAULT_COURSE: ICourse = {
-    authors: [],
-    creationDate: new Date(),
-    description: '',
-    duration: 0,
-    id: '1',
-    title: '',
-    topRated: false,
-  };
+  public courseData = new FormGroup({
+    authors: new FormControl([]),
+    creationDate: new FormControl(new Date(), [ Validators.required ]),
+    description: new FormControl('', [ Validators.required, Validators.maxLength(500) ]),
+    duration: new FormControl(0, [ Validators.required ]),
+    title: new FormControl('', [ Validators.required, Validators.maxLength(50) ]),
+  });
 
-  public course: ICourse = CourseFormComponent.DEFAULT_COURSE;
+  get creationDate(): AbstractControl {
+    return this.courseData.get('creationDate');
+  }
+
+  get description(): AbstractControl {
+    return this.courseData.get('description');
+  }
+
+  get duration(): AbstractControl {
+    return this.courseData.get('duration');
+  }
+
+  get title(): AbstractControl {
+    return this.courseData.get('title');
+  }
 
   @Input() public set newCourse(course) {
-    this.course = course || CourseFormComponent.DEFAULT_COURSE;
+    this.course = course || {};
+    if (course) {
+      const { authors, creationDate, description, duration, title } = course;
+      this.courseData.setValue({
+        authors,
+        creationDate,
+        description,
+        duration,
+        title,
+      });
+    }
   }
+
   @Input() public saveAction?: (course: ICourse) => void;
   @Input() public cancelAction?: () => void;
 
+  private course: ICourse | {} = {};
+
   constructor() {}
-
-  public durationChangeHandler: (value: number) => void = (value: number) => {
-    this.course.duration = value;
-  }
-
-  public dateChangeHandler: (value: Date) => void = (value: Date) => {
-    this.course.creationDate = value;
-  }
 
   public ngOnInit(): void {}
 
   public saveHandler(): void {
-    this.saveAction && this.saveAction(this.course);
+    this.saveAction && this.saveAction({
+      ...this.course,
+      ...this.courseData.value,
+    });
   }
 
   public cancelHandler(): void {
     this.cancelAction && this.cancelAction();
   }
-
 }

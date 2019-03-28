@@ -44,6 +44,10 @@ export function generateRandomUserList(count = 10) {
   return userList;
 }
 
+export function getAuthorList() {
+  return USER_LIST;
+}
+
 export function generateRandomCourse(id) {
   const index = id || Math.ceil(Math.random() * 100);
   return {

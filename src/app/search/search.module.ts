@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { SearchComponent } from './search/search.component';
 
@@ -13,7 +13,7 @@ import { SearchComponent } from './search/search.component';
   ],
   imports: [
     CommonModule,
-    FormsModule,
+    ReactiveFormsModule,
   ],
 })
 export class SearchModule { }

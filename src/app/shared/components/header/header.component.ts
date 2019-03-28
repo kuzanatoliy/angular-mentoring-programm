@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store, select } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { IUserInfoState } from 'src/app/store/reducers/user-info.reducer';
@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private store: Store<{ userInfo: IUserInfoState }>
+    private store: Store<{ userInfo: IUserInfoState }>,
   ) { }
 
   public ngOnInit(): void {
@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
     this.userInfo$.subscribe((state: IUserInfoState) => {
       const { user: { userName }, loading, error } = state;
       this.userName = userName;
-      if(!userName && !loading && !error) {
+      if (!userName && !loading && !error) {
         this.router.navigate(['login']);
       }
     });

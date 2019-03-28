@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { DateInputComponent } from './date-input.component';
 
@@ -15,7 +15,7 @@ describe('DateInputComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ DateInputComponent ],
-      imports: [ FormsModule ],
+      imports: [ ReactiveFormsModule ],
     })
     .compileComponents();
   }));
@@ -23,7 +23,7 @@ describe('DateInputComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DateInputComponent);
     component = fixture.componentInstance;
-    component.date = currDate;
+    component.writeValue(currDate);
     fixture.detectChanges();
   });
 
@@ -32,23 +32,7 @@ describe('DateInputComponent', () => {
   });
 
   it('should check input value', () => {
-    const value = fixture.nativeElement.querySelector('input').getAttribute('ng-reflect-model');
+    const value = fixture.nativeElement.querySelector('input').value;
     expect(value).toBe(currDateStr);
-  });
-
-  describe('should check callback functionality', () => {
-    let date: Date;
-
-    const callback: (val: Date) => void = (val) => {
-      date = val;
-    };
-
-    it('should check function result', () => {
-      component.dateChangeHandler = callback;
-      fixture.detectChanges();
-      component.changeHandler();
-      expect(date).not.toEqual(currDate);
-      expect(date).toEqual(new Date(new DatePipe().transform(currDate)));
-    });
   });
 });

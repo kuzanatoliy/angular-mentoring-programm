@@ -1,9 +1,9 @@
 import { APP_BASE_HREF } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
-import { provideMockStore } from '@ngrx/store/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { provideMockStore } from '@ngrx/store/testing';
 
 import { AuthModule } from 'src/app/auth/auth.module';
 import { ErrorsModule } from 'src/app/errors/errors.module';
@@ -43,10 +43,10 @@ describe('CoursesPageComponent', () => {
   let fixture: ComponentFixture<CoursesPageComponent>;
 
   const initialState: ICourseListState = {
+    error: false,
     items: [],
     loading: false,
-    error: false,
-  }
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -66,7 +66,7 @@ describe('CoursesPageComponent', () => {
         SearchModule,
         SharedModule,
         FontAwesomeModule,
-        FormsModule,
+        ReactiveFormsModule,
         HttpClientTestingModule,
       ],
       providers: [

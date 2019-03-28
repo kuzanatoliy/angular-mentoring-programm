@@ -13,15 +13,15 @@ describe('HeaderComponent', () => {
 
   const initialState = {
     userInfo: {
+      error: false,
+      loading: false,
       user: {
-        userName: 'Pup',
         firstName: 'Pupoc',
         lastName: 'Pupcovic',
+        userName: 'Pup',
       },
-      loading: false,
-      error: false,
-    }
-  }
+    },
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -60,7 +60,6 @@ describe('HeaderComponent', () => {
     expect(loginButton).not.toBeNull();
   });
 
-  
   it('should find logout button', () => {
     const logoutButton = fixture.nativeElement.querySelector('.header-logout-button');
     expect(logoutButton).not.toBeNull();

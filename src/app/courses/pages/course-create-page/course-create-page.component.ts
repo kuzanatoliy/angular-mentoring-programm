@@ -1,14 +1,14 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store, select } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { LoadingService } from 'src/app/services';
 
 import { ICourse } from 'src/app/interfaces/ICourse';
 
+import { CourseCreateAction, CourseInitAction } from 'src/app/store/actions/course.actions';
 import { ICourseState } from 'src/app/store/reducers/course.reducer';
-import { CourseInitAction, CourseCreateAction } from 'src/app/store/actions/course.actions';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,12 +23,13 @@ export class CourseCreatePageComponent implements OnInit {
   constructor(
     private loadingService: LoadingService,
     private router: Router,
-    private store: Store<{ course: ICourseState }>
+    private store: Store<{ course: ICourseState }>,
   ) { }
 
   public saveAction: (course: ICourse) => void = (course: ICourse): void => {
     this.loadingService.show();
     this.store.dispatch(new CourseCreateAction({ course }));
+    this.router.navigate(['courses']);
   }
 
   public cancelAction: () => void = () => {

@@ -8,9 +8,13 @@ import { IUser } from 'src/app/interfaces/IUser';
 })
 export class UserControlComponent implements OnInit {
   @Input() public user?: IUser;
+  @Input() public removeAction: (user: IUser) => void;
 
   constructor() { }
 
   public ngOnInit(): void { }
 
+  public removeHandler(): void {
+    this.removeAction && this.removeAction(this.user);
+  }
 }

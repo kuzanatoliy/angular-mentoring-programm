@@ -12,7 +12,7 @@ import { LoadingModule } from './loading/loading.module';
 import { SearchModule } from './search/search.module';
 import { SharedModule } from './shared/shared.module';
 
-import { courseListReducer, courseReducer, userInfoReducer } from './store/reducers';
+import { authorListReducer, courseListReducer, courseReducer, userInfoReducer } from './store/reducers';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -22,8 +22,9 @@ describe('AppComponent', () => {
       ],
       imports: [
         StoreModule.forRoot({
-          courseList: courseListReducer,
+          authorList: authorListReducer,
           course: courseReducer,
+          courseList: courseListReducer,
           userInfo: userInfoReducer,
         }),
         AuthModule,
